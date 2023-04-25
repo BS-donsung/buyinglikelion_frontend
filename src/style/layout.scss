@@ -1,0 +1,11 @@
+.flex-container {
+  display: flex;
+
+  &.column-direct {
+    flex-direction: column;
+  }
+}
+
+.flex-item {
+
+}

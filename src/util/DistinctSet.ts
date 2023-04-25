@@ -38,7 +38,7 @@ export class DistinctSet<_Tp, _CheckTp> implements Iterable<_Tp>{
     }
 
     update(value: _Tp) : this {
-        if(this.delete(this.mapping(value))) {
+        if(this.delete(value)) {
             this.container.push(value)
         }
         return this;

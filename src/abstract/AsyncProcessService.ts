@@ -7,7 +7,7 @@ import { AjaxPendingError } from "@/error/AjaxPendingError";
 
 export class AsyncProcessService extends ProcessStatus {
 
-    protected async asyncProcessing<_ResTp, _InpTp>( requestInfo : AsyncRequestInfo, inputData : _InpTp | undefined = undefined) : Promise<Result<_ResTp, Error>> {
+    async asyncProcessing<_ResTp, _InpTp>( requestInfo : AsyncRequestInfo, inputData : _InpTp | undefined = undefined) : Promise<Result<_ResTp, Error>> {
         if(this.isPending())
             return Result.failure( new AjaxPendingError() )
         try {

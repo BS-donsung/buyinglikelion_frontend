@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex-container column-direct">
         <label id="principal">
             Email
             <input type="email" />
@@ -14,5 +14,3 @@
         </router-link>
     </div>
 </template>
-<script setup lang="ts">
-</script>
