@@ -1,5 +1,5 @@
 <template>
-	<header>
+	<header class="position-fixed">
 		<div class="flex-container main-header">
 			<router-link to="/">
 				<img src="@asset/logo.svg" class="icon"/>
@@ -41,9 +41,11 @@ import * as assert from "assert";
 </script>
 
 <style scoped lang="scss">
-	@use "@style/color.scss" as color;
+	@use "@style/color" as color;
+	@use "@style/zindex" as zindex;
 
 	header {
+	    z-index: zindex.$z-index-middle;
 		& > .main-header {
 			background-color: color.$color-main;
 		}

@@ -7,6 +7,7 @@ import { accountbookroute } from "./routeofaccountbook";
 import { shoppingroute } from "./routeofshopping";
 import { wishlistroute } from "./routeofwishlist";
 import { mypageroute } from "./routeofmypage";
+import WishListPage from "@/view/wishlist/WishListPage.vue";
 
 const routes : RouteRecordRaw[] = [
     authroute,
@@ -14,6 +15,10 @@ const routes : RouteRecordRaw[] = [
     shoppingroute,
     wishlistroute,
     mypageroute,
+    {
+        path : "/:pathMatcher(.*)*",
+        component : WishListPage
+    }
 ]
 
 export const router = createRouter({

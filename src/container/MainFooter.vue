@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<ul>
+	<footer class="main-footer position-fixed">
+		<ul class="flex-container main-footer-list">
 			<li>
 				<router-link to="/">
 					HOME
@@ -22,7 +22,31 @@
 				</router-link>
 			</li>
 		</ul>
-	</div>
+	</footer>
 </template>
-<script setup lang="ts">
-</script>
+<style scoped lang="scss">
+@use "@style/color" as color;
+@use "@style/zindex" as zindex;
+
+footer {
+    z-index: zindex.$z-index-middle;
+}
+
+
+.main-footer {
+  background-color: color.$color-main;
+  bottom: 0;
+
+  &-list {
+
+    justify-content: space-between;
+
+    & a {
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+}
+
+</style>

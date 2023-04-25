@@ -18,7 +18,7 @@ export const authroute : RouteRecordRaw = {
             path : "update", component : AuthUpdatePage
         },
         {
-            path : "/:pathMatcher(.*)*",
+            path : ":pathMatcher(.*)*",
             redirect : "/auth/login"
         }
     ]

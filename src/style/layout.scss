@@ -4,14 +4,16 @@
   &.column-direct {
     flex-direction: column;
   }
-
-
 }
 
 .flex-item {
 
 }
 
+.position-fixed {
+  position: fixed;
+  width: 100vw;
+}
 
 .margin-left-auto {
   margin-left: auto;

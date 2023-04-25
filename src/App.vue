@@ -1,6 +1,8 @@
 <template>
     <MainHeader />
-    <RouterView />
+    <section>
+        <RouterView />
+    </section>
     <MainFooter />
 </template>
 
@@ -9,3 +11,11 @@ import MainHeader from "@/container/MainHeader.vue";
 import MainFooter from "@/container/MainFooter.vue";
 
 </script>
+
+<style scoped lang="scss">
+section {
+    padding-top : 5rem;
+}
+
+
+</style>
