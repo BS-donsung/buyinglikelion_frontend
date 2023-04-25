@@ -13,31 +13,23 @@
 						<img src="@asset/icon/search.svg" class="icon"/>
 					</li>
 					<li>
-						<div class="main-header-user-info" />
+
+						<div style="width: 48px; height: 48px; border-radius: 50%; background-color: black;"></div>
 					</li>
 				</ul>
 			</div>
 		</div>
-<!--		<div class="additional-header">-->
-<!--			<input type="text" name="" id="">-->
-<!--			<button>image</button>-->
-<!--		</div>-->
 	</header>
 </template>
 
 <script setup lang="ts">
-import Logo from "@asset/logo.svg"
-import NotiIcon from "@asset/icon/noti.svg"
+import {useAuthStore} from "@/store/AuthStore";
+import {computed} from "vue";
 
-import * as assert from "assert";
+const authStore = useAuthStore();
+const isAuthenticated = computed( () => (authStore.authService.isAuthenticated) );
+console.log(isAuthenticated)
 
-// make store to use any way
-
-
-
-// const redirectionToSearchComponent = ( queryString : string ) => {
-//     this.$router.push({ path : "/search", query : { url : queryString } })
-// }
 </script>
 
 <style scoped lang="scss">
