@@ -2,20 +2,18 @@
 	<header>
 		<div class="flex-container main-header">
 			<router-link to="/">
-				<Logo size="5"/>
+				<img src="@asset/logo.svg" class="icon"/>
 			</router-link>
 			<div class="margin-left-auto">
 				<ul class="flex-container">
 					<li>
-						<SearchIcon />
+						<img src="@asset/icon/noti.svg" class="icon"/>
 					</li>
 					<li>
-						<NotiIcon />
+						<img src="@asset/icon/search.svg" class="icon"/>
 					</li>
 					<li>
-						<div class="main-header-user-info">
-
-						</div>
+						<div class="main-header-user-info" />
 					</li>
 				</ul>
 			</div>
@@ -28,9 +26,11 @@
 </template>
 
 <script setup lang="ts">
-import Logo from "@/asset/Logo.vue"
-import NotiIcon from "@/asset/icon/noti.vue"
-import SearchIcon from "@/asset/icon/search.vue"
+import Logo from "@asset/logo.svg"
+import NotiIcon from "@asset/icon/noti.svg"
+
+import * as assert from "assert";
+
 // make store to use any way
 
 
@@ -43,8 +43,10 @@ import SearchIcon from "@/asset/icon/search.vue"
 <style scoped lang="scss">
 	@use "@style/color.scss" as color;
 
-	.main-header {
-		background-color: color.$color-main;
+	header {
+		& > .main-header {
+			background-color: color.$color-main;
+		}
 	}
 
 	.main-header-user-info {
@@ -52,6 +54,12 @@ import SearchIcon from "@/asset/icon/search.vue"
 		border-radius: 50%;
 		width: 4.8rem;
 		height: 4.8rem;
+	}
+
+	img.icon, .main-header-user-info {
+	    height: 3rem;
+	    width: 3rem;
+	    max-height: 3rem;
 	}
 </style>
 
