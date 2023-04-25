@@ -28,7 +28,9 @@
             여
             <input type="radio" name="여" id="">
         </label>
-        <button>돌아가기</button>
+        <button>
+            돌아가기
+        </button>
         <button>회원가입</button>
     </div>
 </template>

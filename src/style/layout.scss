@@ -1,11 +1,18 @@
 .flex-container {
   display: flex;
-
+  align-items: center;
   &.column-direct {
     flex-direction: column;
   }
+
+
 }
 
 .flex-item {
 
+}
+
+
+.margin-left-auto {
+  margin-left: auto;
 }
