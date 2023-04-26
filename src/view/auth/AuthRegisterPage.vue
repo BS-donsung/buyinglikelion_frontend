@@ -2,5 +2,5 @@
     <RegisterContainer />
 </template>
 <script setup lang="ts">
-import RegisterContainer from "@/container/RegisterContainer.vue";
+import RegisterContainer from "@/container/auth/RegisterContainer.vue";
 </script>
