@@ -70,7 +70,6 @@ async function handleSummit() {
 	const { username, principal, credential } = inputState
 	const dtoForCreate = new CreateUserDTO(username, principal, credential)
 
-
 	const result = await store.authService.register(dtoForCreate);
     if(result.isPresent){
         // error processing

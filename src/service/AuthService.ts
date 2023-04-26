@@ -54,7 +54,9 @@ export class AuthService extends CachedItemContainer<AuthInfo> implements AuthSe
     }
 
     async register(createUserDTO: CreateUserDTO): Promise<Optional<Error>> {
+        console.log(createUserDTO)
         const result = await this.asyncProcessing<UsernameAndPrincipalDTO, CreateUserDTO>(this.requestInfo["register"], createUserDTO)
+        console.log(result)
         if(result.isFailure()) {
             return Optional.of(result.getError())
         }

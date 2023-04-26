@@ -13,17 +13,19 @@ export class AsyncProcessService extends ProcessStatus {
         try {
             this.setPending()
             // logic start
+            console.log("create dto", inputData)
             const response = await fetch(requestInfo.endpoint, AsyncProcessService.setFetchOption(requestInfo, inputData) )
+            if(!response.status >= 300) {
+
+            }
             const responseBody = await response.text()
 
             this.setSuccess()
             if(responseBody.length == 0) {
                 return Result.emptyButSucccess()
             } else {
-                console.log(Result.success<_ResTp>(JSON.parse(responseBody)));
                 return Result.success<_ResTp>(JSON.parse(responseBody))
             }
-
         } catch (e) {
             console.log(e);
             this.setFailure()
