@@ -1,6 +1,6 @@
 import {AsyncProcessService} from "./AsyncProcessService";
 
-import {DistinctSet} from "../util/DistinctSet";
+import {DistinctSet} from "@/util/DistinctSet";
 import {map} from "@/util/Functional";
 
 export class CachedListContainer<_Tp, _CheckTp, _DataUniquenessCriteriaFunc extends ( item : _Tp ) => _CheckTp> extends AsyncProcessService {

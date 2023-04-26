@@ -49,8 +49,10 @@ import {computed, reactive} from "vue";
 import {AuthDTO} from "@/dto/UserDTO";
 import {useAuthStore} from "@/store/AuthStore";
 import {STATUS} from "@/util/ProcessState";
+import {useRouter} from "vue-router";
 
 const store = useAuthStore();
+const router = useRouter()
 
 const inputState = reactive({
 	principal : "",
@@ -71,6 +73,9 @@ async function handleSubmit(){
         //error processing
         snackBarState.status = STATUS.FAILURE
 		snackBarState.message = result.get().message
+	} else {
+        alert("success")
+        router.push("/")
 	}
 }
 const mapStatusToVisibleSnackbar = computed(() => {
