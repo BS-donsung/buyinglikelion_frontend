@@ -1,0 +1,4 @@
+# : comments
+
+# no .exe files
+*.exe
