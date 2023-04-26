@@ -34,7 +34,7 @@ export class AuthService extends CachedItemContainer<AuthInfo> implements AuthSe
         this.requestInfo = requestInfo;
     }
 
-    isAuthenticated() : boolean {
+    get isAuthenticated() : boolean {
         return this.getData().isAuthentication
     }
     
