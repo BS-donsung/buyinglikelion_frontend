@@ -1,24 +1,32 @@
 <template>
 	<footer class="main-footer position-fixed">
-		<ul class="flex-container main-footer-list">
+		<ul class="flex-container space-around main-footer-list">
 			<li>
 				<router-link to="/">
-					HOME
+					<v-btn icon size="large" variant="plain">
+						<span class="material-symbols-outlined">book</span>
+					</v-btn>
 				</router-link>
 			</li>
 			<li>
 				<router-link to="/accountbook">
-					AccountBook
+					<v-btn icon size="large" variant="plain">
+						<span class="material-symbols-outlined">account_balance_wallet</span>
+					</v-btn>
 				</router-link>
 			</li>
 			<li>
 				<router-link to="/shopping">
-					Shopping
+					<v-btn icon size="large" variant="plain">
+						<span class="material-symbols-outlined">shopping_cart</span>
+					</v-btn>
 				</router-link>
 			</li>
 			<li>
 				<router-link to="/mypage">
-					MyPage
+					<v-btn icon size="large" variant="plain">
+						<span class="material-symbols-outlined">menu</span>
+					</v-btn>
 				</router-link>
 			</li>
 		</ul>
@@ -34,19 +42,19 @@ footer {
 
 
 .main-footer {
-  background-color: color.$color-main;
-  bottom: 0;
+    background-color: color.$color-main;
+     bottom: 0;
 
-  &-list {
+	  &-list {
 
-    justify-content: space-between;
-
-    & a {
-      color: black;
-      text-decoration: none;
-    }
+       & a {
+	       color: black;
+	       text-decoration: none;
+	       font-size: 2rem;
+       }
   }
-
 }
 
 </style>
+<script setup lang="ts">
+</script>

@@ -16,8 +16,8 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '^/auth': {
-        target: 'http://968482c3-2682-41c4-aaae-3593687a9bdc.mock.pstmn.io/auth',
+      '/auth': {
+        target: "https://968482c3-2682-41c4-aaae-3593687a9bdc.mock.pstmn.io",
         changeOrigin: true
       },
     }

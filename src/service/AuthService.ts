@@ -33,6 +33,10 @@ export class AuthService extends CachedItemContainer<AuthInfo> implements AuthSe
         super( new AuthInfo("", "", false) )
         this.requestInfo = requestInfo;
     }
+
+    get isAuthenticated() : boolean {
+        return this.getData().isAuthentication
+    }
     
     async login(authDTO: AuthDTO): Promise<Optional<Error>> {
         const result = await this.asyncProcessing<UsernameAndPrincipalDTO, AuthDTO>(this.requestInfo["login"], authDTO)

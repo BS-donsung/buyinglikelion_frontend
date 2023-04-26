@@ -4,7 +4,7 @@
 		<div v-if="state.showModal" class="modal">
 			<div class="modal-content">
 				<h2 v-if="props.title">{props?.title}</h2>
-				<p>{propss.content}</p>
+				<p>{props.content}</p>
 				<button @click="() => { state.showModal = false; props.action()}">닫기</button>
 			</div>
 		</div>

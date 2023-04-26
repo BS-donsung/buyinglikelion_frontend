@@ -4,3 +4,16 @@ $color-sub-light : #D5C1AD;
 $color-sub-deep: #A58C6D;
 
 $color-point : #A3353E;
+
+
+.background-color-main {
+    background-color: $color-main;
+}
+
+.background-color-point {
+    background-color: $color-point;
+}
+
+.font-white {
+    color: white;
+}

@@ -17,11 +17,15 @@ export class AsyncProcessService extends ProcessStatus {
             const responseBody = await response.text()
 
             this.setSuccess()
-            if(responseBody.length == 0)
+            if(responseBody.length == 0) {
                 return Result.emptyButSucccess()
-            else
+            } else {
+                console.log(Result.success<_ResTp>(JSON.parse(responseBody)));
                 return Result.success<_ResTp>(JSON.parse(responseBody))
+            }
+
         } catch (e) {
+            console.log(e);
             this.setFailure()
             return Result.failure(e as Error)
         }
