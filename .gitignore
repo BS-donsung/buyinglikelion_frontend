@@ -2,3 +2,7 @@
 
 # no .exe files
 *.exe
+*.json
+.gitignore
+
+node_modules/
