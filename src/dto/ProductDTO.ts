@@ -41,8 +41,13 @@ export class WishItemDTO implements Product {
     id : number;
     product : string;
     image_url : string;
-    lowest_price : number
-    choice_date : StrictDate
+    lowest_price : number;
+    choice_date : StrictDate;
+
+    get name() : string {
+        return this.product
+    }
+
 
     private constructor(id : number, name : string, image_uri : string, lowest_price : number, choice_date : StrictDate) {
         this.id = id;

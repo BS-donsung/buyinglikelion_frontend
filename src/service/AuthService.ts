@@ -30,7 +30,7 @@ export class AuthService extends CachedItemContainer<AuthInfo> implements AuthSe
     requestInfo : AuthServiceAsyncRequestInfo
 
     constructor( requestInfo : AuthServiceAsyncRequestInfo ) {
-        super( new AuthInfo("", "", false) )
+        super( new AuthInfo("고객님", "", false) )
         this.requestInfo = requestInfo;
     }
 
