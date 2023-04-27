@@ -1,18 +1,3 @@
-<template>
-  <div class="user-web_com">
-    <div class="overlap-group">
-      <div class="rec_1"></div>
-      <div class="rec_2"></div>
-      <img class="userprofile" src="@asset/componenticon/sajaface.png" alt="userprofile" />
-      <h1 class="username">{{ username }} 사자님</h1>
-      <div class="wishitem">찜한 아이템</div>
-      <div class="wishN">{{ wishN }}</div>
-      <div class="buyN">{{ buyN }}</div>
-      <div class="buyitem">구매한 아이템</div>
-    </div>
-  </div>
-</template>
-
 <script lang="ts">
 export default {
   name: 'UserWebCom',

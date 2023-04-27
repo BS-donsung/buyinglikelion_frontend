@@ -37,8 +37,8 @@ import { dummyWishList } from "@/dummy/DummyWishList";
 
 
 const authStore = useAuthStore();
-const currentUserName = authStore.authService.data.username
-authStore.authService.data
+const currentUserName = authStore.authService.getData().username
+
 
 
 
