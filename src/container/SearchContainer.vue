@@ -1,6 +1,6 @@
 <template>
 	<section class="input-container">
-		Search
+		<SearchForm />
 	</section>
 	<section class="history-container">
 
@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import {computed, reactive} from "vue";
+import SearchForm from "@/ui-componenet/SearchForm.vue";
 
 interface SearchContainerInterface {
     requestQuery : string

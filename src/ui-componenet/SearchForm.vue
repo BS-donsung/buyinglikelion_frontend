@@ -36,7 +36,6 @@ export default {
   border-bottom-width: 0.5px;
   border-color: black;
   display: flex;
-  gap: 237px;
   height: 50px;
   margin-top: 35px;
   min-width: 557px;
@@ -62,6 +61,7 @@ export default {
 .searchic {
   height: 29px;
   margin-top: 6px;
-  width: 29px
+  width: 29px;
+  margin-left: auto;
 }
 </style>
