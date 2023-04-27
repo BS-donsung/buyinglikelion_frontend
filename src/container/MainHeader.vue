@@ -2,13 +2,11 @@
 	<header class="position-fixed">
 		<v-toolbar color="#F7CE46">
 			<v-toolbar-title>
-
-				<router-link to="/" class="flex-container inline header-logo-container">
+				<router-link to="/" class="flex-container inline header-logo-container pointer">
 					<img src="@asset/logo.svg" class="icon"/>
 					<object type="image/svg+xml" data="/assets/logo-text-single-line.svg">Not support SVG</object>
 				</router-link>
 			</v-toolbar-title>
-
 			<ul class="flex-container">
 				<li>
 					<v-btn icon size="large" :onclick="toggleHeaderExtended" variant="plain">

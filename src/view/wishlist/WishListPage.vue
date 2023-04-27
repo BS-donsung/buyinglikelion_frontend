@@ -1,13 +1,7 @@
 <template>
-    <h1 class="wishtitle">{{ currentUserName }} 사자님의 Wish List</h1>
-    <span class="material-symbols-outlined">
-        expand_more
-    </span>
-    <span class="material-symbols-outlined">
-    </span>
-    radio_button_checked
+    <h1 class="wishtitle">{{ currentUserName }}의 Wish List</h1>
 
-    <div v-if="dummyWishList.length === 0">
+    <div v-if="store.size === 0">
         <div class="havenowish-container">
             <div class="havenowishscreen">
                 <img class="sajaface" src="@/asset/componenticon/sajaface.png" alt="sajaface" />
@@ -18,15 +12,23 @@
             </div>
         </div>
     </div>
-
-    <div v-else v-for="(item, index) in dummyWishList" :key="item.id">
-        <ItemCom
-            :wishDate="item.choice_date.toDateString()"
-            :wishItem="item.name"
-            :wishItemUrl="item.image_url"
-            :wishPrice="item.lowest_price.toString()"
-            :index="index" />
-    </div>
+    <section v-else>
+        <div class="flex-container select-panel">
+            <Checkbox title="전체 상품 선택하기" />
+            <v-btn variant="tonal" class="">
+                선택 상품 삭제
+            </v-btn>
+        </div>
+        <div v-for="(item, index) in store" :key="index">
+            <ItemCom
+                :date="item.choice_date.toDateString()"
+                :name="item.name"
+                :image="item.image_url"
+                :wish_price="item.lowest_price.toString()"
+                :onremove="handlingRemove"
+                :index="item.id" />
+        </div>
+    </section>
 </template>
 
 <script setup lang="ts">
@@ -35,18 +37,41 @@ import ItemCom from '@/ui-componenet/ItemCom.vue';
 import {useAuthStore} from "@/store/AuthStore";
 import { dummyWishList } from "@/dummy/DummyWishList";
 
+import {DistinctSet} from "@/util/DistinctSet";
+import {WishItemDTO} from "@/dto/ProductDTO";
+import {computed, reactive} from "vue";
+import Checkbox from "@/ui-componenet/Checkbox.vue";
+
 
 const authStore = useAuthStore();
-const currentUserName = authStore.authService.data.username
-authStore.authService.data
+const currentUserName = authStore.authService.getData().username
+const state = reactive({
+    store : new DistinctSet(( wishItem : WishItemDTO ) => wishItem.id )
+})
 
+const store = computed(() => state.store);
 
+dummyWishList.forEach( item => {
+    state.store.add(item);
+})
+
+function handlingRemove( index : number ) {
+    state.store.deleteByBase(index);
+}
 
 </script>
 
 <style scoped lang="scss">
 @use "@style/color" as color;
 //@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700")
+
+
+.select-panel {
+    margin: 1rem 0;
+    & > *:last-child {
+        margin-left: auto;
+    }
+}
 
 
 .wishtitle {
