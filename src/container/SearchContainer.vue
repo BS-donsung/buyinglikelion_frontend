@@ -13,15 +13,15 @@
 <script setup lang="ts">
 import {computed, reactive} from "vue";
 import SearchForm from "@/ui-componenet/SearchForm.vue";
+import {useRoute, useRouter} from "vue-router";
 
+const router = useRouter();
 interface SearchContainerInterface {
-    requestQuery : string
+    requestQuery? : string
 }
 const props = withDefaults(defineProps<SearchContainerInterface>(), {
     requestQuery : ""
 })
-
-
 
 const inputState = reactive({
 	query : props.requestQuery
@@ -29,5 +29,6 @@ const inputState = reactive({
 
 function handleSearchQuery( queryString : string ) {
     inputState.query = queryString
+	router.push(`/search?q=${inputState.query}`)
 }
 </script>

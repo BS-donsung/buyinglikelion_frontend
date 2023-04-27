@@ -1,5 +1,5 @@
 <template>
-	<SearchContainer request-query="query" />
+	<SearchContainer :request-query="query" />
 </template>
 
 <script setup lang="ts">

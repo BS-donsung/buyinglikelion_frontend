@@ -59,6 +59,9 @@ const state = reactive({
     store : new DistinctSet(( wishItem : WishItemDTO ) => wishItem.id )
 })
 
+
+
+
 const store = computed(() => state.store);
 
 dummyWishList.forEach( item => {
