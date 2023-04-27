@@ -1,6 +1,6 @@
 <template>
 	<h1>Regster</h1>
-	<form @submit.prevent="handleSubmit" class="login-form">
+	<form @submit.prevent="handleSummit" class="login-form">
 		<v-text-field
 				:counter="10"
 				label="Username"
@@ -21,7 +21,7 @@
 		</v-text-field>
 		<v-text-field
 				type="password"
-				:counter="10"
+				:counter="8"
 				label="Passoword"
 				variant="outlined"
 				v-model="inputState.credential">
@@ -31,7 +31,7 @@
 		</v-text-field>
 		<v-text-field
 				type="password"
-				:counter="10"
+				:counter="8"
 				label="Checking Passoword"
 				variant="outlined"
 				v-model="inputState.retypedCredential">
@@ -39,7 +39,13 @@
 				<span class="material-symbols-outlined">lock</span>
 			</template>
 		</v-text-field>
-		<div class="confirm-area">
+		<div class="confirm-area flex-container">
+			<router-link to="/auth/login">
+				<v-btn type="submit" color="#A3353E" to="/auth/register" @click="handleSummit">
+					<span class="font-white font-weight-700">로그인</span>
+				</v-btn>
+			</router-link>
+
 			<v-btn type="submit" color="#A3353E" to="/auth/register" @click="handleSummit">
 				<span class="font-white font-weight-700">가입하기</span>
 			</v-btn>
@@ -48,12 +54,12 @@
 </template>
 
 <script setup lang="ts">
-import Checkbox from "@/ui-componenet/Checkbox.vue";
-import { reactive} from "vue";
+import { reactive } from "vue";
 import { useRouter } from "vue-router"
 
 import { CreateUserDTO } from "@/dto/UserDTO";
 import {useAuthStore} from "@/store/AuthStore";
+import Validator from "@/util/Validator";
 
 const router = useRouter()
 const store = useAuthStore();
@@ -67,20 +73,35 @@ const inputState = reactive({
 
 async function handleSummit() {
 	// validation
-	const { username, principal, credential } = inputState
-	const dtoForCreate = new CreateUserDTO(username, principal, credential)
+	const { username, principal, credential, retypedCredential } = inputState
 
+	if(credential != retypedCredential) {
+        // 비밀번호 불일치 에러
+		alert("비밀번호가 불일치 합니다.")
+        return;
+
+	}
+    if(credential.length < 8) {
+        alert("비밀번호는 최소 8자 이상이어야 합니다.")
+        return;
+    }
+
+    if(!Validator.isValidPassword(credential)) {
+        // 비밀번호 요건 에러
+	    alert("유효하지 않은 비밀번호입니다. 요건을 확인해주세요")
+	    return;
+    }
+
+	const dtoForCreate = new CreateUserDTO(username, principal, credential)
 	const result = await store.authService.register(dtoForCreate);
+
     if(result.isPresent){
-        // error processing
 	    alert(result.get()?.message ?? "에러가 발생했습니다.")
     } else {
         // success processing
         router.push("/");
     }
-
 }
-
 </script>
 
 <style scoped>

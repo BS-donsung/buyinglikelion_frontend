@@ -1,6 +1,6 @@
 <template>
 	<section class="input-container">
-
+		Search
 	</section>
 	<section class="history-container">
 

@@ -2,3 +2,7 @@
 
 # no .exe files
 *.exe
+
+.idea
+.vscode
+node_modules/

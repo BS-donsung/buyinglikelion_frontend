@@ -8,6 +8,7 @@ import { shoppingroute } from "./routeofshopping";
 import { wishlistroute } from "./routeofwishlist";
 import { mypageroute } from "./routeofmypage";
 import WishListPage from "@/view/wishlist/WishListPage.vue";
+import {searchroute} from "@/routes/routeofsearch";
 
 const routes : RouteRecordRaw[] = [
     authroute,
@@ -15,6 +16,7 @@ const routes : RouteRecordRaw[] = [
     shoppingroute,
     wishlistroute,
     mypageroute,
+    searchroute,
     {
         path : "/:pathMatcher(.*)*",
         component : WishListPage

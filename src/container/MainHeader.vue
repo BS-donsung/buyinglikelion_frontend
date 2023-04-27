@@ -40,14 +40,20 @@
 			</ul>
 			<template v-slot:extension v-if="state.headerExtended">
 				<v-text-field
-					label="Main input"
+					label="찾을 태그나 URL을 입력하세요"
 					hide-details="auto"
-					class="search-input-field">
+					class="search-input-field"
+					v-model="inputState.inputData">
 					<template v-slot:prepend-inner>
 						<span class="material-symbols-outlined icon-size">search</span>
 					</template>
+					<template v-slot:append-inner>
+						<span class="material-symbols-outlined pointer" @click="clearInputData">
+							cancel
+						</span>
+					</template>
 				</v-text-field>
-				<v-btn size="large" :onclick="toggleHeaderExtended">
+				<v-btn size="large" :onclick="handleSearchInput">
 					찾기
 				</v-btn>
 			</template>
@@ -59,15 +65,29 @@
 <script setup lang="ts">
 import {useAuthStore} from "@/store/AuthStore";
 import {computed, reactive} from "vue";
+import Validator from "@/util/Validator";
+import {useRouter} from "vue-router";
 
+const router = useRouter()
 const authStore = useAuthStore();
 const isAuthenticated = computed( () => (authStore.authService.isAuthenticated) );
 
 const state = reactive({
 	headerExtended : false
 })
+
+const inputState = reactive({
+	inputData : ""
+})
+const clearInputData = () => { inputState.inputData = "" }
+
+function handleSearchInput() {
+    const inputData = inputState.inputData
+    router.push(`/search?q=${inputData}`)
+	state.headerExtended = false;
+}
+
 function toggleHeaderExtended() {
-    console.log("toggle");
     state.headerExtended = !state.headerExtended
 }
 

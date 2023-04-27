@@ -16,7 +16,7 @@ export class AsyncProcessService extends ProcessStatus {
             console.log("create dto", inputData)
             const response = await fetch(requestInfo.endpoint, AsyncProcessService.setFetchOption(requestInfo, inputData) )
             if(!response.ok) {
-                throw new Error(`Network response was not ok ${response.status}`);
+                return Result.failure(new Error(`Network response was not ok ${response.status}`));
             }
             const responseBody = await response.text()
 
