@@ -2,3 +2,5 @@
 
 # no .exe files
 *.exe
+
+node_modules/
