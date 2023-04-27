@@ -21,6 +21,8 @@ const props = withDefaults(defineProps<SearchContainerInterface>(), {
     requestQuery : ""
 })
 
+
+
 const inputState = reactive({
 	query : props.requestQuery
 })
@@ -29,8 +31,5 @@ function handleSearchQuery( queryString : string ) {
     inputState.query = queryString
 	console.log(inputState.query)
 }
-
-
-
 
 </script>

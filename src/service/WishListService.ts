@@ -12,7 +12,7 @@ interface WishListServiceInterface {
 }
 
 const mappingByItem = ( item : WishItemDTO) => (item.id)
-class WishListService extends CachedListContainer<WishItemDTO, number, typeof mappingByItem> implements WishListServiceInterface {
+export class WishListService extends CachedListContainer<WishItemDTO, number, typeof mappingByItem> implements WishListServiceInterface {
     clear(): void {
         this.clear()
     }
