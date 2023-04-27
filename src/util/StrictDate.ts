@@ -15,8 +15,8 @@ export class StrictDate {
         return new Date(`${this.year}/${this.month}/${this.date}`)
     }
 
-    toDateString( joinBy : string = "/") : string {
-        return (this.year + joinBy + this.month + joinBy + this.date);
+    toDateString() : string {
+        return `${this.year}/${this.month}/${this.date}`;
     }
 
     static of(year : number, month : MonthRange , date : number) : StrictDate {

@@ -40,7 +40,7 @@ const authStore = useAuthStore();
 const currentUserName = authStore.authService.data.username
 
 onMounted(() => {
-    console.log("date", dummyWishList[0].choice_date.toDateString())
+    console.log(dummyWishList.map(item => item.choice_date))
 })
 
 
