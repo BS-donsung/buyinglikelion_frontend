@@ -7,7 +7,7 @@ export class StrictDate {
     date : number
     private constructor(year : number, month : MonthRange , date : number) {
         this.year = year;
-        this.month = year;
+        this.month = month;
         this.date = date;
     }
 

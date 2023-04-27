@@ -21,7 +21,7 @@
 
     <div v-else v-for="(item, index) in dummyWishList" :key="item.id">
         <ItemCom
-            wishDate="test"
+            :wishDate="item.choice_date.toDateString()"
             :wishItem="item.name"
             :wishItemUrl="item.image_url"
             :wishPrice="item.lowest_price.toString()"
@@ -34,15 +34,10 @@
 import ItemCom from '@/ui-componenet/ItemCom.vue';
 import {useAuthStore} from "@/store/AuthStore";
 import { dummyWishList } from "@/dummy/DummyWishList";
-import {onMounted} from "vue";
+
 
 const authStore = useAuthStore();
 const currentUserName = authStore.authService.data.username
-
-onMounted(() => {
-    console.log(dummyWishList.map(item => item.choice_date))
-})
-
 
 
 
