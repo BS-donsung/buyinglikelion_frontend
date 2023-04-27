@@ -13,10 +13,10 @@ export class CachedItemContainer<_Tp> extends AsyncProcessService {
         this.data = defaultData;
     }
 
-    protected getData() : _Tp {
+    getData() : _Tp {
         return this.data
     }
-    protected setData( data : _Tp ) : void {
+    setData( data : _Tp ) : void {
         this.data = data
     }
     protected clear() {
