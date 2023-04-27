@@ -21,6 +21,8 @@
 //     mall : string
 // }
 
+import {StrictDate} from "@/util/StrictDate";
+
 export interface CreateWishItemDTO {
     url : string
 }
@@ -40,20 +42,22 @@ export class WishItemDTO implements Product {
     product : string;
     image_url : string;
     lowest_price : number
-    choice_date : Date
+    choice_date : StrictDate
 
-    private constructor(id : number, name : string, image_uri : string, lowest_price : number, choice_date : Date) {
+    private constructor(id : number, name : string, image_uri : string, lowest_price : number, choice_date : StrictDate) {
         this.id = id;
         this.product = name;
         this.image_url = image_uri;
         this.lowest_price = lowest_price;
-        this.choice_date = choice_date;
+        this.choice_date = StrictDate;
     }
 
-    static of(id : number, name : string, image_uri : string, lowest_price : number, choice_date : Date = new Date()) : WishItemDTO {
+    static of(id : number, name : string, image_uri : string, lowest_price : number, choice_date : StrictDate = StrictDate.ofDate()) : WishItemDTO {
         return new WishItemDTO(id, name, image_uri, lowest_price, choice_date);
     }
 }
+
+WishItemDTO.of(1, "name", "url", 30000)
 
 export interface AccountDTO extends Product {
     purchase_date : Date
