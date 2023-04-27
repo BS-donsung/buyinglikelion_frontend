@@ -54,7 +54,7 @@ export class WishItemDTO implements Product {
         this.product = name;
         this.image_url = image_uri;
         this.lowest_price = lowest_price;
-        this.choice_date = StrictDate;
+        this.choice_date = choice_date;
     }
 
     static of(id : number, name : string, image_uri : string, lowest_price : number, choice_date : StrictDate = StrictDate.ofDate()) : WishItemDTO {
