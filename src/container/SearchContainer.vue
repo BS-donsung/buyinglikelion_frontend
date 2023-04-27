@@ -29,7 +29,5 @@ const inputState = reactive({
 
 function handleSearchQuery( queryString : string ) {
     inputState.query = queryString
-	console.log(inputState.query)
 }
-
 </script>

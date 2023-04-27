@@ -48,7 +48,6 @@ export class WishItemDTO implements Product {
         return this.product
     }
 
-
     private constructor(id : number, name : string, image_uri : string, lowest_price : number, choice_date : StrictDate) {
         this.id = id;
         this.product = name;
@@ -60,6 +59,7 @@ export class WishItemDTO implements Product {
     static of(id : number, name : string, image_uri : string, lowest_price : number, choice_date : StrictDate = StrictDate.ofDate()) : WishItemDTO {
         return new WishItemDTO(id, name, image_uri, lowest_price, choice_date);
     }
+
 }
 
 WishItemDTO.of(1, "name", "url", 30000)

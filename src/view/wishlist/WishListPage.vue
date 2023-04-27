@@ -1,34 +1,44 @@
 <template>
-    <h1 class="wishtitle">{{ currentUserName }}의 Wish List</h1>
-
-    <div v-if="store.size === 0">
-        <div class="havenowish-container">
-            <div class="havenowishscreen">
-                <img class="sajaface" src="@/asset/componenticon/sajaface.png" alt="sajaface" />
-                <div class="nowishtext">
-                    <span class="span-jjim">찜한 상품</span><span class="notosans-bold-black-20px">이 없습니다.</span>
-                </div>
-                <p class="nowishinnertext notosans-normal-black-20px">사자님을 위한 For you 메뉴를 확인하여 관심상품을 추가해보세요!</p>
-            </div>
-        </div>
-    </div>
-    <section v-else>
-        <div class="flex-container select-panel">
-            <Checkbox title="전체 상품 선택하기" />
-            <v-btn variant="tonal" class="">
-                선택 상품 삭제
-            </v-btn>
-        </div>
-        <div v-for="(item, index) in store" :key="index">
-            <ItemCom
-                :date="item.choice_date.toDateString()"
-                :name="item.name"
-                :image="item.image_url"
-                :wish_price="item.lowest_price.toString()"
-                :onremove="handlingRemove"
-                :index="item.id" />
-        </div>
-    </section>
+	<h1 class="wishtitle">{{ currentUserName }}의 Wish List</h1>
+	<ul class="flex-container align-controller">
+		<li>
+			<v-btn>최근 등록 된</v-btn>
+		</li>
+		<li>
+			<v-btn>가격 변동이 큰</v-btn>
+		</li>
+		<li>
+			<v-btn>우선 순위</v-btn>
+		</li>
+	</ul>
+	<div v-if="store.size === 0">
+		<div class="havenowish-container">
+			<div class="havenowishscreen">
+				<img class="sajaface" src="@/asset/componenticon/sajaface.png" alt="sajaface" />
+				<div class="nowishtext">
+					<span class="span-jjim">찜한 상품</span><span class="notosans-bold-black-20px">이 없습니다.</span>
+				</div>
+				<p class="nowishinnertext notosans-normal-black-20px">사자님을 위한 For you 메뉴를 확인하여 관심상품을 추가해보세요!</p>
+			</div>
+		</div>
+	</div>
+	<section v-else>
+		<div class="flex-container select-panel">
+			<Checkbox title="전체 상품 선택하기" />
+			<v-btn variant="tonal" class="">
+				선택 상품 삭제
+			</v-btn>
+		</div>
+		<div v-for="(item, index) in store" :key="index">
+			<ItemCom
+					:date="item.choice_date.toDateString()"
+					:name="item.name"
+					:image="item.image_url"
+					:wish_price="item.lowest_price.toString()"
+					:onremove="handlingRemove"
+					:index="item.id" />
+		</div>
+	</section>
 </template>
 
 <script setup lang="ts">
@@ -36,7 +46,7 @@
 import ItemCom from '@/ui-componenet/ItemCom.vue';
 import {useAuthStore} from "@/store/AuthStore";
 import { dummyWishList } from "@/dummy/DummyWishList";
-
+console.log(JSON.stringify(dummyWishList))
 import {DistinctSet} from "@/util/DistinctSet";
 import {WishItemDTO} from "@/dto/ProductDTO";
 import {computed, reactive} from "vue";
@@ -71,6 +81,10 @@ function handlingRemove( index : number ) {
     & > *:last-child {
         margin-left: auto;
     }
+}
+
+.align-controller {
+	justify-content: end;
 }
 
 

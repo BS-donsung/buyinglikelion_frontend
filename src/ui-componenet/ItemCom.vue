@@ -35,12 +35,7 @@ export interface ItemViewProps {
     wish_price: String,
     onremove : ( index : number ) => void
 }
-
-// const props = withDefaults(defineProps<ItemViewProps>(), {
-//     data : "string"
-// })
-
-console.log(props)
+const props = defineProps<ItemViewProps>()
 
 function handleRemoveItem() {
     // console.log(props.index)
