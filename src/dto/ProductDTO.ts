@@ -35,10 +35,24 @@ export interface Product {
     image_url : string
 }
 
-export interface WishItemDTO extends Product {
-    lower_price : number
-    priority : number
+export class WishItemDTO implements Product {
+    id : number;
+    product : string;
+    image_url : string;
+    lowest_price : number
     choice_date : Date
+
+    private constructor(id : number, name : string, image_uri : string, lowest_price : number, choice_date : Date) {
+        this.id = id;
+        this.product = name;
+        this.image_url = image_uri;
+        this.lowest_price = lowest_price;
+        this.choice_date = choice_date;
+    }
+
+    static of(id : number, name : string, image_uri : string, lowest_price : number, choice_date : Date = new Date()) : WishItemDTO {
+        return new WishItemDTO(id, name, image_uri, lowest_price, choice_date);
+    }
 }
 
 export interface AccountDTO extends Product {

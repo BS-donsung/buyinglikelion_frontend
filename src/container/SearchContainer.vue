@@ -1,12 +1,12 @@
 <template>
 	<section class="input-container">
-		<SearchForm />
+		<SearchForm :query="inputState.query" :onsummit="handleSearchQuery"/>
 	</section>
 	<section class="history-container">
 
 	</section>
 	<section class="search-result" >
-		<div>Result for <span>{{state.query}}</span></div>
+		<div>Result for <span>{{inputState.query}}</span></div>
 	</section>
 </template>
 
@@ -21,9 +21,16 @@ const props = withDefaults(defineProps<SearchContainerInterface>(), {
     requestQuery : ""
 })
 
-const state = reactive({
+const inputState = reactive({
 	query : props.requestQuery
 })
+
+function handleSearchQuery( queryString : string ) {
+    inputState.query = queryString
+	console.log(inputState.query)
+}
+
+
 
 
 </script>

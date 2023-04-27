@@ -1,21 +1,39 @@
+<!--사용법-->
+<!--<SearchForm onsummit="함수를 넣어주세요" query="기본 설정 단어" />-->
+
 <template>
   <div class="container-center-horizontal">
     <div class="searchform screen">
       <div class="overlap-group">
-        <input class="inputbox" type="text" placeholder="검색어를 입력해 주세요." />
-        <img class="searchic" src="@asset/icon/search.svg" alt="searchic" />
+        <input
+            class="inputbox"
+            type="text"
+            placeholder="검색어를 입력해 주세요."
+            v-model="inputState.inputData"
+        />
+        <img class="searchic pointer" src="@asset/icon/search.svg" alt="searchic" @click="handleInput"/>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'SearchForm',
-}
-</script>
-
 <script setup lang="ts">
+import {reactive} from "vue";
+import {useRouter} from "vue-router";
+
+interface SearchFormProps {
+  query? : string
+  onsummit : ( queryString : string ) => void
+}
+const props = defineProps<SearchFormProps>()
+
+const inputState = reactive({
+  inputData : props?.query ?? ""
+})
+function handleInput() {
+  // 해당
+  props.onsummit( inputState.inputData )
+}
 
 </script>
 
