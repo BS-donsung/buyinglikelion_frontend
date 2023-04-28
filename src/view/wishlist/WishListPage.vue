@@ -54,13 +54,17 @@ import Checkbox from "@/ui-componenet/Checkbox.vue";
 
 const authStore = useAuthStore();
 const currentUserName = authStore.authService.getData().username
+
 const state = reactive({
     store : new DistinctSet(( wishItem : WishItemDTO ) => wishItem.id )
 })
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> refs/remotes/origin/main
 const store = computed(() => state.store);
 
 dummyWishList.forEach( item => {
