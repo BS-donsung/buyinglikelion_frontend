@@ -7,16 +7,20 @@
 	</section>
 	<section class="search-result" >
 		<div>Result for <span>{{inputState.query}}</span></div>
-		<div>
-			<ItemComponent />
+		<div v-for="(item, index) in dummyWishList">
+			<ItemComponent
+					:index="index"
+					:product="item" />
 		</div>
 	</section>
 </template>
 
 <script setup lang="ts">
-import {reactive} from "vue";
+import {computed, reactive} from "vue";
 import SearchForm from "@/ui-componenet/SearchForm.vue";
 import { useRouter} from "vue-router";
+import ItemComponent from "@/ui-componenet/ItemComponent.vue"
+import { dummyWishList } from "@/dummy/DummyWishList";
 
 const router = useRouter();
 interface SearchContainerInterface {
@@ -29,6 +33,8 @@ const props = withDefaults(defineProps<SearchContainerInterface>(), {
 const inputState = reactive({
 	query : props.requestQuery
 })
+
+
 
 function handleSearchQuery( queryString : string ) {
     inputState.query = queryString

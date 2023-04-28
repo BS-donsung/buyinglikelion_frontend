@@ -25,7 +25,11 @@
 				<span class="margin-left-auto">비밀번호 찾기</span>
 			</div>
 			<v-btn type="submit" color="#F7CE46" :click="handleSubmit">
-				<span class="font-weight-700">로그인</span>
+				<v-progress-circular indeterminate
+						v-if="authService.isPending()" />
+				<span class="font-weight-700" v-else>
+					로그인
+				</span>
 			</v-btn>
 			<v-btn type="submit" color="#A3353E" to="/auth/register">
 				<span class="font-white font-weight-700">가입하기</span>
@@ -36,14 +40,14 @@
 
 <script setup lang="ts">
 import Checkbox from "@/ui-componenet/Checkbox.vue";
-import {computed, reactive} from "vue";
+import {computed, reactive, ref} from "vue";
 
 import {AuthDTO} from "@/dto/UserDTO";
 import {useAuthStore} from "@/store/AuthStore";
 import {STATUS} from "@/util/ProcessState";
 import {useRouter} from "vue-router";
 
-const store = useAuthStore();
+const authService = ref(useAuthStore().authService)
 const router = useRouter()
 
 
@@ -53,11 +57,11 @@ const inputState = reactive({
 	credential: "",
 })
 async function handleSubmit(){
-    if(store.authService.isPending()) {
+    if(authService.value.isPending()) {
         return;
     }
     const dto = new AuthDTO(inputState.principal, inputState.credential)
-	const result = await store.authService.login(dto)
+	const result = await authService.value.login(dto)
 	if(result.isPresent) {
         //error processing
 

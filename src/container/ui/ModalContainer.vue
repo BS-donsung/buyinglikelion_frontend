@@ -54,20 +54,8 @@
 
 import {useModalServiceStore} from "@/store/ui/UiModalService";
 import {computed, onMounted} from "vue";
-import {Message} from "@/util/ModalMessage";
 
 const { modalService } = useModalServiceStore()
-// 사용 예시
-// onMounted(() => {
-//     console.log("===")
-//     const testMessage : Message = {
-//         header : "test header",
-// 		contents : "hello world",
-//     }
-//     modalService.activate(testMessage)
-//     console.log("===", )
-// })
-// //
 const currentMessage = computed(() => {
     const optionalResult = modalService.getCurrentMessage()
     const message = optionalResult.get()
