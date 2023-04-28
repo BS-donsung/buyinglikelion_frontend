@@ -1,5 +1,5 @@
 <template>
-	<h1 class="wishtitle">{{ currentUserName }}의 Wish List</h1>
+	<h1 class="wishtitle">{{ authService.getData().username }}의 Wish List</h1>
 	<ul class="flex-container align-controller">
 		<li>
 			<v-btn>최근 등록 된</v-btn>
@@ -29,57 +29,45 @@
 				선택 상품 삭제
 			</v-btn>
 		</div>
-		<div v-for="(item, index) in store" :key="index">
-			<ItemCom
-					:date="item.choice_date.toDateString()"
-					:name="item.name"
-					:image="item.image_url"
-					:wish_price="item.lowest_price.toString()"
-					:onremove="handlingRemove"
-					:index="item.id" />
+		<div v-for="(item, index) in store">
+			<ItemComponent
+					:index="index"
+					:product="item"
+					:onremove="handlingRemove" />
 		</div>
 	</section>
 </template>
 
 <script setup lang="ts">
 
-import ItemCom from '@/ui-componenet/ItemCom.vue';
+import ItemComponent from '@/ui-componenet/ItemComponent.vue';
 import {useAuthStore} from "@/store/AuthStore";
 import { dummyWishList } from "@/dummy/DummyWishList";
 import {DistinctSet} from "@/util/DistinctSet";
 import {WishItemDTO} from "@/dto/ProductDTO";
-import {computed, reactive} from "vue";
+import {computed, reactive, ref} from "vue";
 import Checkbox from "@/ui-componenet/Checkbox.vue";
+import {storeToRefs} from "pinia";
 
 
 const authStore = useAuthStore();
-const currentUserName = authStore.authService.getData().username
+const authService = ref(authStore.authService)
 
-const state = reactive({
-    store : new DistinctSet(( wishItem : WishItemDTO ) => wishItem.id )
+const store = ref(new DistinctSet(( wishItem : WishItemDTO ) => wishItem.id ))
+
+dummyWishList.forEach( (item, index) => {
+    store.value.add(item);
+
 })
-
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> refs/remotes/origin/main
-const store = computed(() => state.store);
-
-dummyWishList.forEach( item => {
-    state.store.add(item);
-})
-
+console.log(store.value)
 function handlingRemove( index : number ) {
-    state.store.deleteByBase(index);
+    store.value.deleteByBase(index);
 }
 
 </script>
 
 <style scoped lang="scss">
 @use "@style/color" as color;
-//@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700")
 
 
 .select-panel {

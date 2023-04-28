@@ -64,5 +64,4 @@ export class SingletonModalService implements SingletonModalInterface {
         this.messageQueue = []
         return currentMessageLength;
     }
-
 }

@@ -65,7 +65,7 @@ export class DistinctSet<_Tp, _CheckTp> implements Iterable<_Tp>{
 
     has(value: _Tp): boolean {
         if(this.container && this.container.length > 0){
-            if(this.container.find( item => this.isSame(item, value) )) {
+            if( this.container.find( item => this.isSame(item, value) )) {
                 return true;
             }
         }

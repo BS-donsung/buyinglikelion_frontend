@@ -7,13 +7,16 @@
 	</section>
 	<section class="search-result" >
 		<div>Result for <span>{{inputState.query}}</span></div>
+		<div>
+			<ItemComponent />
+		</div>
 	</section>
 </template>
 
 <script setup lang="ts">
-import {computed, reactive} from "vue";
+import {reactive} from "vue";
 import SearchForm from "@/ui-componenet/SearchForm.vue";
-import {useRoute, useRouter} from "vue-router";
+import { useRouter} from "vue-router";
 
 const router = useRouter();
 interface SearchContainerInterface {

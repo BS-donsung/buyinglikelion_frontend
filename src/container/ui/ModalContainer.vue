@@ -57,17 +57,17 @@ import {computed, onMounted} from "vue";
 import {Message} from "@/util/ModalMessage";
 
 const { modalService } = useModalServiceStore()
-
-onMounted(() => {
-    console.log("===")
-    const testMessage : Message = {
-        header : "test header",
-		contents : "hello world",
-    }
-    modalService.activate(testMessage)
-    console.log("===", )
-})
-//
+// 사용 예시
+// onMounted(() => {
+//     console.log("===")
+//     const testMessage : Message = {
+//         header : "test header",
+// 		contents : "hello world",
+//     }
+//     modalService.activate(testMessage)
+//     console.log("===", )
+// })
+// //
 const currentMessage = computed(() => {
     const optionalResult = modalService.getCurrentMessage()
     const message = optionalResult.get()
@@ -105,7 +105,6 @@ function handleClose() {
 .card-action {
 	margin-top: 1rem;
 	padding: 0 24px 14px;
-
 	justify-content: end;
 }
 </style>
