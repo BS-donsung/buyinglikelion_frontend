@@ -36,6 +36,7 @@
 @use "@style/color" as color;
 @use "@style/zindex" as zindex;
 
+
 footer {
     z-index: zindex.$z-index-middle;
 }

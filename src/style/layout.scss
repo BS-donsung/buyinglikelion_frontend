@@ -21,6 +21,9 @@
 .flex-container.inline {
     display: inline-flex;
 }
+.flex-container.justify-content-end {
+    justify-content: end;
+}
 
 .flex-item {
 

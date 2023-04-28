@@ -20,7 +20,8 @@ interface CheckboxInterface {
 }
 const props = withDefaults(defineProps<CheckboxInterface>(), {
     isChecked : false,
-})
+});
+
 const state = reactive({ isChecked : props.isChecked })
 
 function handleCheck() {

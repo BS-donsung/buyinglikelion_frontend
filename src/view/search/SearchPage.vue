@@ -9,7 +9,6 @@ import SearchContainer from "@/container/SearchContainer.vue";
 interface SearchPageRouteProps { query? : string }
 const props = defineProps<SearchPageRouteProps>();
 
-
 onMounted(() => {
     if(props.query !== undefined) {
 		// processing query

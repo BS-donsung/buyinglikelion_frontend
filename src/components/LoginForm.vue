@@ -31,14 +31,6 @@
 				<span class="font-white font-weight-700">가입하기</span>
 			</v-btn>
 		</div>
-		<v-snackbar
-				v-model="mapStatusToVisibleSnackbar"
-				:timeout="3000"
-				top
-				@input="handleSnackBar">
-			{{snackBarState.message}}
-		</v-snackbar>
-
 	</form>
 </template>
 
@@ -54,15 +46,12 @@ import {useRouter} from "vue-router";
 const store = useAuthStore();
 const router = useRouter()
 
+
+
 const inputState = reactive({
 	principal : "",
 	credential: "",
 })
-const snackBarState = reactive({
-	status : STATUS.INIT,
-	message : ""
-})
-
 async function handleSubmit(){
     if(store.authService.isPending()) {
         return;
@@ -71,24 +60,12 @@ async function handleSubmit(){
 	const result = await store.authService.login(dto)
 	if(result.isPresent) {
         //error processing
-        snackBarState.status = STATUS.FAILURE
-		snackBarState.message = result.get().message
+
 	} else {
         alert("success")
         router.push("/")
 	}
 }
-const mapStatusToVisibleSnackbar = computed(() => {
-    return snackBarState.status == STATUS.SUCCESS || snackBarState.status == STATUS.FAILURE;
-})
-function handleSnackBar( event ) {
-    // init
-    if(!event ) {
-        snackBarState.status = STATUS.INIT
-        snackBarState.message = ""
-    }
-}
-
 </script>
 
 <style scoped>

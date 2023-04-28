@@ -46,7 +46,6 @@
 import ItemCom from '@/ui-componenet/ItemCom.vue';
 import {useAuthStore} from "@/store/AuthStore";
 import { dummyWishList } from "@/dummy/DummyWishList";
-console.log(JSON.stringify(dummyWishList))
 import {DistinctSet} from "@/util/DistinctSet";
 import {WishItemDTO} from "@/dto/ProductDTO";
 import {computed, reactive} from "vue";

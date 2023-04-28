@@ -1,0 +1,240 @@
+[33mcommit c5189100a8c5f3012d56856aaeb9e45946592edc[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mdevelop-connection[m[33m)[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 16:56:28 2023 +0900
+
+    search component fix
+
+[33mcommit ec189c55dacee2a0e53c653069a1a205b41c8bd5[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 16:34:38 2023 +0900
+
+    for branch
+
+[33mcommit a576b80144832161583af7b45d3b0cd808e052c2[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 15:52:04 2023 +0900
+
+    dummy process
+
+[33mcommit 0761cc3b9e2d0773ee12f15190831946b78ed0f5[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 14:41:49 2023 +0900
+
+    CachedItem Refactoring
+
+[33mcommit a66b1621be2d2e1e8d3f4761d6ceb42318573c2d[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 14:31:09 2023 +0900
+
+    for share
+
+[33mcommit 3fb991fd94492613c6c8aae3060066d1323db6cc[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 14:25:09 2023 +0900
+
+    for share
+
+[33mcommit ba353b49e9864d0c3bd45b72628a29540e3b462b[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 14:23:20 2023 +0900
+
+    for share
+
+[33mcommit 50cc730eaa66ca3f1de30103a51f3721eccca0f5[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 14:11:57 2023 +0900
+
+    StrictDate constructor remove
+
+[33mcommit ecb7e5255a39bb5d7aef402285b7a5a1621c5356[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 12:56:26 2023 +0900
+
+    StrictDate / add dummy data
+
+[33mcommit 161f7b1b56651fefebc0bb1fb310f6d4c97c7fe1[m
+Merge: c4764a1 35d5402
+Author: tmfrldu <121007155+tmfrldu@users.noreply.github.com>
+Date:   Thu Apr 27 12:26:41 2023 +0900
+
+    Merge pull request #7 from BS-donsung/sseul
+    
+    wishlistpage
+
+[33mcommit 35d5402b15202739198b291ca6a76ba3cd686a10[m
+Author: tmfrldu <tmfrldu@naver.com>
+Date:   Thu Apr 27 12:25:50 2023 +0900
+
+    wishlistpage
+
+[33mcommit c4764a16a292fa427cc22537b29e5b96cf9dfd31[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 12:21:43 2023 +0900
+
+    wishitem dto interface to class
+
+[33mcommit 1170afbbcb0583c834182d81a22e3bb37b2844e1[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 10:35:54 2023 +0900
+
+    search form error
+
+[33mcommit 2c4681dbb93b1fc8f975b8ff8f90b05da1bda011[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 10:25:24 2023 +0900
+
+    merge test
+
+[33mcommit 3cd0dc4f5c88687e9e8420fa5957a65d7613e836[m
+Merge: cf81f15 3111fa0
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 10:18:41 2023 +0900
+
+    Merge remote-tracking branch 'origin/main'
+    
+    # Conflicts:
+    #       .gitignore
+
+[33mcommit cf81f1500cf90d104e6f01ed3503c7e43fad2854[m
+Author: James <yahvz01@gmail.com>
+Date:   Thu Apr 27 10:15:34 2023 +0900
+
+    header / register page
+
+[33mcommit 3111fa0315da0d7a72a1752d540e9ae98532520d[m
+Merge: 8ca3da8 0dd8cdd
+Author: tmfrldu <121007155+tmfrldu@users.noreply.github.com>
+Date:   Wed Apr 26 17:30:23 2023 +0900
+
+    Merge pull request #6 from BS-donsung/sseul
+    
+    add itemcomponent
+
+[33mcommit 0dd8cdd1a5c61c5406e485f5588e4655b328a759[m
+Author: tmfrldu <121007155+tmfrldu@users.noreply.github.com>
+Date:   Wed Apr 26 17:26:33 2023 +0900
+
+    add itemcomponent
+
+[33mcommit bbe937565c2c87ea18b200f363bf654d2f646d11[m
+Author: James <yahvz01@gmail.com>
+Date:   Wed Apr 26 16:09:23 2023 +0900
+
+    prepare merging
+
+[33mcommit 8ca3da89f8483f4032e0f04f7f3717510437ad91[m
+Merge: 498f910 dcdde47
+Author: yahvz01 <34915951+yahvz01@users.noreply.github.com>
+Date:   Wed Apr 26 15:58:14 2023 +0900
+
+    Merge pull request #5 from BS-donsung/develop
+    
+    prepare merge with main branch
+
+[33mcommit dcdde474b4bba2cb9744774c40be7bae255f2d27[m
+Author: James <yahvz01@gmail.com>
+Date:   Wed Apr 26 15:56:46 2023 +0900
+
+    prepare merge with main branch
+
+[33mcommit 498f9102bf8e2d3beeaef5860f642122a4186e49[m
+Merge: d79851f 40fcdcd
+Author: tmfrldu <121007155+tmfrldu@users.noreply.github.com>
+Date:   Wed Apr 26 15:55:19 2023 +0900
+
+    Merge pull request #4 from BS-donsung/sseul
+    
+    유저컴포넌트
+
+[33mcommit 40fcdcd1ec573f8ceae163b8d3f214727d73829c[m
+Author: tmfrldu <121007155+tmfrldu@users.noreply.github.com>
+Date:   Wed Apr 26 15:52:25 2023 +0900
+
+    유저컴포넌트
+
+[33mcommit d79851f81bc6bf0224b1456e5104ffd67e7a847a[m
+Merge: 64a290f 706e8d3
+Author: yahvz01 <34915951+yahvz01@users.noreply.github.com>
+Date:   Wed Apr 26 14:20:26 2023 +0900
+
+    Merge pull request #3 from BS-donsung/develop
+    
+    hotfix
+
+[33mcommit 706e8d3732fff20e8eedd9055f67a242f3380b5a[m
+Author: James <yahvz01@gmail.com>
+Date:   Wed Apr 26 14:19:24 2023 +0900
+
+    hotfix
+
+[33mcommit 64a290f94bda95ff4fa59e75b091a6bcbaba7884[m
+Merge: b192388 1563d0f
+Author: yahvz01 <34915951+yahvz01@users.noreply.github.com>
+Date:   Wed Apr 26 13:38:21 2023 +0900
+
+    Merge pull request #2 from BS-donsung/develop
+    
+    Develop
+
+[33mcommit 1563d0f0bee769a005dab4f907ef9de79cb4d2d6[m
+Author: James <yahvz01@gmail.com>
+Date:   Wed Apr 26 13:36:31 2023 +0900
+
+    LoginPage - AuthService / login proxy test done
+
+[33mcommit cfcf31cfc2b1d282ae0949d7fc2621f94c03785d[m
+Author: James <yahvz01@gmail.com>
+Date:   Tue Apr 25 19:06:06 2023 +0900
+
+    introduce semantic-ui-vue
+
+[33mcommit b192388362bcde631b1815ec1dc3752dab7b70bd[m
+Merge: c41f2ef 4a665be
+Author: tmfrldu <121007155+tmfrldu@users.noreply.github.com>
+Date:   Tue Apr 25 16:57:43 2023 +0900
+
+    Merge pull request #1 from BS-donsung/sseul
+    
+    searchform
+
+[33mcommit 4a665be566744ff38f8d052f6c15f68aab501310[m
+Author: tmfrldu <121007155+tmfrldu@users.noreply.github.com>
+Date:   Tue Apr 25 16:50:32 2023 +0900
+
+    searchform
+
+[33mcommit c41f2ef626fcccc3ea2b0dfcfd0c6020030a3fe6[m
+Author: James <yahvz01@gmail.com>
+Date:   Tue Apr 25 16:14:04 2023 +0900
+
+    04/25 done
+
+[33mcommit 0fe7dbe5ba85a34fae3ac4baaf08bfd34a692322[m
+Author: James <yahvz01@gmail.com>
+Date:   Tue Apr 25 15:02:37 2023 +0900
+
+    proxy setting
+
+[33mcommit cbdb16d6c23e44f8dde380f44cea1d8348fc0eb4[m
+Author: James <yahvz01@gmail.com>
+Date:   Tue Apr 25 14:19:48 2023 +0900
+
+    config for assert setup
+
+[33mcommit 7351377de211d783c48780a8660924cef336feeb[m
+Author: James <yahvz01@gmail.com>
+Date:   Tue Apr 25 11:55:16 2023 +0900
+
+    regacy replace
+
+[33mcommit 9d38e178e98c011425a8385a96a2d78b757f95f8[m
+Author: James <yahvz01@gmail.com>
+Date:   Tue Apr 25 10:23:12 2023 +0900
+
+    master branch
+
+[33mcommit c3dbae6dc7f4ab396e3a7493f61dffbf0519e43b[m
+Author: James <yahvz01@gmail.com>
+Date:   Mon Apr 24 16:16:40 2023 +0900
+
+    lionbuy_front_refectoring
