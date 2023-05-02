@@ -6,16 +6,15 @@ import { AjaxPendingError } from "@/error/AjaxPendingError";
 
 
 export class AsyncProcessService extends ProcessStatus {
-
     async asyncProcessing<_ResTp, _InpTp>( requestInfo : AsyncRequestInfo, inputData : _InpTp | undefined = undefined) : Promise<Result<_ResTp, Error>> {
-        if(this.isPending())
+        if(this.isPending)
             return Result.failure( new AjaxPendingError() )
         try {
             this.setPending()
             // logic start
-            console.log("create dto", inputData)
             const response = await fetch(requestInfo.endpoint, AsyncProcessService.setFetchOption(requestInfo, inputData) )
             if(!response.ok) {
+                this.setFailure()
                 return Result.failure(new Error(`Network response was not ok ${response.status}`));
             }
             const responseBody = await response.text()
@@ -27,7 +26,6 @@ export class AsyncProcessService extends ProcessStatus {
                 return Result.success<_ResTp>(JSON.parse(responseBody))
             }
         } catch (e) {
-            console.log(e);
             this.setFailure()
             return Result.failure(e as Error)
         }

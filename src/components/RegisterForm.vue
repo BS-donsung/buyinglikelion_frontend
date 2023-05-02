@@ -40,29 +40,26 @@
 			</template>
 		</v-text-field>
 		<div class="confirm-area flex-container">
+			<MainColorButton value="가입하기" @click="handleSummit"/>
 			<router-link to="/auth/login">
-				<v-btn type="submit" color="#A3353E" to="/auth/register" @click="handleSummit">
-					<span class="font-white font-weight-700">로그인</span>
-				</v-btn>
+				<DefaultButton value="로그인"/>
 			</router-link>
-
-			<v-btn type="submit" color="#A3353E" to="/auth/register" @click="handleSummit">
-				<span class="font-white font-weight-700">가입하기</span>
-			</v-btn>
 		</div>
 	</form>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import {reactive, ref} from "vue";
 import { useRouter } from "vue-router"
 
 import { CreateUserDTO } from "@/dto/UserDTO";
 import {useAuthStore} from "@/store/AuthStore";
 import Validator from "@/util/Validator";
+import DefaultButton from "@/ui-componenet/button/DefaultButton.vue";
+import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
 
 const router = useRouter()
-const store = useAuthStore();
+const authService = useAuthStore().authService;
 
 const inputState = reactive({
 	username  : "",
@@ -93,13 +90,14 @@ async function handleSummit() {
     }
 
 	const dtoForCreate = new CreateUserDTO(username, principal, credential)
-	const result = await store.authService.register(dtoForCreate);
+	const result = await authService.register(dtoForCreate);
 
     if(result.isPresent){
 	    alert(result.get()?.message ?? "에러가 발생했습니다.")
     } else {
         // success processing
-        router.push("/");
+        alert("가입 성공")
+        await router.push("/");
     }
 }
 </script>

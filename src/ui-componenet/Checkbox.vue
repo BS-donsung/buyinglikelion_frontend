@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-
 import { reactive } from "vue";
 interface CheckboxInterface {
     isChecked? : boolean

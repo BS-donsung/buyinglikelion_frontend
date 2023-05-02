@@ -26,7 +26,7 @@
 			</div>
 			<v-btn type="submit" color="#F7CE46" :click="handleSubmit">
 				<v-progress-circular indeterminate
-						v-if="authService.isPending()" />
+						v-if="authService.isPending" />
 				<span class="font-weight-700" v-else>
 					로그인
 				</span>
@@ -51,25 +51,27 @@ import {useSnackbarService} from "@/store/ui/UISnackbarService";
 const authService = ref(useAuthStore().authService)
 const router = useRouter()
 
-
+const snackBarService = ref(useSnackbarService().service)
+snackBarService.value.activate({ message : "성공 "})
 
 const inputState = reactive({
 	principal : "",
 	credential: "",
 })
 async function handleSubmit(){
-    if(authService.value.isPending()) {
+    if(authService.value.isPending) {
         return;
     }
     const dto = new AuthDTO(inputState.principal, inputState.credential)
 	const result = await authService.value.login(dto)
 	if(result.isPresent) {
-        //error processing
-
+        snackBarService.value.activate({ positive : false, message : "실패"})
 	} else {
+        snackBarService.value.activate({ message : "성공 "})
         router.push("/")
 	}
 }
+
 </script>
 
 <style scoped>

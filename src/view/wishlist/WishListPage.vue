@@ -1,6 +1,9 @@
 <template>
-	<h1 class="wishtitle">{{ authService.getData().username }}의 Wish List</h1>
-	<ul class="flex-container align-controller" :style="WishListControllerStyle">
+	<h1 class="wishtitle">
+		{{ authService.getData().username }}의 Wish List
+	</h1>
+	<ul v-if="store.size !== 0"
+			class="flex-container align-controller" :style="WishListControllerStyle">
 		<li>
 			<MainColorButton value="최근 등록 된" :style="WishListControllerButtonStyle" />
 		</li>
@@ -23,12 +26,12 @@
 		</div>
 	</div>
 	<section v-else>
-		<div class="flex-container select-panel">
-			<Checkbox title="전체 상품 선택하기" />
-			<v-btn variant="tonal" class="">
-				선택 상품 삭제
-			</v-btn>
-		</div>
+<!--		<div class="flex-container select-panel">-->
+<!--			<Checkbox title="전체 상품 선택하기" />-->
+<!--			<v-btn variant="tonal" class="">-->
+<!--				선택 상품 삭제-->
+<!--			</v-btn>-->
+<!--		</div>-->
 		<div v-for="(item, index) in store">
 			<ItemComponent
 					:index="index"
@@ -46,7 +49,6 @@ import { dummyWishList } from "@/dummy/DummyWishList";
 import {DistinctSet} from "@/util/DistinctSet";
 import {WishItemDTO} from "@/dto/ProductDTO";
 import { ref } from "vue";
-import Checkbox from "@/ui-componenet/Checkbox.vue";
 import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
 import {
     WishListControllerButtonStyle,
@@ -73,6 +75,9 @@ function handlingRemove( index : number ) {
 <style scoped lang="scss">
 @use "@style/color" as color;
 
+.wishtitle {
+	margin-bottom: 3rem;
+}
 
 .select-panel {
     margin: 1rem 0;
@@ -142,7 +147,6 @@ function handlingRemove( index : number ) {
 .span-jjim {
     color: color.$color-point
 }
-
 
 .nowishinnertext {
     align-self: flex-end;

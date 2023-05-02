@@ -1,8 +1,5 @@
 <template>
 	<div class="flex-container item-container container-center-horizontal">
-		<div class="right-controller">
-			<input type="checkbox" id="checkbox" />
-		</div>
 		<router-link to="/wishlist/{{product.id}}">
 			<img class="item-image" :src="product.image" />
 		</router-link>
@@ -25,9 +22,6 @@
 		</div>
 	</div>
 </template>
-
-<script lang="ts">
-</script>
 
 <script setup lang="ts">
 
@@ -79,7 +73,6 @@ function handleRemoveItem() {
 		margin-top: auto;
 	}
 }
-
 
 .pricegapic {
     height: 12px;

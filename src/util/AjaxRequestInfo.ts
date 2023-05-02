@@ -9,6 +9,7 @@ export enum HTTP_METHOD {
 export class AsyncRequestInfo {
     readonly method : HTTP_METHOD
     readonly endpoint : string
+    private appendedQuery : boolean
 
     static empty() : AsyncRequestInfo {
         return new AsyncRequestInfo(HTTP_METHOD.GET, "")
@@ -28,5 +29,15 @@ export class AsyncRequestInfo {
     }
     append( query : string ) : AsyncRequestInfo {
         return AsyncRequestInfo.of(this.method, `${this.endpoint}${query}`)
+    }
+
+    appendQuery( key : string, value : string ) : AsyncRequestInfo {
+        if(this.appendedQuery) {
+
+        } else {
+            this.appendedQuery = true;
+            return this.append(`?${key}=${value}`)
+        }
+
     }
 }

@@ -6,21 +6,21 @@ export interface GlobalMessageServiceInterface {
     get isEmpty : boolean
     get active : boolean
 
-    activate( message : Message | null, timeoutmils : number | null ) : void
+    activate( message : Message, timeoutmils : number | null ) : void
     deactivate() : void
 
     closeMessage(nextOpenMils : number) : void
     closeMessageWithClear() : void
     clearMessageQueue() : number
 }
-export class GlobalMessageService implements GlobalMessageServiceInterface {
+export class GlobalMessageService<MessageType> implements GlobalMessageServiceInterface {
 
-    messageQueue : Array<Message> = []
+    messageQueue : Array<MessageType> = []
     private _active : boolean = false;
 
     get isEmpty(): boolean { return (this.messageQueue.length == 0); }
     get active() : boolean { return this._active }
-    activate( message : Message | null = null, timeoutMils : number | null = null) : void {
+    activate( message : MessageType | null = null, timeoutMils : number | null = null) : void {
         if(message) {
             this.messageQueue.push(message)
         }
@@ -28,15 +28,15 @@ export class GlobalMessageService implements GlobalMessageServiceInterface {
             this._active = false;
         } else {
             this._active = true;
-            if(timeoutMils != null) {
+            if(timeoutMils !== null) {
                 window.setTimeout(() => {
                     this.deactivate()
-                }, timeoutMils);
+                }, timeoutMils );
             }
         }
     }
 
-    getCurrentMessage() : Optional<Message> {
+    getCurrentMessage() : Optional<MessageType> {
         if(this.isEmpty) {
             return Optional.empty()
         } else {

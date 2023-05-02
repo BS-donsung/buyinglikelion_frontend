@@ -15,8 +15,9 @@ import ModalContainer from "@/container/message/ModalContainer.vue";
 import SnackbarContainer from "@/container/message/SnackbarContainer.vue";
 import MainHeader from "@/container/MainHeader.vue";
 import MainSideBar from "@/container/MainSideBar.vue";
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {useSidebarStore} from "@/store/ui/UISidebarStore";
+import {useSnackbarService} from "@/store/ui/UISnackbarService";
 
 const status = ref(useSidebarStore().status)
 

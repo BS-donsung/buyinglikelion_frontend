@@ -2,11 +2,6 @@
 	<div class="grid-container-right-400px">
 		<div class="grid-left-side">
 			<SearchForm :onsummit="handleSearchInput" />
-			<ul class="flex-container">
-				<li>WishList</li>
-				<li>AccountBook</li>
-				<li>Status</li>
-			</ul>
 			<WishListPage />
 		</div>
 		<div class="grid-right-side">
