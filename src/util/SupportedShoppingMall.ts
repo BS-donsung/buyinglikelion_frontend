@@ -1,7 +1,7 @@
 export enum SupportedShoppingMall {
-    ELEVEN  = "mall_eleventh_street.svg",
-    AUCTION = "mall_auction.svg",
-    COUPANG = "mall_coupang.svg",
-    GMARKET = "mall_gmarket.svg",
-    NAVER   = "mall_naver.svg"
+    ELEVEN  = "/assets/mallicon/mall_eleventh_street.svg",
+    AUCTION = "@/assets/mallicon/mall_auction.svg",
+    COUPANG = "/assets/mallicon/mall_coupang.svg",
+    GMARKET = "@/assets/mallicon/mall_gmarket.svg",
+    NAVER   = "/assets/mallicon/mall_naver.svg"
 }

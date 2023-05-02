@@ -91,7 +91,6 @@ const next = () => {
         gap: 24px;
         height: 358px;
         padding: 20px 0 20px 20px;
-        width: 75vw;
         overflow-x: hidden;
     }
     .title {
@@ -102,9 +101,9 @@ const next = () => {
     }
 
     .img-container {
-    align-items: flex-end;
+    align-items: end;
     background-color: rgba(213, 193, 173, 0.3);
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px;
     display: flex;
     height: 216px;
     justify-content: flex-end;

@@ -16,20 +16,7 @@
 						     alt="imgbox" />
 					</div>
 					<div>
-						<h3>쇼핑몰 별 최저가</h3>
-						<table>
-							<thead>
-								<th>쇼핑몰</th>
-								<th>가격</th>
-							</thead>
-							<tbody>
-								<MallAndPriceComponent :mall="SupportedShoppingMall.GMARKET" price="10000"/>
-								<MallAndPriceComponent :mall="SupportedShoppingMall.AUCTION" price="10000"/>
-								<MallAndPriceComponent :mall="SupportedShoppingMall.COUPANG" price="10000"/>
-								<MallAndPriceComponent :mall="SupportedShoppingMall.ELEVEN" price="10000"/>
-								<MallAndPriceComponent :mall="SupportedShoppingMall.NAVER" price="10000"/>
-							</tbody>
-						</table>
+						<LowPriceTable />
 					</div>
 				</div>
 			</div>
@@ -55,6 +42,7 @@ import PriceHistorySection from "@/components/PriceHistorySection.vue";
 import MallAndPriceComponent from "@/components/MallAndPriceComponent.vue";
 import {SupportedShoppingMall} from "@/util/SupportedShoppingMall";
 import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
+import LowPriceTable from "@/ui-componenet/LowPriceTable.vue";
 
 const state = reactive({
 	product : dummyWishList[1]
