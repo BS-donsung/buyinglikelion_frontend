@@ -1,0 +1,20 @@
+@mixin icon-size ($icon-size) {
+    display: inline-block;
+    font-size: #{$icon-size}rem;
+    // transform: translateY( #{$icon-size/10}rem );
+}
+
+@mixin font-size-and-transform-y-for-icon( $font-size ){
+    $resized-font-size : calc($font-size * 0.83);
+    font-size: #{$resized-font-size}rem;
+    transform: translateY( -#{calc($resized-font-size/20)}rem );
+}
+
+@mixin user-pic {
+    border-radius: 50%;
+    background-image: url("/assets/default-user-icon.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #D5C1AD;
+}

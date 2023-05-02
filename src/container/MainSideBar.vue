@@ -1,0 +1,109 @@
+<template>
+	<div class="main-sidebar" v-if="state.active">
+		<router-link
+				v-if="authService.getData().isAuthentication"
+				to="/mypage">
+		<div
+				class="user-info-container flex-container column-direct vertical-section-divider-bottom">
+			<div class="user-info-photo-container">
+				<div class="user-info-photo-area"></div>
+			</div>
+			<div>
+				{{authService.getData().username}}
+			</div>
+			<div class="flex-container column-direct user-info-data">
+				<div class="flex-container user-info-n">
+					<div>찜</div>
+					<div>5</div>
+				</div>
+				<div class="flex-container user-info-n">
+					<div>구매</div>
+					<div>15</div>
+				</div>
+			</div>
+		</div>
+		</router-link>
+		<ul class="flex-container column-direct">
+			<IconLabelComponent icon-value="account_balance_wallet" value="구매한 제품 입력하기" />
+			<IconLabelComponent icon-value="history" value="History" />
+
+		</ul>
+		<ul class="flex-container column-direct vertical-section-divider">
+			<IconLabelComponent icon-value="home" value="Home" to="/"/>
+			<IconLabelComponent icon-value="bookmark" value="WishList" to="/wishlist"/>
+			<IconLabelComponent icon-value="account_balance_wallet" value="AccountBook" to="/accountbook"/>
+		</ul>
+		<ul class="flex-container column-direct vertical-section-divider">
+			<IconLabelComponent icon-value="shopping_bag" value="Shopping" to="/shopping"/>
+		</ul>
+	</div>
+</template>
+
+<script setup lang="ts">
+import IconLabelComponent from "@/ui-componenet/button/IconLabelComponent.vue";
+import HeaderLogoIcon from "@/components/HeaderLogoIcon.vue";
+import {useSidebarStore} from "@/store/ui/UISidebarStore";
+import {ref} from "vue";
+import {useAuthStore} from "@/store/AuthStore";
+
+const state = ref(useSidebarStore().status);
+const authService = ref(useAuthStore().authService);
+
+</script>
+
+<style scoped lang="scss">
+@use "@style/color" as color;
+@use "@style/mixin" as mixin;
+@import "@/style/divider.scss";
+
+.user-info-container {
+    align-items: center;
+}
+.user-info-photo-container {
+    // justify-content: center;
+}
+.user-info-photo-area {
+    width : 9rem;
+    height: 9rem;
+    @include mixin.user-pic;
+}
+
+.user-info-data {
+    justify-content: center;
+    align-content: center;
+
+    & > .user-info-n {
+        align-items: center;
+    }
+}
+
+
+.main-sidebar {
+    position: fixed;
+    height: calc(100vh - 64px);
+    bottom: 0;
+    left: 0;
+    font-weight: 300;
+
+    display: inline-flex;
+    flex-direction: column;
+
+    background-color: color.$color-main;
+    z-index: 6;
+
+    color: color.$gray-900;
+}
+
+ul {
+
+	& > * {
+		padding: 0.5rem 3rem;
+		border-radius: 1.2rem;
+
+		&:active, &:hover {
+			background-color: rgba(color.$gray-50, 0.3);
+		}
+
+	}
+}
+</style>

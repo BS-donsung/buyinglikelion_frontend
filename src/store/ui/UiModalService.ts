@@ -1,10 +1,7 @@
 import {defineStore} from "pinia";
-import {SingletonModalService} from "@/service/ui/SingletonModalService";
+import {GlobalMessageService} from "@/service/ui/GlobalMessageService";
 
 export const useModalServiceStore =
     defineStore("modalstore", () => {
-        const modalService = new SingletonModalService()
-        return {
-            modalService
-        }
+        return { service : new GlobalMessageService()}
     })

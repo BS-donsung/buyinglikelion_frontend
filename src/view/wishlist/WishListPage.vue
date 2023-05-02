@@ -1,14 +1,14 @@
 <template>
 	<h1 class="wishtitle">{{ authService.getData().username }}의 Wish List</h1>
-	<ul class="flex-container align-controller">
+	<ul class="flex-container align-controller" :style="WishListControllerStyle">
 		<li>
-			<v-btn>최근 등록 된</v-btn>
+			<MainColorButton value="최근 등록 된" :style="WishListControllerButtonStyle" />
 		</li>
 		<li>
-			<v-btn>가격 변동이 큰</v-btn>
+			<MainColorButton value="가격 변동이 큰" :style="WishListControllerButtonStyle" />
 		</li>
 		<li>
-			<v-btn>우선 순위</v-btn>
+			<MainColorButton value="우선 순위" :style="WishListControllerButtonStyle" />
 		</li>
 	</ul>
 	<div v-if="store.size === 0">
@@ -45,9 +45,14 @@ import {useAuthStore} from "@/store/AuthStore";
 import { dummyWishList } from "@/dummy/DummyWishList";
 import {DistinctSet} from "@/util/DistinctSet";
 import {WishItemDTO} from "@/dto/ProductDTO";
-import {computed, reactive, ref} from "vue";
+import { ref } from "vue";
 import Checkbox from "@/ui-componenet/Checkbox.vue";
-import {storeToRefs} from "pinia";
+import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
+import {
+    WishListControllerButtonStyle,
+    WishListControllerStyle
+} from "@style/css-properties/WishListControllerButtonStyle";
+
 
 
 const authStore = useAuthStore();
@@ -59,7 +64,6 @@ dummyWishList.forEach( (item, index) => {
     store.value.add(item);
 
 })
-console.log(store.value)
 function handlingRemove( index : number ) {
     store.value.deleteByBase(index);
 }
@@ -79,6 +83,10 @@ function handlingRemove( index : number ) {
 
 .align-controller {
 	justify-content: end;
+
+	& > * {
+		margin-left: 1rem;
+	}
 }
 
 

@@ -1,0 +1,13 @@
+@use "color" as color;
+
+.vertical-section-divider {
+    border-top: 1px solid color.$gray-900;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.vertical-section-divider-bottom {
+    border-bottom: 1px solid color.$gray-900;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}

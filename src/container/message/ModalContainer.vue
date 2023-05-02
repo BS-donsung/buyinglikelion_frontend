@@ -52,20 +52,19 @@
 
 <script setup lang="ts">
 
-import {useModalServiceStore} from "@/store/ui/UiModalService";
-import {computed, onMounted} from "vue";
+import { useModalServiceStore } from "@/store/ui/UiModalService";
+import {computed, ref} from "vue";
 
-const { modalService } = useModalServiceStore()
+const modalService = ref(useModalServiceStore().service);
+
 const currentMessage = computed(() => {
-    const optionalResult = modalService.getCurrentMessage()
-    const message = optionalResult.get()
-	return message;
+	return modalService.value.getCurrentMessage().get()
 })
 
 const noAction = computed(() => {
-    if(!modalService.getCurrentMessage().isPresent)
+    if(!modalService.value.getCurrentMessage().isPresent)
         return false;
-    const message = modalService.getCurrentMessage().get()
+    const message = modalService.value.getCurrentMessage().get()
     return (message.positive_action == undefined && message.negative_action == undefined)
 })
 
@@ -82,7 +81,7 @@ function handleNegativeAction() {
     handleClose()
 }
 function handleClose() {
-    modalService.closeModal()
+    modalService.value.closeMessage()
 }
 
 

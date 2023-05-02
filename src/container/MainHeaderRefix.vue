@@ -2,7 +2,11 @@
 	<header class="position-fixed">
 		<v-toolbar color="#F7CE46">
 			<v-toolbar-title>
-				<HeaderLogoIcon />
+				<span class="material-symbols-outlined">menu</span>
+				<router-link to="/" class="flex-container inline header-logo-container pointer">
+					<img src="@asset/logo.svg" class="icon"/>
+					<object type="image/svg+xml" data="/assets/logo-text-single-line.svg">Not support SVG</object>
+				</router-link>
 			</v-toolbar-title>
 			<ul class="flex-container">
 				<li>
@@ -35,10 +39,10 @@
 			</ul>
 			<template v-slot:extension v-if="state.headerExtended">
 				<v-text-field
-					label="찾을 태그나 URL을 입력하세요"
-					hide-details="auto"
-					class="search-input-field"
-					v-model="inputState.inputData">
+						label="찾을 태그나 URL을 입력하세요"
+						hide-details="auto"
+						class="search-input-field"
+						v-model="inputState.inputData">
 					<template v-slot:prepend-inner>
 						<span class="material-symbols-outlined icon-size">search</span>
 					</template>
@@ -62,59 +66,66 @@ import {useAuthStore} from "@/store/AuthStore";
 import {computed, reactive} from "vue";
 import Validator from "@/util/Validator";
 import {useRouter} from "vue-router";
-import HeaderLogoIcon from "@/components/HeaderLogoIcon.vue";
-
 const router = useRouter()
 const authStore = useAuthStore();
 const isAuthenticated = computed( () => (authStore.authService.isAuthenticated) );
-
 const state = reactive({
-	headerExtended : false
+    headerExtended : false
 })
-
 const inputState = reactive({
-	inputData : ""
+    inputData : ""
 })
 const clearInputData = () => { inputState.inputData = "" }
-
 function handleSearchInput() {
     const inputData = inputState.inputData
     router.push(`/search?q=${inputData}`)
-	state.headerExtended = false;
+    state.headerExtended = false;
 }
-
 function toggleHeaderExtended() {
     state.headerExtended = !state.headerExtended
 }
-
 </script>
 
 <style scoped lang="scss">
-	@use "@style/color" as color;
-	@use "@style/zindex" as zindex;
-	@use "@style/mixin" as mixin;
-
-	header {
-	    z-index: zindex.$z-index-middle;
-		& > .main-header {
-			background-color: color.$color-main;
-		}
-	}
-	.icon-size {
-		font-weight: 700;
-		font-size: 3rem;
-	}
-
-    .profile-pic {
-        width: 2.5rem;
-        height: 2.5rem;
-        @include mixin.user-pic;
+@use "@style/color" as color;
+@use "@style/zindex" as zindex;
+@use "@style/widthbreakpoint" as breakpoint;
+header {
+    z-index: zindex.$z-index-middle;
+    & > .main-header {
+        background-color: color.$color-main;
     }
-    ul.flex-container .non-icon {
-	    margin-right : 1rem;
+}
+img.icon {
+    height: 3.5rem;
+    width: 3.5rem;
+    max-height: 3.5rem;
+}
+.header-logo-container {
+    & > *:last-child {
+        margin-left: 1rem;
+        height: 1.6rem;
+        @media(max-width: breakpoint.$WIDTH_BREAK_POINT_MOBILE_TABLE) {
+            & {
+                display: none;
+            }
+        }
     }
-
-    .search-input-field {
-	    background-color: white;
-    }
+}
+.profile-pic {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-image: url("/assets/default-user-icon.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #D5C1AD;
+}
+ul.flex-container .non-icon {
+    margin-right : 1rem;
+}
+.search-input-field {
+    background-color: white;
+}
 </style>

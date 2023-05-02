@@ -46,6 +46,7 @@ import {AuthDTO} from "@/dto/UserDTO";
 import {useAuthStore} from "@/store/AuthStore";
 import {STATUS} from "@/util/ProcessState";
 import {useRouter} from "vue-router";
+import {useSnackbarService} from "@/store/ui/UISnackbarService";
 
 const authService = ref(useAuthStore().authService)
 const router = useRouter()
@@ -66,7 +67,6 @@ async function handleSubmit(){
         //error processing
 
 	} else {
-        alert("success")
         router.push("/")
 	}
 }

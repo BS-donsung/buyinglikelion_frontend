@@ -1,22 +1,35 @@
 <template>
+
     <MainHeader />
-    <section>
+    <MainSideBar />
+    <main>
         <RouterView />
-    </section>
+    </main>
     <MainFooter />
     <ModalContainer/>
+    <SnackbarContainer />
 </template>
 
 <script setup lang="ts">
+import ModalContainer from "@/container/message/ModalContainer.vue";
+import SnackbarContainer from "@/container/message/SnackbarContainer.vue";
 import MainHeader from "@/container/MainHeader.vue";
-import MainFooter from "@/container/MainFooter.vue";
-import ModalContainer from "@/container/ui/ModalContainer.vue";
+import MainSideBar from "@/container/MainSideBar.vue";
+import {ref} from "vue";
+import {useSidebarStore} from "@/store/ui/UISidebarStore";
+
+const status = ref(useSidebarStore().status)
+
 
 </script>
 
 <style scoped lang="scss">
-section {
-    padding-top : 5rem;
+@use "@style/widthbreakpoint" as widthbreakpoint;
+
+main {
+    padding-top : 7rem;
+    max-width: widthbreakpoint.$WIDTH_BREAK_POINT_TABLE_LABTOP;
+    margin: 0 auto;
 }
 
 
