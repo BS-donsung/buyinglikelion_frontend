@@ -32,11 +32,6 @@
 						</table>
 					</div>
 				</div>
-
-
-<!--				<h2 class="product-price">-->
-<!--					<span class="price-number">{{ state.product.price }}</span><span class="won">원</span>-->
-<!--				</h2>-->
 			</div>
 
 			<PriceHistorySection />
