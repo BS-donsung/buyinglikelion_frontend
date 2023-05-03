@@ -11,7 +11,7 @@
 					<span>{{ product.price }}</span><span>원</span>
 				</div>
 			</router-link>
-			<div class="flex-container inline m">
+			<div class="flex-container inline m" @click="togglePricegraph">
 				<img class="pricegapic" src="@/asset/componenticon/가격추이ic.svg" alt="pricegapic" />
 				<div class="pricetrend">가격 추이 보기</div>
 				<img class="spreadic" src="@/asset/componenticon/spreadic.svg" alt="spreadic" />
@@ -21,11 +21,14 @@
 			<img class="deletebtn pointer" src="@/asset/componenticon/item_close.svg" alt="deletebtn" @click="handleRemoveItem"/>
 		</div>
 	</div>
+    <div v-if="pricegraphVisible" class="flex-container item-container price-graph">
+        <img src="/assets/mock-chart.svg" alt="pricegraph">
+    </div>
 </template>
 
 <script setup lang="ts">
 
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
 import {ProductDTO} from "@/dto/ProductDTO";
 
 export interface ItemViewProps {
@@ -43,10 +46,15 @@ function handleRemoveItem() {
 	props.onremove(props.product.id)
 }
 
+const pricegraphVisible = ref(false);
+
+const togglePricegraph = () => {
+    pricegraphVisible.value = !pricegraphVisible.value;
+}
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 .item-container {
     justify-content: center;
@@ -101,4 +109,18 @@ function handleRemoveItem() {
 .left-controller {
 	margin-left: auto;
 }
+
+.price-graph {
+    width: inherit;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-left: 3rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.inline.m:hover {
+    cursor: pointer
+}
+
 </style>
