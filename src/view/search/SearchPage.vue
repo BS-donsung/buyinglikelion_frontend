@@ -6,7 +6,7 @@
 		</div>
 		<div v-else-if="query">
 			<!-- 태그를 사용한 검색 결과를 표시합니다 -->
-
+			<ProductListContainer :query="query" />
 		</div>
 		<div v-else>
 			<!-- 검색 결과가 없거나, 잘못된 파라미터를 표시합니다 -->
@@ -21,6 +21,9 @@ import { useRoute } from 'vue-router'
 import SearchContainer from "@/container/SearchContainer.vue";
 import ProductDetailContainer from "@/container/productdetail/ProductDetailContainer.vue";
 import {useWishListStore} from "@/store/WishListStore";
+
+import { dummyWishList } from '@/dummy/DummyWishList';
+import { ItemComponentProps } from '@/ui-componenet/ItemComponent.vue';
 
 const route = ref(useRoute())
 const url: ComputedRef<string | undefined> = computed(() => route.value.query.url as string | undefined)
