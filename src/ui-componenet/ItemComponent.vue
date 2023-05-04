@@ -1,111 +1,74 @@
 <template>
-	<div class="flex-container item-container container-center-horizontal">
-		<router-link to="/wishlist/{{product.id}}">
-			<img class="item-image" :src="product.image" />
-		</router-link>
-		<div class="item-info">
-			<router-link to="/wishlist/{{product.id}}">
-				<div class="wish-date">{{ "2023/04/25" }}</div>
-				<div class="wish-item">{{ product.name }}</div>
-				<div class="wish-price">
-					<span>{{ product.price }}</span><span>원</span>
-				</div>
-			</router-link>
-		</div>
-		<div class="left-controller">
-			<img class="deletebtn pointer" src="@/asset/componenticon/item_close.svg" alt="deletebtn" @click="handleRemoveItem"/>
-		</div>
+	<div class="item-container">
+        <router-link to="/" class="img-a">
+            <img class="item-image" :src="product.image" />
+        </router-link>
+        <router-link to="/" class="text-a">
+            <div class="item-text">{{ product.name }}</div>
+            <div class="price-text">
+                <span>최저가 </span><span id="pricebold">{{ product.price }}</span><span>원</span>
+            </div>
+        </router-link>
 	</div>
 </template>
-
+<!-- 이미지 밑에 빈공간 없애야함 -->
 <script setup lang="ts">
 
 import { defineProps, ref } from 'vue';
-import {RegisteredProductDTO} from "@/dto/RegisteredProductDTO";
+import {ProductDTO, RegisteredProductDTO} from "@/dto/RegisteredProductDTO";
 
-export interface ItemViewProps {
-    index : number,
-    product : RegisteredProductDTO
-    wish_price?: number,
-    onremove : ( index : number ) => void
-}
-const props = withDefaults(defineProps<ItemViewProps>(), {
-    wish_price : 10000
-});
 
-function handleRemoveItem() {
-    // console.log(props.index)
-	props.onremove(props.product.id)
+
+export interface ItemComponentProps {
+    product : ProductDTO,
 }
+
+const props = defineProps<ItemComponentProps>();
+
 </script>
 
 <style scoped lang="scss">
 
 .item-container {
-    justify-content: center;
-	&  > * {
-        flex-shrink: 0;
-        pointer-events: auto;
-    }
+    display: flex;
+    min-width: 350px;
+    border-top: 1px solid gainsboro;
+}
+
+.img-a {
+    padding: 0;
+    margin: 0;
 }
 
 .item-image {
     height: 160px;
-    margin-left: 24px;
     width: 160px;
 }
 
-.item-info {
-    margin-left: 2.5rem;
+
+.text-a {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    align-self: stretch;
-    padding: 1rem 0;
-
-	& > *:last-child {
-		margin-top: auto;
-	}
+    // align-items: flex-end;
+    padding-top: 1.5rem;
+    margin-right: 2rem;
+    margin-left: 1.5rem;
 }
 
-.pricegapic {
-    height: 12px;
-    width: 20px;
+.item-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    // margin-left: 1rem;
 }
 
-.pricetrend {
-    letter-spacing: 0;
-    line-height: 11.2px;
-    margin-bottom: 0.4px;
-    margin-left: 11px;
-    min-height: 11px;
-    text-align: center;
-    white-space: nowrap;
-    width: 62px;
-    font-size: 10px;
-}
 
-.spreadic {
-    height: 8px;
-    margin-left: 8px;
-    /* margin-top: 1.6px; */
-    width: 12px;
-}
-
-.left-controller {
-	margin-left: auto;
-}
-
-.price-graph {
-    width: inherit;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    margin-left: 3rem;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.inline.m:hover {
-    cursor: pointer
+#pricebold {
+    font-weight: bold;
 }
 
 </style>
