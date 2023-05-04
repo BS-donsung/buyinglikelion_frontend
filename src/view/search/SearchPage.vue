@@ -31,11 +31,8 @@ const route = ref(useRoute())
 const url: ComputedRef<string | undefined> = computed(() => route.value.query.url as string | undefined)
 const query: ComputedRef<string | undefined> = computed(() => route.value.query.query as string | undefined)
 
+
 const service = ref(useWishListStore().wishService);
-
-// console.log(query);
-
-
 
 
 </script>

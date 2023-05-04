@@ -14,7 +14,7 @@
 			<MainColorButton value="우선 순위" :style="WishListControllerButtonStyle" />
 		</li>
 	</ul>
-	<div v-if="store.size === 0">
+	<div v-if="isEmptyOfWishList">
 		<div class="havenowish-container">
 			<div class="havenowishscreen">
 				<img class="sajaface" src="@/asset/componenticon/sajaface.png" alt="sajaface" />
@@ -26,18 +26,11 @@
 		</div>
 	</div>
 	<section v-else>
-<!--		<div class="flex-container select-panel">-->
-<!--			<Checkbox title="전체 상품 선택하기" />-->
-<!--			<v-btn variant="tonal" class="">-->
-<!--				선택 상품 삭제-->
-<!--			</v-btn>-->
-<!--		</div>-->
-		<div v-for="(item, index) in store">
-			<WishItemComponent
-					:index="index"
-					:product="item"
-					:onremove="handlingRemove" />
-		</div>
+		<WishItemComponent
+				v-for="(item, index) in wishListService.getDataList()"
+				:key="index"
+				:product="item"
+				:wish_price="50000"/>
 	</section>
 </template>
 
@@ -45,15 +38,15 @@
 
 import WishItemComponent from '@/ui-componenet/WishItemComponent.vue';
 import {useAuthStore} from "@/store/AuthStore";
-import { dummyWishList } from "@/dummy/DummyWishList";
 import {DistinctSet} from "@/util/DistinctSet";
 import {WishItemDTO} from "@/dto/RegisteredProductDTO";
-import { ref } from "vue";
+import {computed, ref} from "vue";
 import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
 import {
     WishListControllerButtonStyle,
     WishListControllerStyle
 } from "@style/css-properties/WishListControllerButtonStyle";
+import {useWishListStore} from "@/store/WishListStore";
 
 
 
@@ -62,13 +55,12 @@ const authService = ref(authStore.authService)
 
 const store = ref(new DistinctSet(( wishItem : WishItemDTO ) => wishItem.id ))
 
-dummyWishList.forEach( (item, index) => {
-    store.value.add(item);
+const wishListService = ref(useWishListStore().wishService)
 
+const isEmptyOfWishList = computed(() => {
+    return wishListService.value.length == 0;
 })
-function handlingRemove( index : number ) {
-    store.value.deleteByBase(index);
-}
+console.log("isEmptyOfWishList", isEmptyOfWishList);
 
 </script>
 

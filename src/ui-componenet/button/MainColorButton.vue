@@ -21,6 +21,7 @@ interface ButtonInterface {
 	style? : CSSProperties,
 	to? : string,
 	outlink? : boolean
+	onClick? : (boolean) => void
 }
 const props = withDefaults(defineProps<ButtonInterface>(), {
     active : false,
@@ -28,6 +29,8 @@ const props = withDefaults(defineProps<ButtonInterface>(), {
     style : {},
     outlink : false
 })
+
+
 </script>
 
 

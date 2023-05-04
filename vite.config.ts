@@ -23,6 +23,10 @@ export default defineConfig({
             "/search" : {
                 target: 'https://968482c3-2682-41c4-aaae-3593687a9bdc.mock.pstmn.io',
                 changeOrigin: true,
+            },
+            "/wishlist" : {
+                target: 'https://968482c3-2682-41c4-aaae-3593687a9bdc.mock.pstmn.io',
+                changeOrigin: true,
             }
         },
     }

@@ -14,20 +14,17 @@ interface ComparePriceByMallProps {
 
 const props = defineProps<ComparePriceByMallProps>()
 
-const ranged = Array(6)
-const dataOf2022 = [...ranged.keys()].map( index => Math.floor(Math.random() * 100) + 150 )
-
 const data = {
     labels : props.data.map( data => data.mall.koreanName ),
-	datasets : [
+    datasets : [
         {
             label : "가격",
-	        data : props.data.map( data => data.price ),
+            data : props.data.map( data => data.price ),
             backgroundColor : props.data.map( data => data.mall.rgbaColor() )
         }
-	],
-	options : {
+    ],
+    options : {
         responsive : true
-	}
+    }
 }
 </script>

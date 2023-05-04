@@ -1,9 +1,11 @@
 <template>
-	<tr class="flex-container">
+	<tr>
 		<td>
 			<img :src="`/assets/mallicon/${props.data.mall.image}`">
 		</td>
-		<td>{{ props.data.price }}</td>
+		<td class="text-align-center">
+			{{ props.data.price }}
+		</td>
 	</tr>
 </template>
 
