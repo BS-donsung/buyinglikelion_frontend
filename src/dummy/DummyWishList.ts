@@ -1,4 +1,4 @@
-import {WishItemDTO} from "@/dto/ProductDTO";
+import {WishItemDTO} from "@/dto/RegisteredProductDTO";
 import {StrictDate} from "@/util/StrictDate";
 
 export const dummyWishList = [

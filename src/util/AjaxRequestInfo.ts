@@ -33,7 +33,7 @@ export class AsyncRequestInfo {
 
     appendQuery( key : string, value : string ) : AsyncRequestInfo {
         if(this.appendedQuery) {
-
+            this.append(`&${key}=${value}`);
         } else {
             this.appendedQuery = true;
             return this.append(`?${key}=${value}`)

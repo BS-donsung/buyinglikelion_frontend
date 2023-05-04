@@ -57,9 +57,11 @@ import {useAuthStore} from "@/store/AuthStore";
 import Validator from "@/util/Validator";
 import DefaultButton from "@/ui-componenet/button/DefaultButton.vue";
 import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
+import {useSnackbarService} from "@/store/ui/UISnackbarService";
 
 const router = useRouter()
 const authService = useAuthStore().authService;
+const snackbarService = useSnackbarService().service
 
 const inputState = reactive({
 	username  : "",
@@ -74,18 +76,18 @@ async function handleSummit() {
 
 	if(credential != retypedCredential) {
         // 비밀번호 불일치 에러
-		alert("비밀번호가 불일치 합니다.")
+        snackbarService.activate({ positive : false, message : "비밀번호가 불일치 합니다." } );
         return;
 
 	}
     if(credential.length < 8) {
-        alert("비밀번호는 최소 8자 이상이어야 합니다.")
+        snackbarService.activate({ positive : false,  message : "비밀번호는 최소 8자 이상이어야 합니다." } );
         return;
     }
 
     if(!Validator.isValidPassword(credential)) {
         // 비밀번호 요건 에러
-	    alert("유효하지 않은 비밀번호입니다. 요건을 확인해주세요")
+        snackbarService.activate({ positive : false,  message : "유효하지 않은 비밀번호입니다. 요건을 확인해주세요" } );
 	    return;
     }
 
@@ -93,10 +95,12 @@ async function handleSummit() {
 	const result = await authService.register(dtoForCreate);
 
     if(result.isPresent){
-	    alert(result.get()?.message ?? "에러가 발생했습니다.")
+        snackbarService.activate({ positive : false,  message : (result.get()?.message ?? "에러가 발생했습니다.") } );
+        return;
     } else {
         // success processing
         alert("가입 성공")
+        snackbarService.activate({ message : "가입 성공" } );
         await router.push("/");
     }
 }

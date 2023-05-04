@@ -1,5 +1,5 @@
 import {CachedListContainer} from "@/abstract/CachedListContainer";
-import {CreateWishItemDTO, WishItemDTO} from "@/dto/ProductDTO";
+import {CreateWishItemDTO, WishItemDTO} from "@/dto/RegisteredProductDTO";
 import {Optional} from "@yahvz01/monad";
 import {ENDPOINT_OF_WISH_ADD, ENDPOINT_OF_WISH_DELETE} from "@/requestinfo/WishListRequestInfo";
 

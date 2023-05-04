@@ -10,10 +10,10 @@
 				<span>{{currentMessage.contents}}</span>
 			</div>
 			<div class="modal-action">
-				<button v-if="currentMessage.positive_action !== undefined" @click="handlePositiveAction">
+				<button class="pointer" v-if="currentMessage.positive_action !== undefined" @click="handlePositiveAction">
 					{{currentMessage.positive_action.text}}
 				</button>
-				<button v-if="currentMessage.negative_action !== undefined" @click="handleNegativeAction">
+				<button class="pointer" v-if="currentMessage.negative_action !== undefined" @click="handleNegativeAction">
 					{{currentMessage.negative_action.text}}
 				</button>
 			</div>
@@ -33,13 +33,13 @@ const currentMessage = computed(() => {
 })
 
 function handlePositiveAction() {
-    if(currentMessage?.value?.positive_action) {
+    if(currentMessage.value.positive_action) {
         currentMessage.value.positive_action.action()
     }
     handleClose()
 }
 function handleNegativeAction() {
-    if(currentMessage?.value?.negative_action) {
+    if(currentMessage.value.negative_action) {
         currentMessage.value.negative_action.action()
     }
     handleClose()
@@ -47,12 +47,6 @@ function handleNegativeAction() {
 function handleClose() {
     modalService.value.closeMessage()
 }
-
-onMounted(() => {
-    console.log("modalService.value.active before", modalService.value.active)
-    modalService.value.activate({ header : "Header", contents : "This is Message"})
-    console.log("modalService.value.active after", modalService.value.active)
-})
 
 </script>
 

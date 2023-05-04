@@ -1,5 +1,5 @@
 import {CachedListContainer} from "@/abstract/CachedListContainer";
-import {AccountDTO, DeleteWishItemDTO} from "@/dto/ProductDTO";
+import {AccountDTO, DeleteWishItemDTO} from "@/dto/RegisteredProductDTO";
 import {Optional} from "@yahvz01/monad";
 import {
     ENDPOINT_OF_ACCOUNT_ADD,

@@ -1,7 +1,7 @@
 <template>
 	<div class="grid-container-right-400px">
 		<div class="grid-left-side">
-			<SearchForm :onsummit="handleSearchInput" />
+			<SearchContainer />
 			<WishListPage />
 		</div>
 		<div class="grid-right-side">
@@ -18,10 +18,8 @@ import SearchForm from "@/ui-componenet/SearchForm.vue";
 import {useRouter} from "vue-router";
 import WishItemDetailPage from "@/view/wishlist/WishItemDetailPage.vue";
 import WishListPage from "@/view/wishlist/WishListPage.vue";
+import SearchContainer from "@/container/SearchContainer.vue";
 
 const router = useRouter();
 
-function handleSearchInput( query : string ) {
-    router.push(`/search?q=${query}`);
-}
 </script>

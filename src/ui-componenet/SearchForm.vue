@@ -1,6 +1,3 @@
-<!--사용법-->
-<!--<SearchForm onsummit="함수를 넣어주세요" query="기본 설정 단어" />-->
-
 <template>
   <div class="container-center-horizontal">
     <div class="searchform screen">
@@ -31,7 +28,6 @@ const inputState = reactive({
   inputData : props?.query ?? ""
 })
 function handleInput() {
-  // 해당
   props.onsummit( inputState.inputData )
 }
 

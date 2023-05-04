@@ -1,6 +1,14 @@
 <template>
 	<button :class="props.active ? 'active' : ''" :style="props.style">
-		{{ props.value }}
+		<a v-if="props.to !== undefined && props.outlink" :href="props.to">
+			{{ props.value }}
+		</a>
+		<router-link v-else-if="props.to !== undefined" :to="props.to">
+			{{ props.value }}
+		</router-link>
+		<span v-else>
+			{{ props.value }}
+		</span>
 	</button>
 </template>
 
@@ -10,12 +18,15 @@ import {CSSProperties} from "vue";
 interface ButtonInterface {
     active : boolean,
     value : string,
-	style? : CSSProperties
+	style? : CSSProperties,
+	to? : string,
+	outlink? : boolean
 }
 const props = withDefaults(defineProps<ButtonInterface>(), {
     active : false,
     value : "",
-    style : {}
+    style : {},
+    outlink : false
 })
 </script>
 

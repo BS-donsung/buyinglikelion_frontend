@@ -22,6 +22,7 @@
 // }
 
 import {StrictDate} from "@/util/StrictDate";
+import {ShoppingMallInfo} from "@/util/ShoppingMallInfo";
 
 export interface CreateWishItemDTO {
     url : string
@@ -31,7 +32,26 @@ export interface DeleteWishItemDTO {
     id : number
 }
 
+export interface MallInfoAndPrice {
+    mall : ShoppingMallInfo;
+    price: number;
+}
+export class MallEndPrice {
+    mall : string;
+    price : number;
+}
+
 export class ProductDTO {
+    product : string
+    image : string
+    price : number
+
+    get name() : string {
+        return this.product;
+    }
+}
+
+export class RegisteredProductDTO {
     id : number
     product :  string
     image : string
@@ -48,7 +68,7 @@ export class ProductDTO {
     }
 }
 
-export class WishItemDTO extends ProductDTO {
+export class WishItemDTO extends RegisteredProductDTO {
     choice_date : StrictDate;
 
     get name() : string {
@@ -68,7 +88,7 @@ export class WishItemDTO extends ProductDTO {
 
 WishItemDTO.of(1, "name", "url", 30000)
 
-export interface AccountDTO extends ProductDTO {
+export interface AccountDTO extends RegisteredProductDTO {
     purchase_date : Date
     purchase_price : number
 

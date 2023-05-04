@@ -1,6 +1,8 @@
 import {AsyncRequestInfo, HTTP_METHOD} from "@/util/AjaxRequestInfo";
 
-export const ENDPOINT_OF_CRAWLING_REQUEST_BY_URL = AsyncRequestInfo.of(HTTP_METHOD.GET, "/search/product")
-export const ENDPOINT_OF_CRAWLING_REQUEST_BY_TAG = AsyncRequestInfo.empty()
+export const ENDPOINT_OF_SEARCHING_PRODUCT_INFO = AsyncRequestInfo.of(HTTP_METHOD.GET, "/search/product")
+export const ENDPOINT_OF_SEARCHING_PRICE_INFO = AsyncRequestInfo.of(HTTP_METHOD.GET, "/search/price")
+
+// "/search/price?current=true"
 
 

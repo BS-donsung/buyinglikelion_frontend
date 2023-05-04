@@ -23,12 +23,6 @@
     
 </template>
 
-<script lang="ts">
-export default {
-  name: 'ShoppingCom',
-}
-</script>
-
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 export interface ShoppingComProps {

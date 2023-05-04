@@ -17,9 +17,13 @@ export default defineConfig({
     server: {
         proxy: {
             '/auth': {
-                target: 'http://localhost:8080',
+                target: 'https://968482c3-2682-41c4-aaae-3593687a9bdc.mock.pstmn.io',
                 changeOrigin: true,
             },
+            "/search" : {
+                target: 'https://968482c3-2682-41c4-aaae-3593687a9bdc.mock.pstmn.io',
+                changeOrigin: true,
+            }
         },
     }
 })

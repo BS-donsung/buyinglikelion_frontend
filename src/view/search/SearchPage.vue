@@ -1,24 +1,33 @@
 <template>
-	<SearchContainer :request-query="query" />
+	<div>
+		<SearchContainer />
+		<div v-if="url">
+			<ProductDetailContainer :url="url" />
+		</div>
+		<div v-else-if="query">
+			<!-- 태그를 사용한 검색 결과를 표시합니다 -->
+
+		</div>
+		<div v-else>
+			<!-- 검색 결과가 없거나, 잘못된 파라미터를 표시합니다 -->
+			<p>검색 결과가 없습니다.</p>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
-import {onMounted} from "vue";
+import {computed, ComputedRef, onUpdated, ref} from 'vue'
+import { useRoute } from 'vue-router'
 import SearchContainer from "@/container/SearchContainer.vue";
-import Validator from "@/util/Validator";
+import ProductDetailContainer from "@/container/productdetail/ProductDetailContainer.vue";
+import {useWishListStore} from "@/store/WishListStore";
 
-interface SearchPageRouteProps { query? : string }
-const props = defineProps<SearchPageRouteProps>();
+const route = ref(useRoute())
+const url: ComputedRef<string | undefined> = computed(() => route.value.query.url as string | undefined)
+const query: ComputedRef<string | undefined> = computed(() => route.value.query.query as string | undefined)
 
-onMounted(() => {
-    if(props.query !== undefined) {
-		// processing query
-	    if(Validator.isValidURL(props.query)) {
-            // url=${props.query} 보내기
+const service = ref(useWishListStore().wishService);
 
-	    } else {
-            // product=${props.query} 보내기
-	    }
-    }
-})
+
+
 </script>

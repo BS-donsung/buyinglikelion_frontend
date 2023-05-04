@@ -5,17 +5,25 @@
 		</router-link>
 		<div class="item-info">
 			<router-link to="/wishlist/{{product.id}}">
-				<div class="wish-date">{{ "2023/04/25" }}</div>
+				<div class="wish-date">{{ "2023/04/25" }} </div>
 				<div class="wish-item">{{ product.name }}</div>
 				<div class="wish-price">
 					<span>{{ product.price }}</span><span>원</span>
 				</div>
 			</router-link>
+			<div class="flex-container inline m" @click="togglePricegraph">
+				<img class="pricegapic" src="@/asset/componenticon/가격추이ic.svg" alt="pricegapic" />
+				<div class="pricetrend">가격 추이 보기</div>
+				<img class="spreadic" src="@/asset/componenticon/spreadic.svg" alt="spreadic" />
+			</div>
 		</div>
 		<div class="left-controller">
 			<img class="deletebtn pointer" src="@/asset/componenticon/item_close.svg" alt="deletebtn" @click="handleRemoveItem"/>
 		</div>
 	</div>
+    <div v-if="pricegraphVisible" class="flex-container item-container price-graph">
+        <img src="/assets/mock-chart.svg" alt="pricegraph">
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -37,6 +45,13 @@ function handleRemoveItem() {
     // console.log(props.index)
 	props.onremove(props.product.id)
 }
+
+const pricegraphVisible = ref(false);
+
+const togglePricegraph = () => {
+    pricegraphVisible.value = !pricegraphVisible.value;
+}
+
 </script>
 
 <style scoped lang="scss">

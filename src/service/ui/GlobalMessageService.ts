@@ -15,8 +15,16 @@ export interface GlobalMessageServiceInterface {
 }
 export class GlobalMessageService<MessageType> implements GlobalMessageServiceInterface {
 
+    defaultMils : number
+    useDefaultMils : boolean
     messageQueue : Array<MessageType> = []
     private _active : boolean = false;
+
+
+    constructor( defaultMils : number = 3000, useDefaultMils : boolean = true ) {
+        this.defaultMils = defaultMils
+        this.useDefaultMils = useDefaultMils;
+    }
 
     get isEmpty(): boolean { return (this.messageQueue.length == 0); }
     get active() : boolean { return this._active }
@@ -32,6 +40,10 @@ export class GlobalMessageService<MessageType> implements GlobalMessageServiceIn
                 window.setTimeout(() => {
                     this.deactivate()
                 }, timeoutMils );
+            } else if( this.useDefaultMils && this.defaultMils > 0 ) {
+                window.setTimeout(() => {
+                    this.deactivate()
+                }, this.defaultMils );
             }
         }
     }

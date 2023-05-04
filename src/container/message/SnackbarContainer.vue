@@ -27,7 +27,7 @@ const iconColor = computed(() => {
     return currentMessage.value.positive ? "#00E676" : "#F44336";
 })
 function handleClose() {
-    snackbarService.value.deactivate()
+    snackbarService.value.closeMessage()
 }
 
 </script>

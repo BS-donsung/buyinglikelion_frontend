@@ -33,7 +33,7 @@
 <!--			</v-btn>-->
 <!--		</div>-->
 		<div v-for="(item, index) in store">
-			<ItemComponent
+			<WishItemComponent
 					:index="index"
 					:product="item"
 					:onremove="handlingRemove" />
@@ -43,11 +43,11 @@
 
 <script setup lang="ts">
 
-import ItemComponent from '@/ui-componenet/ItemComponent.vue';
+import WishItemComponent from '@/ui-componenet/WishItemComponent.vue';
 import {useAuthStore} from "@/store/AuthStore";
 import { dummyWishList } from "@/dummy/DummyWishList";
 import {DistinctSet} from "@/util/DistinctSet";
-import {WishItemDTO} from "@/dto/ProductDTO";
+import {WishItemDTO} from "@/dto/RegisteredProductDTO";
 import { ref } from "vue";
 import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
 import {

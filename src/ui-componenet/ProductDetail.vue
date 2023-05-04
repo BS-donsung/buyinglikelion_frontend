@@ -14,7 +14,7 @@
 <script setup lang="ts">
 
 import { defineProps } from 'vue';
-import { WishItemDTO } from "@/dto/ProductDTO";
+import { WishItemDTO } from "@/dto/RegisteredProductDTO";
 
 interface ProductDetailProps {
     product : WishItemDTO

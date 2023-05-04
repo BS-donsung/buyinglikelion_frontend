@@ -52,7 +52,6 @@ const authService = ref(useAuthStore().authService)
 const router = useRouter()
 
 const snackBarService = ref(useSnackbarService().service)
-snackBarService.value.activate({ message : "성공 "})
 
 const inputState = reactive({
 	principal : "",
@@ -67,7 +66,7 @@ async function handleSubmit(){
 	if(result.isPresent) {
         snackBarService.value.activate({ positive : false, message : "실패"})
 	} else {
-        snackBarService.value.activate({ message : "성공 "})
+        snackBarService.value.activate({ positive : true, message : "성공 "})
         router.push("/")
 	}
 }
