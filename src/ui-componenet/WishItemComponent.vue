@@ -1,12 +1,12 @@
 <template>
 	<div class="flex-container item-container container-center-horizontal">
-		<router-link to="/wishlist/{{product.id}}">
+		<router-link :to="`/wishlist/${product.id}`">
 			<img class="item-image" :src="product.image" />
 		</router-link>
 		<div class="item-info">
-			<router-link to="/wishlist/{{product.id}}">
+			<router-link :to="`/wishlist/${product.id}`">
 				<div class="wish-date">{{ "2023/04/25" }} </div>
-				<div class="wish-item">{{ product.name }}</div>
+				<div class="wish-item">{{ product.product }}</div>
 				<div class="wish-price">
 					<span>{{ product.price }}</span><span>원</span>
 				</div>
@@ -32,10 +32,9 @@ import { defineProps, ref } from 'vue';
 import {RegisteredProductDTO} from "@/dto/RegisteredProductDTO";
 
 export interface ItemViewProps {
-    index : number,
     product : RegisteredProductDTO
     wish_price?: number,
-    onremove : ( index : number ) => void
+    onremove? : ( index : number ) => void
 }
 const props = withDefaults(defineProps<ItemViewProps>(), {
     wish_price : 10000
@@ -43,7 +42,7 @@ const props = withDefaults(defineProps<ItemViewProps>(), {
 
 function handleRemoveItem() {
     // console.log(props.index)
-	props.onremove(props.product.id)
+	props.onremove?.(props.product.id)
 }
 
 const pricegraphVisible = ref(false);

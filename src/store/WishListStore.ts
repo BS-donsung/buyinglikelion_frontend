@@ -5,6 +5,6 @@ import {WishItemDTO} from "@/dto/RegisteredProductDTO";
 export const useWishListStore =
     defineStore("wishlist", () => {
         const wishService = new WishListService( ( item : WishItemDTO ) => item.id );
-
+        wishService.getQuery()
         return { wishService };
     })

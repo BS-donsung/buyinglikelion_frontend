@@ -8,7 +8,7 @@ export const wishlistroute : RouteRecordRaw = {
     children : [
         {
             // Detail registered wishitem 
-            path : ":id", component : WishItemDetailPage, props : (route) => ({ id : route.params.id })
+            path : ":id", component : WishItemDetailPage
         },
         {
             path : "", component : WishListPage

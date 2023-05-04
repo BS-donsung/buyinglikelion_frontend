@@ -7,6 +7,13 @@ export class CachedListContainer<_Tp, _CheckTp, _DataUniquenessCriteriaFunc exte
 
     private checkDistinct : _DataUniquenessCriteriaFunc;
     private cache : DistinctSet<_Tp, _DataUniquenessCriteriaFunc>
+
+    get size() : number {
+        return this.cache.length;
+    }
+    get length() : number {
+        return this.cache.length;
+    }
     constructor( func : _DataUniquenessCriteriaFunc) {
         super();
         this.checkDistinct = func

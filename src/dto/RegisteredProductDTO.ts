@@ -25,7 +25,7 @@ import {StrictDate} from "@/util/StrictDate";
 import {ShoppingMallInfo} from "@/util/ShoppingMallInfo";
 
 export interface CreateWishItemDTO {
-    url : string
+    product : string
 }
 
 export interface DeleteWishItemDTO {
@@ -36,9 +36,13 @@ export interface MallInfoAndPrice {
     mall : ShoppingMallInfo;
     price: number;
 }
-export class MallEndPrice {
+export class MallAndPrice {
     mall : string;
     price : number;
+}
+
+export interface PriceHistory extends MallAndPrice {
+    date : string
 }
 
 export class ProductDTO {

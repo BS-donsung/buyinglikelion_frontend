@@ -1,13 +1,16 @@
 <template>
     AccountBook
-    <div>
-        <Calendar :day="[13, 14, 15]" :month="5" :year="2023" />
-    </div>
-    <div class="date-text">selected date</div>
-    <div>
-        <BuyingItem />
-        <BuyingItem />
-        <BuyingItem />
+    <div class="grid-container-half">
+        <div>
+            <Calendar :day="[13, 14, 15]" :month="5" :year="2023" />
+            <div class="date-text">selected date</div>
+        </div>
+
+        <div>
+            <BuyingItem />
+            <BuyingItem />
+            <BuyingItem />
+        </div>
     </div>
 </template>
 
