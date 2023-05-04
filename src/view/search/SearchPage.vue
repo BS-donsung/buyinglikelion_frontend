@@ -24,6 +24,7 @@ import {useWishListStore} from "@/store/WishListStore";
 
 import { dummyWishList } from '@/dummy/DummyWishList';
 import { ItemComponentProps } from '@/ui-componenet/ItemComponent.vue';
+import ProductListContainer from '@/container/ProductListContainer.vue';
 
 const route = ref(useRoute())
 const url: ComputedRef<string | undefined> = computed(() => route.value.query.url as string | undefined)
