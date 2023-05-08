@@ -12,13 +12,13 @@
 					<span>최저가 </span><span>{{ product.price }}</span><span>원</span>
 				</div>
 			</router-link>
-			<div class="graphbutton" @click="togglePricegraph">
+			<div class="price-graph-btn" @click="togglePricegraph">
 				<img class="pricegapic" src="@/asset/componenticon/가격추이ic.svg" alt="pricegapic" />
 				<div class="pricetrend">&nbsp;가격 추이 보기&nbsp;</div>
 				<img class="spreadic" src="@/asset/componenticon/spreadic.svg" alt="spreadic" />
 			</div>
 		</div>
-		<div class="left-controller">
+		<div>
 			<DefaultButton value="삭제" :on-click="handleRemoveItem" />
 		</div>
 	</div>
@@ -66,11 +66,6 @@ const togglePricegraph = () => {
 	
 }
 
-.img-a {
-    padding: 0;
-    margin: 0;
-}
-
 .item-image {
     height: 160px;
     width: 160px;
@@ -81,7 +76,6 @@ const togglePricegraph = () => {
     display: flex;
     width: 100%;
     flex-direction: column;
-    // align-items: flex-end;
     padding-top: 0.5rem;
     margin-right: 2rem;
     margin-left: 1rem;
@@ -93,17 +87,16 @@ const togglePricegraph = () => {
     -webkit-box-orient: vertical;
     overflow: hidden;
     align-items: center;
-    // margin-bottom: 0.5rem;
 }
 
 
 
-.graphbutton {
+.price-graph-btn {
     display: flex;
     margin-top: auto;
     margin-bottom: 0.5rem;
 }
-.graphbutton:hover {
+.price-graph-btn:hover {
     cursor: pointer
     
 }

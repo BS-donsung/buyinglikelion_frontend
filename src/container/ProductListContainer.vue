@@ -11,10 +11,10 @@
 <script setup lang="ts">
 import ItemComponent from '@/ui-componenet/ItemComponent.vue';
 import { dummyWishList } from "@/dummy/DummyWishList";
-import {DistinctSet} from "@/util/DistinctSet";
 import {ProductDTO} from "@/dto/RegisteredProductDTO";
 import { ref, defineProps } from "vue";
 import { ItemViewProps } from '@/ui-componenet/WishItemComponent.vue';
+import {DistinctSet} from "@yahvz01/utilcollection";
 
 interface ProductListContainerProps {
     query: string;
@@ -22,12 +22,11 @@ interface ProductListContainerProps {
 
 const props = defineProps<ProductListContainerProps>();
 
-const store = ref(new DistinctSet(( item : ProductDTO ) => item.product ))
-
-dummyWishList.forEach( (item, index) => {
-    store.value.add(item);
-    
-})
+// const store = ref(new DistinctSet(( item : ProductDTO ) => item.product ))
+//
+// dummyWishList.forEach( (item, index) => {
+//     store.value.add(item);
+// })
 
 </script>
 

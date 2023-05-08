@@ -58,8 +58,8 @@
 
 svg {
     vertical-align: middle;
-    width: 24;
-    height: 24;
+    width: 24px;
+    height: 24px;
     fill: none;
 }
 
