@@ -2,6 +2,7 @@
     <div class="item-container">
         <div class="item-img"><img :src="`https://s.pstatic.net/shopping.phinf/20230428_25/435a3623-6745-42ad-8013-715ae7052101.jpg?type=f214_292`" alt="buyingitemimg"></div>
         <div class="text-container">
+            <div class="item-name">2023/05/08</div>
             <div class="item-name">item-name</div>
             <div class="item-price">123455 원</div>
         </div>
@@ -26,12 +27,11 @@ export default {
     display: flex;
     flex-direction: row;
     background-color: white;
-    align-items: center;
 }
 
 .item-img {
-    width: 80px;
-    height: 80px;
+    width: 10rem;
+    height: 10rem;
     margin: 8px 28px;
 }
 
@@ -43,9 +43,10 @@ img {
 
 .text-container {
     align-items: flex-start;
+    justify-content: start;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    width: 100%;
 }
 
 .item-name {
@@ -57,6 +58,7 @@ img {
 .item-price {
     font-size: 16px;
     white-space: nowrap;
+    align-self: end;
 }
 
 </style>

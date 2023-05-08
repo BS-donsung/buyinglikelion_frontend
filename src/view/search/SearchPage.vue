@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import {computed, ComputedRef, onUpdated, ref} from 'vue'
+import {computed, ComputedRef, ref} from 'vue'
 import { useRoute } from 'vue-router'
 import SearchContainer from "@/container/SearchContainer.vue";
 import ProductDetailContainer from "@/container/ProductDetailContainer.vue";
