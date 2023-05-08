@@ -1,7 +1,7 @@
 <template>
-	<div>
-		<h3 class="table-title">쇼핑몰 별 최저가</h3>
-		<table>
+	<div class="flex-container column-direct">
+		<h2 class="table-title">쇼핑몰 별 최저가</h2>
+		<table v-if="isEmptyData">
 			<thead>
 				<tr>
 					<th>쇼핑몰</th>
@@ -12,6 +12,11 @@
 				<MallAndPriceComponent v-for="(data, index) in props.data" :data="data" :key="index"/>
 			</tbody>
 		</table>
+		<div v-else class="flex-container column-direct data-empty-banner-container">
+			<h4 class="text-align-center data-empty-banner">
+				쇼핑몰 데이터를 찾을 수 없습니다
+			</h4>
+		</div>
 	</div>
 </template>
 
@@ -27,6 +32,11 @@ interface MallAndPriceComponentProps {
 }
 
 const props = defineProps<MallAndPriceComponentProps>();
+
+const isEmptyData =
+	computed(() => {
+        return (props.data.length == 0)
+	})
 
 const sortMallAndPriceList : ComputedRef<MallInfoAndPrice[]> =
 	computed( () => {
