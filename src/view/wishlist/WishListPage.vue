@@ -1,10 +1,13 @@
 <template>
-	<div v-if="isEmptyOfWishList">
+	<div
+			v-if="!authData.isAuthentication || isEmptyOfWishList"
+			class="empty-banner"
+	>
 		<EmptyWishList />
 	</div>
 	<section v-else>
 		<h1 class="wishtitle" >
-			{{ currentUsername }}의 Wish List
+			{{ authData.username }}의 Wish List
 		</h1>
 		<WishListContainer />
 	</section>
@@ -19,14 +22,20 @@ import WishListContainer from "@/container/wishitem/WishListContainer.vue";
 import EmptyWishList from "@/ui-componenet/banner/EmptyWishListBanner.vue";
 
 
-const authService = useAuthStore().authService;
+const authService = ref(useAuthStore().authService);
 const wishListService = useWishListStore().wishService;
 
 const isEmptyOfWishList = computed(() => {
     return wishListService.length == 0;
 })
-const currentUsername = computed(() => {
-    return authService.data.username
+const authData = computed(() => {
+    return authService.value.data
 })
 
 </script>
+
+<style scoped lang="scss">
+.empty-banner {
+	margin: 4rem;
+}
+</style>

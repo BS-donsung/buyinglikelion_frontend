@@ -4,11 +4,10 @@
 
 <script setup lang="ts">
 
-import ProductDetailContainer from "@/container/productdetail/ProductDetailContainer.vue";
+import ProductDetailContainer from "@/container/ProductDetailContainer.vue";
 
 interface ProductDetailPageInterface {
     url : string
 }
 const props = defineProps<ProductDetailPageInterface>()
-
 </script>

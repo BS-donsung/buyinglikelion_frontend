@@ -1,76 +1,74 @@
 <template>
     <div class="popup-container">
-        <div class="section ">
-            <div class="button">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Profile">
-                    <circle cx="12" cy="7" r="4.5" stroke="currentColor"></circle>
-                    <path d="M3.5 21.5v-4.34C3.5 15.4 7.3 14 12 14s8.5 1.41 8.5 3.16v4.34" stroke="currentColor" stroke-linecap="round"></path>
-                </svg>
-                
-                <div class="menu-name">My page</div>
-            </div>
+        <div class="section pointer">
+            <router-link to="/mypage">
+                <div class="button">
+                    <div class="menu-name">My page</div>
+                </div>
+            </router-link>
         </div>
 
-        <div class="section">
-            <div class="button">
+        <div class="section pointer">
+            <div class="button" @click="handleLogout">
                 <div class="signout-section">
-                    <div class="signout-text">Sign out</div>
-                    <p> user@email.com</p>
+                    <div class="menu-name">Sign out</div>
                 </div>
             </div>
+
         </div>
+        <p class="text-align-center principal-container">
+            {{principal}}
+        </p>
 
     </div>
 </template>
 
 <script setup lang="ts">
 
+import {computed, ref} from "vue";
+import {useAuthStore} from "@/store/AuthStore";
+
+const authStore = ref(useAuthStore().authService)
+
+const principal = computed( () => {
+    return authStore.value.data.principal
+})
+
+function handleLogout() {
+    authStore.value.logout()
+}
+
+
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "@style/color" as color;
 
 .popup-container {
-    z-index: 700;
-    border-radius: 4px;
-    box-shadow: rgb(230, 230, 230) 0px 1px 4px;
-    border: 1px solid rgb(230, 230, 230);
-    box-sizing: border-box;
+    z-index: 10;
+    position: absolute;
+
 }
 
 .section {
     padding: 18px 0;
     border-bottom: 1px solid rgb(230, 230, 230);
     display: block;
+
+
 }
 
 .button {
-    padding: 8px 24px;
-    align-items: center;
-    display: flex;
-    text-align: left;
-    cursor: pointer;
-    width: 100%;
-}
-
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-
-svg {
-    vertical-align: middle;
-    width: 24px;
-    height: 24px;
-    fill: none;
-}
-
-svg:not(:root) {
-    overflow-clip-margin: content-box;
-    overflow: hidden;
+    &:hover {
+        background-color: color.$gray-50;
+    }
 }
 
 .menu-name {
     margin-left: 16px;
     display: block;
+    font-size: 1.2rem;
+    padding: 0 1rem;
 }
 
 .logout-section {
@@ -79,12 +77,8 @@ svg:not(:root) {
     text-align: left;
 }
 
-.signout-text {
-    margin-bottom: 4px;
-}
-
 p {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+    padding: 1rem;
 }
-
 </style>

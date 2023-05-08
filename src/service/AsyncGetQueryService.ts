@@ -1,19 +1,17 @@
 import {AsyncProcessService} from "@/abstract/AsyncProcessService";
 import {AsyncRequestInfo} from "@/util/AjaxRequestInfo";
 
-export interface OnceAsyncGetQueryService<_DataTp> {
+export interface AsyncGetQueryService<_DataTp> {
     data : _DataTp;
     isEmpty : boolean;
-    getQuery() : Promise<void>
+    getQuery(targetURL : AsyncRequestInfo) : Promise<void>
 }
 
 
-export class GetQuerySingularDataService<_DataTp> extends AsyncProcessService implements OnceAsyncGetQueryService<_DataTp>{
-    endpoint : AsyncRequestInfo;
+export class GetSingularDataService<_DataTp> extends AsyncProcessService implements AsyncGetQueryService<_DataTp>{
     _productInfo : _DataTp | null;
-    constructor( targetURL : AsyncRequestInfo ) {
+    constructor() {
         super();
-        this.endpoint = targetURL;
         this._productInfo = null;
     }
 
@@ -25,8 +23,8 @@ export class GetQuerySingularDataService<_DataTp> extends AsyncProcessService im
         return this._productInfo == null;
     }
 
-    async getQuery() {
-        const result = await this.asyncProcessing<_DataTp>(this.endpoint)
+    async getQuery(targetURL : AsyncRequestInfo) {
+        const result = await this.asyncProcessing<_DataTp>(targetURL)
         if(result.isFailure()) {
             this.setFailure();
         } else {
@@ -36,12 +34,10 @@ export class GetQuerySingularDataService<_DataTp> extends AsyncProcessService im
     }
 }
 
-export class GetQueryMultipleDataService<_DataTp> extends AsyncProcessService implements OnceAsyncGetQueryService<_DataTp>{
-    endpoint : AsyncRequestInfo;
+export class GetQueryMultipleDataService<_DataTp> extends AsyncProcessService implements AsyncGetQueryService<_DataTp>{
     _productInfo : _DataTp[] = []
-    constructor( targetURL : AsyncRequestInfo ) {
+    constructor( ) {
         super();
-        this.endpoint = targetURL;
     }
 
     get data() : _DataTp[] {
@@ -52,8 +48,8 @@ export class GetQueryMultipleDataService<_DataTp> extends AsyncProcessService im
         return this._productInfo.length == 0;
     }
 
-    async getQuery() {
-        const result = await this.asyncProcessing<_DataTp[]>(this.endpoint)
+    async getQuery(targetURL : AsyncRequestInfo) {
+        const result = await this.asyncProcessing<_DataTp[]>(targetURL)
         if(result.isFailure()) {
             this.setFailure();
         } else {

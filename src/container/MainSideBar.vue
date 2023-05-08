@@ -1,5 +1,5 @@
 <template>
-	<div class="main-sidebar" v-if="state.active">
+	<div class="main-sidebar vertical-section-divider-right" v-if="state.active">
 		<router-link
 				v-if="authDate.isAuthentication"
 				to="/mypage">
@@ -95,6 +95,8 @@ const authDate = computed(() => {
     z-index: 6;
 
     color: color.$gray-900;
+
+    transform: translateY(1px);
 }
 
 ul {

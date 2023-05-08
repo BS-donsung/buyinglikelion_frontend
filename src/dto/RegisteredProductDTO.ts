@@ -31,12 +31,29 @@ export interface CreateWishItemDTO {
 export interface DeleteWishItemDTO {
     id : number
 }
-
+export interface MallInfoAndPriceDTO {
+    mall : string;
+    price: number;
+    url : string
+}
 export interface MallInfoAndPrice {
     mall : ShoppingMallInfo;
     price: number;
     url : string
 }
+
+export class MallInfoAndPriceImpl implements MallInfoAndPrice{
+    mall : ShoppingMallInfo;
+    price: number;
+    url : string
+    constructor( mall : ShoppingMallInfo, price: number, url : string ) {
+        this.mall = mall;
+        this.price = price;
+        this.url = url;
+    }
+}
+
+
 export class MallAndPrice {
     mall : string;
     price : number;
@@ -52,12 +69,15 @@ export interface ProductDTO {
     price : number
 }
 
+export interface ProductWithURLDTO extends ProductDTO{
+    url : string
+}
+
 export interface RegisteredProductDTO {
     id : number
     product :  string
     image : string
     price : number
-
 }
 
 export interface WishItemDTO extends RegisteredProductDTO {

@@ -28,7 +28,7 @@ export class GlobalMessageService<MessageType> implements GlobalMessageServiceIn
 
     get isEmpty(): boolean { return (this.messageQueue.length == 0); }
     get active() : boolean { return this._active }
-    activate( message : MessageType | null = null, timeoutMils : number | null = null) : void {
+    activate( message : MessageType | null = null, timeoutMils : number | null = -1) : void {
         if(message) {
             this.messageQueue.push(message)
         }
@@ -36,7 +36,9 @@ export class GlobalMessageService<MessageType> implements GlobalMessageServiceIn
             this._active = false;
         } else {
             this._active = true;
-            if(timeoutMils !== null) {
+            if(timeoutMils === null) {
+
+            } else if(timeoutMils !== null) {
                 window.setTimeout(() => {
                     this.deactivate()
                 }, timeoutMils );

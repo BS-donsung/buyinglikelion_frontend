@@ -1,7 +1,7 @@
 <template>
 	<div class="flex-container column-direct">
 		<h2 class="table-title">쇼핑몰 별 최저가</h2>
-		<table v-if="isEmptyData">
+		<table v-if="!isEmptyData">
 			<thead>
 				<tr>
 					<th>쇼핑몰</th>
@@ -9,7 +9,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<MallAndPriceComponent v-for="(data, index) in props.data" :data="data" :key="index"/>
+				<MallAndPriceComponent v-for="(data, index) in sortMallAndPriceList" :data="data" :key="index"/>
 			</tbody>
 		</table>
 		<div v-else class="flex-container column-direct data-empty-banner-container">
@@ -25,13 +25,14 @@
 
 import {MallInfoAndPrice} from "@/dto/RegisteredProductDTO";
 import MallAndPriceComponent from "@/components/table/MallAndPriceComponent.vue";
-import {computed, ComputedRef} from "vue";
+import {computed, ComputedRef, onUpdated} from "vue";
 
 interface MallAndPriceComponentProps {
     data : MallInfoAndPrice[]
 }
 
 const props = defineProps<MallAndPriceComponentProps>();
+
 
 const isEmptyData =
 	computed(() => {
@@ -42,6 +43,10 @@ const sortMallAndPriceList : ComputedRef<MallInfoAndPrice[]> =
 	computed( () => {
         return props.data.sort( (lhs, rhs) => lhs.price - rhs.price)
 	})
+
+onUpdated( () => {
+    console.log("updated : ", props.data)
+})
 
 </script>
 

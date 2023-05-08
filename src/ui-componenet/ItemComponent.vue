@@ -1,10 +1,10 @@
 <template>
 	<div class="item-container">
-        <router-link to="/" class="img-a">
+        <router-link :to="toLink" class="img-a">
             <img class="item-image" :src="product.image" />
         </router-link>
-        <router-link to="/" class="text-a">
-            <div class="item-text">{{ product.name }}</div>
+        <router-link :to="toLink" class="text-a">
+            <div class="item-text">{{ product.product }}</div>
             <div class="price-text">
                 <span>최저가 </span><span id="pricebold">{{ product.price }}</span><span>원</span>
             </div>
@@ -14,16 +14,20 @@
 <!-- 이미지 밑에 빈공간 없애야함 -->
 <script setup lang="ts">
 
-import { defineProps, ref } from 'vue';
-import {ProductDTO, RegisteredProductDTO} from "@/dto/RegisteredProductDTO";
+import {computed, defineProps, ref} from 'vue';
+import {ProductDTO, ProductWithURLDTO, RegisteredProductDTO} from "@/dto/RegisteredProductDTO";
 
 
 
 export interface ItemComponentProps {
-    product : ProductDTO,
+    product : ProductWithURLDTO,
 }
 
 const props = defineProps<ItemComponentProps>();
+
+const toLink = computed(() => {
+    return `/search/product?url=${props.product.url}`
+})
 
 </script>
 

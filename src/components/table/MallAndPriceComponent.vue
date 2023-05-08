@@ -12,6 +12,7 @@
 <script setup lang="ts">
 
 import {MallInfoAndPrice} from "@/dto/RegisteredProductDTO";
+import {onUpdated} from "vue";
 
 interface MallAndPriceComponentProps {
     data : MallInfoAndPrice

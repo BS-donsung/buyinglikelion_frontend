@@ -4,7 +4,7 @@
 			<v-toolbar-title>
 				<HeaderLogoIcon />
 			</v-toolbar-title>
-			<ul class="flex-container">
+			<ul class="flex-container right-controller">
 				<li>
 					<v-btn icon size="large" :onclick="toggleHeaderExtended" variant="plain">
 						<span class="material-symbols-outlined icon-size">search</span>
@@ -16,7 +16,9 @@
 					</v-btn>
 				</li>
 				<li v-if="isAuthenticated">
-					<div class="profile-pic"></div>
+					<div class="profile-pic" @click="toggleMyPageExtended">
+						<MyPagePopUp v-if="state.mypageExtended"/>
+					</div>
 				</li>
 				<li v-if="!isAuthenticated">
 					<router-link to="/auth/login" class="non-icon">
@@ -62,13 +64,15 @@ import {computed, reactive} from "vue";
 import Validator from "@/util/Validator";
 import {useRouter} from "vue-router";
 import HeaderLogoIcon from "@/components/HeaderLogoIcon.vue";
+import MyPagePopUp from "@/ui-componenet/MyPagePopUp.vue";
 
 const router = useRouter()
 const authStore = useAuthStore();
 const isAuthenticated = computed( () => (authStore.authService.isAuthenticated) );
 
 const state = reactive({
-	headerExtended : false
+	headerExtended : false,
+	mypageExtended : false
 })
 
 const inputState = reactive({
@@ -84,6 +88,10 @@ function handleSearchInput() {
 
 function toggleHeaderExtended() {
     state.headerExtended = !state.headerExtended
+}
+
+function toggleMyPageExtended() {
+    state.mypageExtended = !state.mypageExtended
 }
 
 </script>
@@ -109,7 +117,18 @@ function toggleHeaderExtended() {
     .profile-pic {
         width: 2.5rem;
         height: 2.5rem;
+	    position: relative;
         @include mixin.user-pic;
+
+	    & > * {
+		    border-radius: 1.5rem;
+		    background-color: color.$gray-100;
+            z-index: 1000;
+            /* position: absolute; */
+            position: fixed;
+            right: 16px;
+		    top: 54px;
+	    }
     }
     ul.flex-container .non-icon {
 	    margin-right : 1rem;
@@ -117,5 +136,9 @@ function toggleHeaderExtended() {
 
     .search-input-field {
 	    background-color: white;
+    }
+
+    .right-controller {
+	    margin-right: 16px;
     }
 </style>

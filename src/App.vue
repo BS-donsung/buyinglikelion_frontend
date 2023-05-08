@@ -15,13 +15,6 @@ import ModalContainer from "@/container/message/ModalContainer.vue";
 import SnackbarContainer from "@/container/message/SnackbarContainer.vue";
 import MainHeader from "@/container/MainHeader.vue";
 import MainSideBar from "@/container/MainSideBar.vue";
-import { ref} from "vue";
-import {useSidebarStore} from "@/store/ui/UISidebarStore";
-import ComparePriceByMall from "@/components/chart/ComparePriceByMallChart.vue";
-import MainFooter from "@/container/MainFooter.vue";
-import PenddingComponent from "@/ui-componenet/PenddingComponent.vue";
-
-const status = ref(useSidebarStore().status)
 
 </script>
 
