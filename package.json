@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@yahvz01/monad": "0.1.6",
+    "@yahvz01/utilcollection": "^0.0.1",
     "chart.js": "^4.3.0",
     "pinia": "^2.0.35",
     "vue": "^3.2.47",

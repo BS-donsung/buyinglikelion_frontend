@@ -1,11 +1,12 @@
 import {CachedListContainer} from "@/abstract/CachedListContainer";
-import {CreateWishItemDTO, WishItemDTO} from "@/dto/RegisteredProductDTO";
+import {CreateWishItemDTO, WishItem, WishItemDTO} from "@/dto/RegisteredProductDTO";
 import {Optional} from "@yahvz01/monad";
 import {
     ENDPOINT_OF_WISH_ADD,
     ENDPOINT_OF_WISH_DELETE,
     ENDPOINT_OF_WISH_SELECT
 } from "@/requestinfo/WishListRequestInfo";
+import {StrictDate} from "@/util/StrictDate";
 
 interface WishListServiceInterface {
 
@@ -15,8 +16,13 @@ interface WishListServiceInterface {
     removeItem( index : number ) : Promise<Optional<Error>>
 }
 
-const mappingByItem = ( item : WishItemDTO) => (item.id)
-export class WishListService extends CachedListContainer<WishItemDTO, number, typeof mappingByItem> implements WishListServiceInterface {
+const mappingByItem = ( item : WishItem ) => (item.id)
+const mappingWishItemDTOToWishItem = ( dto : WishItemDTO ) => {
+    const choiceDate = new Date(dto.choice_date);
+    const strictDate = StrictDate.ofDate(choiceDate);
+    return WishItem.of(dto.id, dto.product, dto.image, dto.price, strictDate);
+}
+export class WishListService extends CachedListContainer<WishItem, number, typeof mappingByItem> implements WishListServiceInterface {
 
     clear(): void {
         super.clear()
@@ -28,7 +34,7 @@ export class WishListService extends CachedListContainer<WishItemDTO, number, ty
             return Optional.of(result.getError())
         } else {
             const dataset = result.getValue();
-            dataset.forEach( data => this.add(data) )
+            dataset.map( mappingWishItemDTOToWishItem ).forEach( data => this.add(data) )
             return Optional.empty()
         }
     }
@@ -37,20 +43,25 @@ export class WishListService extends CachedListContainer<WishItemDTO, number, ty
         const result = await this.asyncProcessing<WishItemDTO, CreateWishItemDTO>( ENDPOINT_OF_WISH_ADD, createItemDTO )
         if(result.isFailure())
             return Optional.of(result.getError())
-        this.add(result.getValue())
+        this.add( mappingWishItemDTOToWishItem(result.getValue()) )
         return Optional.empty()
     }
 
     async removeItem( index: number ): Promise<Optional<Error>> {
+
+        this.delete(index)
         const result = await this.asyncProcessing<WishItemDTO, never>( ENDPOINT_OF_WISH_DELETE.append("/index"))
         if(result.isFailure())
             return Optional.of(result.getError())
-
-        this.deleteByBase(index)
-        return Optional.empty()
+        else
+            return Optional.empty()
     }
 
-    isRegistered( productName : string ) : boolean {
-        return (this.getDataList().findIndex( data => data.product == productName ) > -1);
+    isRegisteredById( id : number ) : boolean {
+        return (this.data.findIndex( data => data.id == id ) > -1);
+    }
+
+    isRegisteredByName( productName : string ) : boolean {
+        return (this.data.findIndex( data => data.product == productName ) > -1);
     }
 }

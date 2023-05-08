@@ -5,5 +5,3 @@ export const ENDPOINT_OF_ACCOUNT_ADD = AsyncRequestInfo.of(HTTP_METHOD.POST, "/a
 export const ENDPOINT_OF_ACCOUNT_UPDATE = AsyncRequestInfo.of(HTTP_METHOD.PUT, "/accountbook")
 export const ENDPOINT_OF_ACCOUNT_DELETE = AsyncRequestInfo.of(HTTP_METHOD.DELETE, "/accountbook")
 
-
-fetch(ENDPOINT_OF_ACCOUNT_UPDATE,f)

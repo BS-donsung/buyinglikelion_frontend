@@ -11,5 +11,4 @@ interface ProductDetailPageInterface {
 }
 const props = defineProps<ProductDetailPageInterface>()
 
-
 </script>

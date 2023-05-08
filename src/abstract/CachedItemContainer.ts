@@ -6,20 +6,21 @@ import { Optional, Result } from "@yahvz01/monad";
 export class CachedItemContainer<_Tp> extends AsyncProcessService {
 
     private defaultData : _Tp
-    private data : _Tp
+    private _data : _Tp
+
+    get data() : _Tp {
+        return this._data;
+    }
     constructor(defaultData : _Tp) {
         super();
         this.defaultData = defaultData;
-        this.data = defaultData;
+        this._data = defaultData;
     }
 
-    getData() : _Tp {
-        return this.data
-    }
     setData( data : _Tp ) : void {
-        this.data = data
+        this._data = data
     }
     protected clear() {
-        this.data = this.defaultData
+        this._data = this.defaultData
     }
 }

@@ -20,7 +20,7 @@
 				<div class="product-detail-view-header">
 					<h1 class="product-name">{{ productService.data.product }}</h1>
 					<h2>{{productService.data.price}}</h2>
-					<div class="flex-container">
+					<div class="flex-container justify-content-end">
 						<MainColorButton
 								v-if="isRegisteredWishList"
 								value="가격 추적하기"
@@ -84,13 +84,11 @@ onMounted(async () => {
 	await lowpriceService.value.getQuery()
 })
 
-const wishListService = ref(useWishListStore().wishService);
+const wishListService = useWishListStore().wishService
 
 const isRegisteredWishList = computed( () => {
-    return wishListService.value.isRegistered(productService.value.data?.product ?? "")
+    return wishListService.isRegisteredByName(productService.value.data?.product ?? "")
 })
-
-
 
 
 

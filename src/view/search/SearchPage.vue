@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<SearchContainer />
+		<SearchContainer :init-query="query"/>
 		<div v-if="url">
 			<ProductDetailContainer :url="url" />
 		</div>
@@ -20,9 +20,9 @@ import {computed, ComputedRef, onUpdated, ref} from 'vue'
 import { useRoute } from 'vue-router'
 import SearchContainer from "@/container/SearchContainer.vue";
 import ProductDetailContainer from "@/container/productdetail/ProductDetailContainer.vue";
-import {useWishListStore} from "@/store/WishListStore";
 
 const route = ref(useRoute())
+
 const url: ComputedRef<string | undefined> = computed(() => route.value.query.url as string | undefined)
 const query: ComputedRef<string | undefined> = computed(() => route.value.query.query as string | undefined)
 

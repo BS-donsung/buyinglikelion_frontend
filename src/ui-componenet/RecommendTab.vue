@@ -18,8 +18,8 @@ import RecommendItem from './RecommendItem.vue';
 import { defineProps } from 'vue';
 
 interface RecommendItemProps {
-    username: string,
-};
+    username?: string,
+}
 
 const props = withDefaults(defineProps<RecommendItemProps>(), {
     username: "Test",

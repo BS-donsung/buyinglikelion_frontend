@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../style/color.scss">
 <template>
 	<div class="flex-container item-container container-center-horizontal">
 		<router-link :to="`/wishlist/${product.id}`">
@@ -5,8 +6,8 @@
 		</router-link>
 		<div class="item-info">
 			<router-link :to="`/wishlist/${product.id}`">
-				<div class="wish-date">{{ "2023/04/25" }} </div>
-				<div class="wish-item">{{ product.product }}</div>
+				<div class="wish-date">{{ product.choice_date }} </div>
+				<div class="wish-item">{{ product.name }}</div>
 				<div class="wish-price">
 					<span>{{ product.price }}</span><span>원</span>
 				</div>
@@ -18,7 +19,7 @@
 			</div>
 		</div>
 		<div class="left-controller">
-			<img class="deletebtn pointer" src="@/asset/componenticon/item_close.svg" alt="deletebtn" @click="handleRemoveItem"/>
+			<DefaultButton value="삭제" :on-click="handleRemoveItem" />
 		</div>
 	</div>
     <div v-if="pricegraphVisible" class="flex-container item-container price-graph">
@@ -29,20 +30,20 @@
 <script setup lang="ts">
 
 import { defineProps, ref } from 'vue';
-import {RegisteredProductDTO} from "@/dto/RegisteredProductDTO";
+import { WishItem } from "@/dto/RegisteredProductDTO";
+import DefaultButton from "@/ui-componenet/button/DefaultButton.vue";
 
 export interface ItemViewProps {
-    product : RegisteredProductDTO
+    product : WishItem
     wish_price?: number,
-    onremove? : ( index : number ) => void
+    onRemove? : ( index : number ) => void
 }
 const props = withDefaults(defineProps<ItemViewProps>(), {
     wish_price : 10000
 });
 
 function handleRemoveItem() {
-    // console.log(props.index)
-	props.onremove?.(props.product.id)
+	props.onRemove?.(props.product.id)
 }
 
 const pricegraphVisible = ref(false);

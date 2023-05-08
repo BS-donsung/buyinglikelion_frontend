@@ -1,17 +1,15 @@
 <template>
 	<div class="container-center-horizontal">
-		<div class="searchform screen">
-			<div class="overlap-group">
-				<input
-						class="inputbox"
-						type="text"
-						placeholder="검색어를 입력해 주세요."
-						v-model="inputState.inputData"
-						ref="inputEle"
-						@keydown="enterToSummit"
-				/>
-				<img class="searchic pointer" src="@asset/icon/search.svg" alt="searchic" @click="clickToSummit"/>
-			</div>
+		<div class="searchform">
+			<input
+					class="inputbox"
+					type="text"
+					:placeholder="props.placeholder"
+					v-model="inputState.inputData"
+					ref="inputEle"
+					@keydown="enterToSummit"
+			/>
+			<img class="searchic pointer" src="@asset/icon/search.svg" alt="searchic" @click="clickToSummit"/>
 		</div>
 	</div>
 </template>
@@ -21,10 +19,13 @@ import {reactive, ref} from "vue";
 import {useRouter} from "vue-router";
 
 interface SearchFormProps {
-    query? : string
+    query? : string,
+	placeholder? : string,
     onsummit : ( queryString : string ) => void
 }
-const props = defineProps<SearchFormProps>()
+const props = withDefaults(defineProps<SearchFormProps>(), {
+    placeholder : "검색어를 입력해 주세요."
+})
 
 const inputState = reactive({
     inputData : props?.query ?? ""
@@ -45,35 +46,20 @@ function clickToSummit() {
 
 <style scoped>
 .searchform {
-    align-items: flex-start;
-    background-color: white;
-    border: 1px none;
     display: flex;
-    height: 120px;
-    padding: 0 41px;
-    width: 640px;
-}
-
-.overlap-group {
     align-items: center;
-    border-bottom-style: solid;
-    border-bottom-width: 0.5px;
-    border-color: black;
-    display: flex;
     height: 50px;
-    margin-top: 35px;
-    min-width: 557px;
-    padding: 4px 0;
+    border-bottom: 1px solid black;
+	padding: 0.5rem;
 }
 
 .inputbox {
     align-self: flex-end;
-    font-family: var(--font-family-noto_sans);
-    font-size: 28px;
+    font-size: 3rem;
     line-height: normal;
-    min-height: 38px;
-    min-width: 280px;
+    min-height: 4rem;
     border: none;
+	width: 100%;
 }
 
 .inputbox:focus {
@@ -83,9 +69,9 @@ function clickToSummit() {
 }
 
 .searchic {
-    height: 29px;
+    height: 3rem;
     margin-top: 6px;
-    width: 29px;
-    margin-left: auto;
+    width: 3rem;
+
 }
 </style>

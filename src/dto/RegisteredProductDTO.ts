@@ -35,6 +35,7 @@ export interface DeleteWishItemDTO {
 export interface MallInfoAndPrice {
     mall : ShoppingMallInfo;
     price: number;
+    url : string
 }
 export class MallAndPrice {
     mall : string;
@@ -45,52 +46,43 @@ export interface PriceHistory extends MallAndPrice {
     date : string
 }
 
-export class ProductDTO {
+export interface ProductDTO {
     product : string
     image : string
     price : number
-
-    get name() : string {
-        return this.product;
-    }
 }
 
-export class RegisteredProductDTO {
+export interface RegisteredProductDTO {
     id : number
     product :  string
     image : string
     price : number
 
-    get name() : string {
-        return this.product;
-    }
-    constructor(id : number, name : string, image : string, price : number) {
-        this.id = id;
-        this.product = name;
-        this.image = image;
-        this.price = price
-    }
 }
 
-export class WishItemDTO extends RegisteredProductDTO {
+export interface WishItemDTO extends RegisteredProductDTO {
+    choice_date : string
+}
+
+export class WishItem {
+    id : number
+    name : string
+    image : string
+    price : number
     choice_date : StrictDate;
 
-    get name() : string {
-        return this.product
-    }
-
     private constructor(id : number, name : string, image : string, price : number, choice_date : StrictDate) {
-        super(id, name, image, price)
+        this.id = id;
+        this.name = name
+        this.image = image
+        this.price = price
         this.choice_date = choice_date;
     }
 
-    static of(id : number, name : string, image : string, price : number, choice_date : StrictDate = StrictDate.ofDate()) : WishItemDTO {
-        return new WishItemDTO(id, name, image, price, choice_date);
+    static of(id : number, name : string, image : string, price : number, choice_date : StrictDate = StrictDate.ofDate()) : WishItem {
+        return new WishItem(id, name, image, price, choice_date);
     }
-
 }
-
-WishItemDTO.of(1, "name", "url", 30000)
 
 export interface AccountDTO extends RegisteredProductDTO {
     purchase_date : Date

@@ -1,5 +1,5 @@
 <template>
-	<h1>Regster</h1>
+
 	<form @submit.prevent="handleSummit" class="login-form">
 		<v-text-field
 				:counter="10"
@@ -14,14 +14,15 @@
 				:counter="10"
 				label="E-mail"
 				variant="outlined"
+				append-inner-icon="mdi-email"
 				v-model="inputState.principal">
 			<template v-slot:prepend-inner>
-				<span class="material-symbols-outlined">account_circle</span>
+				<span class="material-symbols-outlined">mail</span>
 			</template>
 		</v-text-field>
 		<v-text-field
 				type="password"
-				:counter="8"
+				:counter="12"
 				label="Passoword"
 				variant="outlined"
 				v-model="inputState.credential">
@@ -31,12 +32,22 @@
 		</v-text-field>
 		<v-text-field
 				type="password"
-				:counter="8"
+				:counter="12"
 				label="Checking Passoword"
 				variant="outlined"
 				v-model="inputState.retypedCredential">
 			<template v-slot:prepend-inner>
 				<span class="material-symbols-outlined">lock</span>
+			</template>
+		</v-text-field>
+		<v-text-field
+				:counter="8"
+				label="Birth"
+				variant="outlined"
+				placeholder="19YYMMDD"
+				v-model="inputState.birth">
+			<template v-slot:prepend-inner>
+				<span class="material-symbols-outlined">cake</span>
 			</template>
 		</v-text-field>
 		<div class="confirm-area flex-container">
@@ -58,28 +69,36 @@ import Validator from "@/util/Validator";
 import DefaultButton from "@/ui-componenet/button/DefaultButton.vue";
 import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
 import {useSnackbarService} from "@/store/ui/UISnackbarService";
+import RegisterForm from "@/components/RegisterForm.vue";
 
-const router = useRouter()
-const authService = useAuthStore().authService;
+interface RegisterFormProps {
+    onSummit : (dto : CreateUserDTO ) => void
+}
+
+const props = defineProps<RegisterFormProps>();
 const snackbarService = useSnackbarService().service
 
 const inputState = reactive({
 	username  : "",
     principal : "",
     credential: "",
-	retypedCredential : ""
+	retypedCredential : "",
+	birth : ""
 })
 
 async function handleSummit() {
-	// validation
-	const { username, principal, credential, retypedCredential } = inputState
+    // validation
+    const { username, principal, credential, retypedCredential, birth } = inputState
 
-	if(credential != retypedCredential) {
-        // 비밀번호 불일치 에러
-        snackbarService.activate({ positive : false, message : "비밀번호가 불일치 합니다." } );
+    if(!Validator.isValidBirth(birth)) {
+        snackbarService.activate({ positive : false, message : "생년월일 양식을 확인해주세요." } );
         return;
-
+    }
+	if(credential !== retypedCredential) {
+        snackbarService.activate({ positive : false, message : "재확인 비밀번호가 다릅니다. 확인해주세요" } );
+        return;
 	}
+
     if(credential.length < 8) {
         snackbarService.activate({ positive : false,  message : "비밀번호는 최소 8자 이상이어야 합니다." } );
         return;
@@ -88,21 +107,10 @@ async function handleSummit() {
     if(!Validator.isValidPassword(credential)) {
         // 비밀번호 요건 에러
         snackbarService.activate({ positive : false,  message : "유효하지 않은 비밀번호입니다. 요건을 확인해주세요" } );
-	    return;
-    }
-
-	const dtoForCreate = new CreateUserDTO(username, principal, credential)
-	const result = await authService.register(dtoForCreate);
-
-    if(result.isPresent){
-        snackbarService.activate({ positive : false,  message : (result.get()?.message ?? "에러가 발생했습니다.") } );
         return;
-    } else {
-        // success processing
-        alert("가입 성공")
-        snackbarService.activate({ message : "가입 성공" } );
-        await router.push("/");
     }
+	props.onSummit(new CreateUserDTO(username, principal, credential))
+
 }
 </script>
 
@@ -114,5 +122,8 @@ async function handleSummit() {
 }
 .login-form {
     min-width: 35rem;
+	& > * {
+        margin: 0.5rem 0;
+	}
 }
 </style>

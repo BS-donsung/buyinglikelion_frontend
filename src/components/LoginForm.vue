@@ -26,7 +26,7 @@
 			</div>
 			<v-btn type="submit" color="#F7CE46" :click="handleSubmit">
 				<v-progress-circular indeterminate
-						v-if="authService.isPending" />
+						v-if="props.status == STATUS.PENNDING" />
 				<span class="font-weight-700" v-else>
 					로그인
 				</span>
@@ -40,35 +40,25 @@
 
 <script setup lang="ts">
 import Checkbox from "@/ui-componenet/Checkbox.vue";
-import {computed, reactive, ref} from "vue";
-
+import {reactive} from "vue";
 import {AuthDTO} from "@/dto/UserDTO";
-import {useAuthStore} from "@/store/AuthStore";
 import {STATUS} from "@/util/ProcessState";
-import {useRouter} from "vue-router";
-import {useSnackbarService} from "@/store/ui/UISnackbarService";
 
-const authService = ref(useAuthStore().authService)
-const router = useRouter()
+interface LoginFormProps {
+    status : STATUS
+    onSummit : ( AuthDTO ) => Promise<void>
+}
 
-const snackBarService = ref(useSnackbarService().service)
+const props = defineProps<LoginFormProps>();
 
 const inputState = reactive({
 	principal : "",
 	credential: "",
 })
 async function handleSubmit(){
-    if(authService.value.isPending) {
-        return;
-    }
     const dto = new AuthDTO(inputState.principal, inputState.credential)
-	const result = await authService.value.login(dto)
-	if(result.isPresent) {
-        snackBarService.value.activate({ positive : false, message : "실패"})
-	} else {
-        snackBarService.value.activate({ positive : true, message : "성공 "})
-        router.push("/")
-	}
+
+	await props.onSummit(dto);
 }
 
 </script>

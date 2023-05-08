@@ -43,17 +43,20 @@
     }
 }
 
+.grid-container-right-250px {
+    display: grid;
+    grid-template-columns: auto 300px;
+}
+
+.grid-container-right-300px {
+    display: grid;
+    grid-template-columns: auto 300px;
+}
+
 
 .grid-container-right-400px {
     display: grid;
     grid-template-columns: auto 400px;
-    & > .grid-left-side {
-
-    }
-
-    & > .grid-right-side {
-
-    }
 }
 
 
@@ -76,4 +79,8 @@
 
 .margin-left-auto {
     margin-left: auto;
+}
+
+.inline-block {
+   display: inline-block;
 }

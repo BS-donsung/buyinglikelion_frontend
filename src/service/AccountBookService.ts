@@ -38,7 +38,6 @@ export class AccountBookService extends CachedListContainer<AccountDTO, number, 
         const result = await this.asyncProcessing<AccountDTO, AccountDTO>(ENDPOINT_OF_ACCOUNT_UPDATE, account)
         if(result.isFailure())
             return Optional.of(result.getError())
-
         this.update(result.getValue())
         return Optional.empty()
     }

@@ -1,7 +1,7 @@
 <template>
 	<div class="main-sidebar" v-if="state.active">
 		<router-link
-				v-if="authService.getData().isAuthentication"
+				v-if="authDate.isAuthentication"
 				to="/mypage">
 		<div
 				class="user-info-container flex-container column-direct vertical-section-divider-bottom">
@@ -9,7 +9,7 @@
 				<div class="user-info-photo-area"></div>
 			</div>
 			<div>
-				{{authService.getData().username}}
+				{{authDate.username}}
 			</div>
 			<div class="flex-container column-direct user-info-data">
 				<div class="flex-container user-info-n">
@@ -41,13 +41,16 @@
 
 <script setup lang="ts">
 import IconLabelComponent from "@/ui-componenet/button/IconLabelComponent.vue";
-import HeaderLogoIcon from "@/components/HeaderLogoIcon.vue";
 import {useSidebarStore} from "@/store/ui/UISidebarStore";
-import {ref} from "vue";
 import {useAuthStore} from "@/store/AuthStore";
+import {computed} from "vue";
 
-const state = ref(useSidebarStore().status);
-const authService = ref(useAuthStore().authService);
+const state = useSidebarStore().status;
+const authService = useAuthStore().authService;
+
+const authDate = computed(() => {
+    return authService.data
+})
 
 </script>
 

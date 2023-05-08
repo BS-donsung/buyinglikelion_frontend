@@ -1,5 +1,5 @@
 <template>
-	<header class="position-fixed">
+	<header class="main-header-container position-fixed">
 		<v-toolbar color="#F7CE46">
 			<v-toolbar-title>
 				<HeaderLogoIcon />
@@ -53,7 +53,6 @@
 				</v-btn>
 			</template>
 		</v-toolbar>
-
 	</header>
 </template>
 
@@ -94,11 +93,13 @@ function toggleHeaderExtended() {
 	@use "@style/zindex" as zindex;
 	@use "@style/mixin" as mixin;
 
-	header {
+	.main-header-container {
 	    z-index: zindex.$z-index-middle;
+		border-bottom: 1px solid black;
 		& > .main-header {
 			background-color: color.$color-main;
 		}
+
 	}
 	.icon-size {
 		font-weight: 700;

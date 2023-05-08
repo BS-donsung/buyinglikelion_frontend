@@ -14,10 +14,10 @@
 <script setup lang="ts">
 
 import { defineProps } from 'vue';
-import { WishItemDTO } from "@/dto/RegisteredProductDTO";
+import {WishItem, WishItemDTO} from "@/dto/RegisteredProductDTO";
 
 interface ProductDetailProps {
-    product : WishItemDTO
+    product : WishItem
 }
 const props = defineProps<ProductDetailProps>();
 

@@ -29,7 +29,7 @@ const status = ref(useSidebarStore().status)
 @use "@style/widthbreakpoint" as widthbreakpoint;
 
 main {
-    padding-top : 7rem;
+    padding-top : 6.4rem;
     max-width: widthbreakpoint.$WIDTH_BREAK_POINT_TABLE_LABTOP;
     margin: 0 auto;
 }

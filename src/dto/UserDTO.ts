@@ -30,8 +30,8 @@ export class CreateUserDTO implements CreateUserDTOInterface {
     username: string;
     principal: string;
     credential: string;
-    gender?: string;
     birth?: string;
+    gender?: string;
     constructor(username : string, email : string, password : string) {
         this.username = username;
         this.principal = email;

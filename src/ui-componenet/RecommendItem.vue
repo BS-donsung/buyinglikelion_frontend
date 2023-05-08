@@ -17,9 +17,8 @@
 import { defineProps } from 'vue';
 
 interface RecommendItemProps {
-
-    product: string,
-    lowest_price: number,
+    product?: string,
+    lowest_price?: number,
     image_url?: string,
 };
 

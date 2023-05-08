@@ -12,10 +12,14 @@
 
 <script setup lang="ts">
 
-import {ref} from "vue";
 import {useSidebarStore} from "@/store/ui/UISidebarStore";
+import {computed} from "vue";
 
-const status = ref(useSidebarStore().status)
+const sidebarStore = useSidebarStore();
+
+const status = computed( () => {
+    return sidebarStore.status
+})
 
 function handleCloseSideBar() {
     status.value.set(false)
