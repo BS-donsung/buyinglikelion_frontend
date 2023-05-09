@@ -9,10 +9,10 @@ export enum HTTP_METHOD {
 export class AsyncRequestInfo {
     readonly method : HTTP_METHOD
     readonly endpoint : string
-    private appendedQuery : boolean
+    private appendedQuery : boolean = false;
 
     static empty() : AsyncRequestInfo {
-        return new AsyncRequestInfo(HTTP_METHOD.GET, "")
+        return new AsyncRequestInfo(HTTP_METHOD.GET, "/")
     }
 
     static of( method : HTTP_METHOD, endpoint : string = "/") : AsyncRequestInfo {
@@ -34,10 +34,11 @@ export class AsyncRequestInfo {
 
     appendQuery( key : string, value : string ) : AsyncRequestInfo {
         if(this.appendedQuery) {
-            this.append(`&${key}=${value}`);
+            return this.append(`&${key}=${value}`);
         } else {
-            this.appendedQuery = true;
-            return this.append(`?${key}=${value}`)
+            const data = this.append(`?${key}=${value}`)
+            data.appendedQuery = true;
+            return data;
         }
 
     }

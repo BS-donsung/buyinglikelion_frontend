@@ -4,7 +4,7 @@
             <PendingComponent :guide-message="`${props.query} 데이터를 찾는 중입니다.`"/>
         </div>
         <div v-else-if="isEmptyData">
-            <PendingComponent :guide-message="`${props.query} 데이터를 찾는 중입니다.`"/>
+            <p>가져올 수 없는 데이터입니다.</p>
         </div>
         <div v-else>
             <ItemComponent
@@ -34,14 +34,17 @@ const props = defineProps<ProductListContainerProps>();
 const query = ENDPOINT_OF_SEARCHING_PRODUCT_INFO.appendQuery("tags", props.query)
 const queryService = ref(new GetQueryMultipleDataService<ProductWithURLDTO>());
 
-const queryRequest = async () => {
-    await queryService.value.getQuery(query);
-}
 
-onMounted( queryRequest )
+onMounted( () => queryService.value.getQuery(query) )
 watch(
     () => props.query,
-    () => queryRequest()
+    ( val, prev) => {
+        console.log("p", props.query)
+        console.log("val", val)
+        console.log("prev", prev)
+        const query = ENDPOINT_OF_SEARCHING_PRODUCT_INFO.appendQuery("tags", props.query)
+        queryService.value.getQuery(query)
+    }
 )
 
 const isSuccessQuery = computed( () => {
