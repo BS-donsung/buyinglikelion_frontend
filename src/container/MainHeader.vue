@@ -115,8 +115,9 @@ function toggleMyPageExtended() {
 	}
 
     .profile-pic {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 3.5rem;
+        height: 3.5rem;
+	    margin: 0 1rem;
 	    position: relative;
         @include mixin.user-pic;
 

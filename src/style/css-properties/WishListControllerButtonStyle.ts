@@ -3,7 +3,7 @@ import {CSSProperties} from "vue";
 export const WishListControllerStyle : CSSProperties =
     {
         "background-color" : "#D5C1AD",
-        "padding" : "1rem",
+        "padding" : "1rem 2rem",
         "border-top" : "1px solid black",
         "border-bottom" : "1px solid black"
     }

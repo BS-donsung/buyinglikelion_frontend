@@ -44,13 +44,21 @@ function clickToSummit() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "@style/color" as color;
+
 .searchform {
     display: flex;
     align-items: center;
     height: 50px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
 	padding: 0.5rem;
+	transition: border-bottom-color 0.3s ease;
+
+    &:focus-within {
+        border-bottom: 2px solid color.$color-point;
+
+    }
 }
 
 .inputbox {

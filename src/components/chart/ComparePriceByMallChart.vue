@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<BarController id="test" :data="data" />
-	</div>
+	<BarController id="test" :data="data" style="height: 300px; width: 600px" />
 </template>
 
 <script setup lang="ts">
@@ -24,7 +22,9 @@ const data = {
         }
     ],
     options : {
-        responsive : true
+        responsive : true,
+        maintainAspectRatio : false,
+        aspectRatio : 1,
     }
 }
 </script>

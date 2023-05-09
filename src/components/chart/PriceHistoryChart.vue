@@ -1,9 +1,7 @@
 
 
 <template>
-	<div>
-		<LineController id="test" :data="data" />
-	</div>
+	<LineController id="test" :data="data" />
 </template>
 
 <script setup lang="ts">
@@ -33,6 +31,8 @@ const data = {
     ],
     options : {
         responsive : true,
+	    maintainAspectRatio : false,
+	    aspectRatio : 1,
         scales : {
             y : {
                 min : minValue,

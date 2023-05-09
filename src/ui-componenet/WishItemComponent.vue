@@ -9,7 +9,7 @@
 				<div class="wish-date">{{ product.choice_date }} </div>
 				<div class="wish-item">{{ product.name }}</div>
 				<div class="wish-price">
-					<span>최저가 </span><span>{{ product.price }}</span><span>원</span>
+					<span>최저가 </span><span>{{ product.price.toLocaleString() }}</span><span>원</span>
 				</div>
 			</router-link>
 			<div class="price-graph-btn" @click="togglePricegraph">
@@ -18,7 +18,7 @@
 				<img class="spreadic" src="@/asset/componenticon/spreadic.svg" alt="spreadic" />
 			</div>
 		</div>
-		<div>
+		<div class="right-controller">
 			<DefaultButton value="삭제" :on-click="handleRemoveItem" />
 		</div>
 	</div>
@@ -74,7 +74,6 @@ const togglePricegraph = () => {
 
 .item-info {
     display: flex;
-    width: 100%;
     flex-direction: column;
     padding-top: 0.5rem;
     margin-right: 2rem;

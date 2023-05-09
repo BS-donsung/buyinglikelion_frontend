@@ -1,6 +1,14 @@
 <template>
 	<div>
-		<ButtonTab :list="sortButtonList" :not-change-position="true" :on-change="handleSorting"/>
+		<ButtonTab
+				:title="`${authService.data.username}의 WishList`"
+				:list="sortButtonList"
+				:not-change-position="true"
+				:on-change="handleSorting"
+		/>
+		<h3 class="button-tab-extend">
+			등록된 WishList : <span>{{wishlist.length}}</span>
+		</h3>
 		<WishItemComponent
 				v-for="(item, index) in wishlist"
 				:key="index"
@@ -18,6 +26,7 @@ import {computed, ComputedRef, reactive, ref} from "vue";
 import {WishItem, WishItemDTO} from "@/dto/RegisteredProductDTO";
 import {useWishListStore} from "@/store/WishListStore";
 import {SortingAlgorithm, SortingButtonInterfaceImpl} from "@/ui-interface/SortingButtonInterface";
+import {useAuthStore} from "@/store/AuthStore";
 
 
 interface WishListContainerState {
@@ -34,6 +43,8 @@ const sortButtonList : SortingButtonInterfaceImpl<WishItem>[] = [
     SortingButtonInterfaceImpl.of<WishItem>("낮은 가격순", "low_prince", (lhs, rhs) => lhs.price - rhs.price),
     SortingButtonInterfaceImpl.of<WishItem>("높은 가격순", "high_price", (lhs, rhs) => rhs.price - lhs.price),
 ]
+
+const authService = ref(useAuthStore().authService)
 
 const wishListService = useWishListStore().wishService
 const wishlist : ComputedRef<WishItem[]>= computed( () => {

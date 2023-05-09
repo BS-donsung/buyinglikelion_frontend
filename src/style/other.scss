@@ -1,0 +1,8 @@
+@use "color" as color;
+
+.button-tab-extend {
+    padding: 1rem 3rem;
+    background-color: rgba(color.$color-main, 0.8);
+    margin-bottom: 2rem;
+    text-align: end;
+}

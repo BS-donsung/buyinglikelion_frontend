@@ -44,10 +44,6 @@ const sortMallAndPriceList : ComputedRef<MallInfoAndPrice[]> =
         return props.data.sort( (lhs, rhs) => lhs.price - rhs.price)
 	})
 
-onUpdated( () => {
-    console.log("updated : ", props.data)
-})
-
 </script>
 
 <style scoped>

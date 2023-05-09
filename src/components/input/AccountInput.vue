@@ -28,9 +28,22 @@
 					label="Price"
 					variant="outlined"
 					v-model="inputState.price"
+					type="number"
 					@keydown="enterToNext">
 				<template v-slot:prepend-inner>
 					<span class="material-symbols-outlined">request_quote</span>
+				</template>
+			</v-text-field>
+		</div>
+
+		<div class="element" v-if="inputState.order == 4">
+			<v-text-field
+					label="Product Image URL"
+					variant="outlined"
+					v-model="inputState.image"
+					@keydown="enterToNext">
+				<template v-slot:prepend-inner>
+					<span class="material-symbols-outlined">image</span>
 				</template>
 			</v-text-field>
 		</div>
@@ -47,13 +60,14 @@
 				value="다음" active
 				class="order-next-btn"
 				:on-click="setNext"
-				v-if="inputState.order !== 3"
+				v-if="inputState.order !== lastOrder"
 				ref="ele02"
 		/>
 		<MainColorButton
 				value="추가하기" active
 				class="order-next-btn"
-				v-if="inputState.order === 3"
+				:on-click="handleSumiit"
+				v-if="inputState.order > essentialStepOrder"
 				ref="ele03"
 		/>
 	</div>
@@ -69,7 +83,8 @@ import MainColorButton from "@/ui-componenet/button/MainColorButton.vue";
 export interface CreateAccountDTO {
     date : StrictDate,
     product : string,
-    price : number
+    price : number,
+	image : string
 }
 
 interface AccountInputProps {
@@ -82,11 +97,14 @@ const props = withDefaults(defineProps<AccountInputProps>(), {
 
 
 const inputState = reactive({
-	date : StrictDate.ofDate(),
+	date : StrictDate.ofDate().toString(),
 	product : "",
 	price : 0,
+    image : "",
 	order : 1
 })
+const essentialStepOrder : number = 3;
+const lastOrder : number = 4;
 
 const ref02 = ref<HTMLInputElement | null>(null);
 const ref03 = ref<HTMLInputElement | null>(null);
@@ -105,19 +123,31 @@ const focusOn = () => {
 const setPrev = () => { --(inputState.order); focusOn() }
 const setNext = () => { ++(inputState.order); focusOn() }
 
+
+
 function enterToNext( event : KeyboardEvent ) {
     if(event.key === "Enter") {
-        if( inputState.order < 3 ) {
+        if( inputState.order < lastOrder ) {
             ++(inputState.order)
             focusOn()
         } else {
             props.onSummit({
-	            date : inputState.date,
 	            product : inputState.product,
-	            price : inputState.price
+	            price : inputState.price,
+	            image : inputState.image,
+                date : StrictDate.ofFormattedString(inputState.date)
             })
         }
     }
+}
+
+function handleSumiit() {
+    props.onSummit({
+        date : StrictDate.ofFormattedString(inputState.date),
+        product : inputState.product,
+        price : inputState.price,
+        image : inputState.image
+    })
 }
 
 </script>
@@ -170,7 +200,7 @@ function enterToNext( event : KeyboardEvent ) {
 }
 
 .order-controller {
-
+	margin: 1rem 0;
 
 	& > .order-prev-btn {
 

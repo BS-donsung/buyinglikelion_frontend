@@ -1,32 +1,40 @@
 <template>
     <div class="item-container">
-        <div class="item-img"><img :src="`https://s.pstatic.net/shopping.phinf/20230428_25/435a3623-6745-42ad-8013-715ae7052101.jpg?type=f214_292`" alt="buyingitemimg"></div>
+        <div class="item-img"><img :src="props.item.image" alt="buyingitemimg"></div>
         <div class="text-container">
-            <div class="item-name">2023/05/08</div>
-            <div class="item-name">item-name</div>
-            <div class="item-price">123455 원</div>
+            <div class="item-name">{{props.item.date}}</div>
+            <div class="item-name">{{props.item.product}}</div>
+            <div class="item-price">{{props.item.price.toLocaleString()}}</div>
         </div>
 
     </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'BuyingItem',
-}
-</script>
-
-
 <script setup lang="ts">
 
+import {AccountItem} from "@/dto/AccountItemDTO";
+
+interface BuyingItemProps {
+    item : AccountItem
+}
+
+const props = defineProps<BuyingItemProps>();
+
+
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@use "@style/color" as color;
 
 .item-container {
     display: flex;
     flex-direction: row;
     background-color: white;
+    padding: 1rem;
+
+    &:hover {
+        background-color: color.$gray-100;
+    }
 }
 
 .item-img {
@@ -47,6 +55,7 @@ img {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 1rem;
 }
 
 .item-name {
@@ -59,6 +68,7 @@ img {
     font-size: 16px;
     white-space: nowrap;
     align-self: end;
+    margin-top: auto;
 }
 
 </style>

@@ -28,7 +28,6 @@ const props = withDefaults(defineProps<SearchContainerProps>(), {
 const router = useRouter();
 function handleSearchQuery( queryString : string ) {
     if(Validator.isValidURL(queryString)) {
-        // url이면 바로 /search/product로
         router.push(`/search/product?url=${queryString}`)
     } else {
         router.push(`/search/product?query=${queryString}`)

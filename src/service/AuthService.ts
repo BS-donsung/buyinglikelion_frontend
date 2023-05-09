@@ -12,6 +12,23 @@ class AuthInfo extends UsernameAndPrincipalDTO {
     }
 }
 
+class AuthInfoDetail extends AuthInfo {
+    image : string;
+
+    get birth() : string {
+        return "19920904"
+    }
+
+    get gender() : string {
+        return "male"
+    }
+
+    constructor( username : string, principal : string, isAuthentication : boolean, image : string) {
+        super(username, principal, isAuthentication)
+        this.image = image
+    }
+}
+
 export interface AuthServiceInterface {
     login<E>( authDTO : AuthDTO ) : Promise<Optional<Error>>
     logout() : void 
@@ -20,17 +37,18 @@ export interface AuthServiceInterface {
     deactivate<E>( credential : string ) : Promise<Optional<Error>> 
 }
 
+const DEFAULT_IMAGE = "/assets/default-user-icon.png"
+
 export interface AuthServiceAsyncRequestInfo {
     [key: string]: AsyncRequestInfo;
 }
-// const authRequests: string[] = ["login", "logout", "register", "update", "deactivate"];
 
-export class AuthService extends CachedItemContainer<AuthInfo> implements AuthServiceInterface {
+export class AuthService extends CachedItemContainer<AuthInfoDetail> implements AuthServiceInterface {
 
     requestInfo : AuthServiceAsyncRequestInfo
 
     constructor( requestInfo : AuthServiceAsyncRequestInfo ) {
-        super( new AuthInfo("고객님", "", false) )
+        super( new AuthInfoDetail("고객님", "", false, DEFAULT_IMAGE) )
         this.requestInfo = requestInfo;
     }
 
@@ -43,7 +61,16 @@ export class AuthService extends CachedItemContainer<AuthInfo> implements AuthSe
         if(result.isFailure()) {
             return Optional.of(result.getError())
         }
-        this.setData({ ...result.getValue(), isAuthentication : true })
+        const value = result.getValue()
+
+        const authInfoData : AuthInfoDetail = {
+            username : "James",
+            principal : "yahvz01@testtest.com",
+            image : "https://kakaoenterprise.com/wp-content/uploads/2022/09/ryan-animation_ver02.gif",
+            isAuthentication : true
+        }
+
+        this.setData(authInfoData)
         return Optional.empty()
     }
     
@@ -58,7 +85,7 @@ export class AuthService extends CachedItemContainer<AuthInfo> implements AuthSe
         if(result.isFailure()) {
             return Optional.of(result.getError())
         }
-        this.setData({ ...result.getValue(), isAuthentication : true })
+        this.setData({ ...result.getValue(), isAuthentication : true, image : DEFAULT_IMAGE })
         return Optional.empty()
     }
 
@@ -67,7 +94,7 @@ export class AuthService extends CachedItemContainer<AuthInfo> implements AuthSe
         if(result.isFailure()) {
             return Optional.of(result.getError())
         }
-        this.setData({ ...result.getValue(), isAuthentication : true })
+        this.setData({ ...result.getValue(), isAuthentication : true, image : DEFAULT_IMAGE })
         return Optional.empty()
     }
     

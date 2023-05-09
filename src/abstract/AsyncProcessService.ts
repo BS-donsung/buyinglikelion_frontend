@@ -3,7 +3,10 @@ import { AsyncRequestInfo, HTTP_METHOD } from "@/util/AjaxRequestInfo"
 import { Result } from "@yahvz01/monad"
 import { AjaxPendingError } from "@/error/AjaxPendingError";
 
-
+export interface DefaultResponseEntity {
+    status : string,
+    message : string
+}
 
 export class AsyncProcessService extends ProcessStatus {
     async asyncProcessing<_ResTp, _InpTp>( requestInfo : AsyncRequestInfo, inputData : _InpTp | undefined = undefined) : Promise<Result<_ResTp, Error>> {
@@ -15,7 +18,17 @@ export class AsyncProcessService extends ProcessStatus {
             const response = await fetch(requestInfo.endpoint, AsyncProcessService.setFetchOption(requestInfo, inputData) )
             if(!response.ok) {
                 this.setFailure()
-                return Result.failure(new Error(`Network response was not ok ${response.status}`));
+
+                try {
+                    const textData = await response.text()
+                    const responseEntity : DefaultResponseEntity = JSON.parse(textData)
+                    if(responseEntity.message != undefined) {
+                        return Result.failure(new Error( responseEntity.message ));
+                    }
+                } catch ( e ) {
+                    return Result.failure(new Error(`Network response was not ok ${response.status}`))
+                }
+                return Result.failure(new Error(`Network response was not ok ${response.status}`))
             }
             const responseBody = await response.text()
 

@@ -102,15 +102,10 @@ export class WishItem {
     static of(id : number, name : string, image : string, price : number, choice_date : StrictDate = StrictDate.ofDate()) : WishItem {
         return new WishItem(id, name, image, price, choice_date);
     }
-}
 
-export interface AccountDTO extends RegisteredProductDTO {
-    purchase_date : Date
-    purchase_price : number
-
-    "price": number,
-    "payment" : {
-        "method": "cash" | "debit" | "credit",
-        "installment": number
+    toDTO() : WishItemDTO {
+        const { id, name, image, price } = this;
+        return { id, product : name, image, price, choice_date : this.choice_date.toString()}
     }
 }
+

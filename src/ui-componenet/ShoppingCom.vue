@@ -1,133 +1,106 @@
 <template>
-    <div class="foryoucom-container">
-        <h1 class="title">{{ title }}&nbsp;&nbsp;&gt;</h1>
-        <div class="img-container">
-          <div class="bichevron-container-l">
-            <img class="bichevron-left" src="@/asset/componenticon/bi_chevron-left.svg" alt="bi:chevron-left" @click="prev" />
-          </div>
-            <div class="carousel" :style="carouselStyle">
-              <div
-                v-for="(item, index) in items"
-                :key="index"
-                class="carousel-item"
-                >
-                {{ item }}
-              </div>
+	<div class="foryoucom-container">
+		<h1 class="title">{{ props.title }}&nbsp;&nbsp;&gt;</h1>
+		<div class="img-container">
+			<div class="bichevron-container-l">
+				<img class="bichevron-left" src="@/asset/componenticon/bi_chevron-left.svg" alt="bi:chevron-left" @click="prev" />
+			</div>
+			<div class="carousel" :style="carouselStyle">
+				<ImageComponent
+						v-for="(item, index) in props.items"
+						:item="item"
+						:key="index"
+				/>
+			</div>
+			<div class="bichevron">
+				<img class="bichevron-right" src="@/asset/componenticon/bi_chevron-right.svg" alt="bi:chevron-left" @click="next" />
+			</div>
+		</div>
+	</div>
 
-            </div>
-            <div class="bichevron">
-              <img class="bichevron-right" src="@/asset/componenticon/bi_chevron-right.svg" alt="bi:chevron-left" @click="next" />
-            </div>
-        </div>
-    </div>
-    
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { ref, computed  } from 'vue';
+import {RegisteredProductDTO} from "@/dto/RegisteredProductDTO";
+import ImageComponent from "@/ui-componenet/ImageComponent.vue";
 export interface ShoppingComProps {
     title : string,
-    
+    items : RegisteredProductDTO[]
 }
 
 const props = defineProps<ShoppingComProps>();
 
 const currentIndex = ref(0);
-const items = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-let autoSlideInterval: ReturnType<typeof setTimeout> | null = null;
 
 const carouselStyle = computed(() => ({
-  transform: `translateX(-${currentIndex.value * 176}px)`,
-  transition: 'transform 0.3s ease',
+    transform: `translateX(-${currentIndex.value * 176}px)`,
+    transition: 'transform 0.3s ease',
 }));
 
-
-
 const prev = () => {
-  if (currentIndex.value > 0) {
-    currentIndex.value--;
-  } else {
-    currentIndex.value = items.length - 1;
-  }
+    if (currentIndex.value > 0) {
+        currentIndex.value--;
+    } else {
+        currentIndex.value = props.items.length - 1;
+    }
 };
 
 const next = () => {
-  if (currentIndex.value < items.length - 1) {
-    currentIndex.value++;
-  } else {
-    currentIndex.value = 0;
-  }
+    if (currentIndex.value < props.items.length - 1) {
+        currentIndex.value++;
+    } else {
+        currentIndex.value = 0;
+    }
 };
 
-// onMounted(() => {
-//   autoSlideInterval = setInterval(() => {
-//     next();
-//   }, 3000);
-// });
-
-
-// onBeforeUnmount(() => {
-//   if (autoSlideInterval !== null) {
-//     clearInterval(autoSlideInterval);
-//   }
-// });
 </script>
 
 
 <style scoped>
 
-    .foryoucom-container {
-        align-items: flex-start;
-        background-color: white;
-        border: 1px none;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        height: 358px;
-        padding: 20px 0 20px 20px;
-        overflow-x: hidden;
-    }
-    .title {
-        padding-left: 5px;
-        font-size: 24px;
-        font-weight: bold;
-        white-space: nowrap;
-    }
+.foryoucom-container {
+    align-items: flex-start;
+    background-color: white;
+    border: 1px none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 358px;
+    padding: 20px 0 20px 20px;
+    overflow-x: hidden;
+}
+.title {
+    padding-left: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
 
-    .img-container {
+.img-container {
     align-items: end;
     background-color: rgba(213, 193, 173, 0.3);
     border-radius: 10px;
     display: flex;
     height: 216px;
-    justify-content: flex-end;
     overflow-x: hidden;
     flex-wrap: nowrap;
     padding: 19px 0;
     width: 100%;
 
     position: relative;
-    
-  }
 
-  .carousel {
+}
+
+.carousel {
     display: flex;
     transition: transform 0.3s ease;
-  }
+	gap: 1.5rem;
+}
 
-  .carousel-item {
-    flex-shrink: 0;
-    box-sizing: border-box;
-    text-align: center;
-    background-color: gainsboro;
-    margin-left: 24px;
-    height: 176px;
-    width: 176px;
-  }
 
- 
 
-  .bichevron-left {
+.bichevron-left {
     align-self: center;
     height: 24px;
     margin-top: 2px;
@@ -139,11 +112,9 @@ const next = () => {
     z-index: 5;
     transform: translateY(-50%);
 
-  }
+}
 
-  
-
-  .bichevron-right {
+.bichevron-right {
     align-self: center;
     height: 24px;
     margin-top: 2px;
@@ -155,6 +126,6 @@ const next = () => {
     z-index: 5;
     transform: translateY(-50%);
 
-  }
+}
 
 </style>

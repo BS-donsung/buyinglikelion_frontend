@@ -15,6 +15,7 @@ import ModalContainer from "@/container/message/ModalContainer.vue";
 import SnackbarContainer from "@/container/message/SnackbarContainer.vue";
 import MainHeader from "@/container/MainHeader.vue";
 import MainSideBar from "@/container/MainSideBar.vue";
+import SampleLineChart from "@/ui-componenet/banner/SampleChart/SampleLineChart.vue";
 
 </script>
 

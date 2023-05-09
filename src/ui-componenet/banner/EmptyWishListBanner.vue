@@ -1,12 +1,13 @@
 <template>
-	<div class="havenowish-container">
-		<div class="havenowishscreen">
-			<img class="sajaface" src="@/asset/componenticon/sajaface.png" alt="sajaface" />
-			<div class="nowishtext">
-				<span class="span-jjim">찜한 상품</span><span class="notosans-bold-black-20px">이 없습니다.</span>
+	<div class="empty-wishlist-banner-container">
+		<div class="empty-wishlist-banner">
+			<img class="sajaface" src="@asset/logo.svg" alt="sajaface" />
+			<div class="empty-wishlist-banner-main-message flex-container">
+				<h2>관심 상품</h2><span>이 아직 없습니다.</span>
 			</div>
-			<p class="nowishinnertext notosans-normal-black-20px">사자님을 위한 For you 메뉴를 확인하여 관심상품을 추가해보세요!</p>
+			<p class="nowishinnertext notosans-normal-black-20px">관심 상품을 저장하고 가격 변화를 추적해보세요!</p>
 		</div>
+		<SampleChartBanner />
 	</div>
 </template>
 
@@ -20,28 +21,29 @@
     font-size: 24px;
 }
 
-.havenowish-container {
+.empty-wishlist-banner-main-message {
+
+	& > h2 {
+		color: color.$color-point;
+		margin-right: 0.5rem;
+		transform: translateY(-3px);
+	}
+}
+
+.empty-wishlist-banner-container {
+	padding: 3rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     pointer-events: none;
     width: 100%;
+    background-color: rgba(239, 83, 80, 0.1);
+    margin: 3rem 0;
 
     & > * {
         flex-shrink: 0;
         pointer-events: auto;
     }
-}
-
-.havenowish {
-    align-items: center;
-    background-color: white;
-    border: 1px none;
-    display: flex;
-    flex-direction: column;
-    height: 440px;
-    padding: 79px 144px;
-    width: 832px;
 }
 
 .sajaface {
@@ -51,27 +53,7 @@
     width: 160px;
 }
 
-.nowishtext {
-    color: transparent;
-    font-weight: 700;
-    letter-spacing: 0;
-    line-height: normal;
-    margin-right: 19.0px;
-    margin-top: 29px;
-    min-height: 27px;
-    min-width: 181px;
-}
-
-.span-jjim {
-    color: color.$color-point
-}
-
-.nowishinnertext {
-    align-self: flex-end;
-    letter-spacing: 0;
-    line-height: normal;
-    margin-top: 13px;
-    min-height: 27px;
-    min-width: 543px;
-}
 </style>
+<script setup lang="ts">
+import SampleChartBanner from "@/ui-componenet/banner/SampleChartBanner.vue";
+</script>

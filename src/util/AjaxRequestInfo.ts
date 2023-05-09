@@ -22,6 +22,7 @@ export class AsyncRequestInfo {
     constructor(method : HTTP_METHOD , endpoint : string) {
         this.method = method;
         this.endpoint = endpoint
+        this.appendedQuery = false;
     }
 
     setHostExplicitly( host : string ) {

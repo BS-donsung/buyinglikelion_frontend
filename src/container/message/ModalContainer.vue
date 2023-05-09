@@ -4,16 +4,16 @@
 		</div>
 		<div class="modal-container">
 			<div class="modal-header">
-				<h4>{{currentMessage.header}}</h4>
+				<h2>{{currentMessage.header}}</h2>
 			</div>
 			<div class="modal-contents">
 				<span>{{currentMessage.contents}}</span>
 			</div>
 			<div class="modal-action">
-				<button class="pointer" v-if="currentMessage.positive_action !== undefined" @click="handlePositiveAction">
+				<button class="pointer pos-btn" v-if="currentMessage.positive_action !== undefined" @click="handlePositiveAction">
 					{{currentMessage.positive_action.text}}
 				</button>
-				<button class="pointer" v-if="currentMessage.negative_action !== undefined" @click="handleNegativeAction">
+				<button class="pointer neg-btn" v-if="currentMessage.negative_action !== undefined" @click="handleNegativeAction">
 					{{currentMessage.negative_action.text}}
 				</button>
 			</div>
@@ -63,25 +63,22 @@ function handleClose() {
 }
 
 .modal-container {
-    min-width : 300px;
-    bottom: 0;
-    transform: translateX(-50%);
+    min-width : 35rem;
 }
 
 .modal-container {
     position: fixed;
     left: 50%;
-    transform: translateX(-50%);
-
+	top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 10;
 
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
+    padding: 1.5rem 3rem;
     border-radius: 1.5rem;
     background-color: color.$gray-50;
-    // box-shadow: 0 0 1.5rem 0.5rem color.$gray-300;
-    max-width: 36rem;
+	gap : 1.5rem;
 
     & > * {
         margin: 1rem 0;
@@ -89,11 +86,29 @@ function handleClose() {
 
     & > .modal-action {
         display: flex;
+	    flex-direction: column;
+	    gap: 1.5rem;
+	    margin-top: auto;
 
         & > button {
             background-color: color.$gray-300;
             width: 100%;
+            font-weight: 700;
+
+            &.pos-btn {
+                background-color: rgba(color.$color-main, 0.9);
+            }
+
+            &.neg-btn {
+                background-color: rgba(color.$color-point, 0.9);
+	            color: white;
+            }
         }
     }
 }
+
+.modal-contents {
+	font-size: 1.8rem;
+}
+
 </style>

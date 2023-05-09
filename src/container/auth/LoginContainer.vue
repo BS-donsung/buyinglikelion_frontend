@@ -30,9 +30,9 @@ async function handleLogin( dto : AuthDTO ) : Promise<void> {
     }
     const result = await authService.login(dto)
     if(result.isPresent) {
-        snackBarService.activate({ positive : false, message : "실패"})
+        snackBarService.activate({ positive : false, message : result.get().message})
     } else {
-        snackBarService.activate({ positive : true, message : "성공 "})
+        snackBarService.activate({ positive : true, message : "성공"})
         await router.push("/")
     }
 }

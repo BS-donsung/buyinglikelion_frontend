@@ -1,5 +1,6 @@
 <template>
 	<ul class="flex-container align-controller" :style="WishListControllerStyle">
+		<h3 class="title">{{ props.title }}</h3>
 		<li v-for="(data, index) in sortedList" key="index">
 			<MainColorButton
 					:active="data.value === state.currentValue"
@@ -25,6 +26,7 @@ export interface ButtonInTabInterface {
 	value : string
 }
 interface ButtonTabsProps {
+    title? : string
     initValue? : string;
     onChange? : ( value : string) => void
     list : ButtonInTabInterface[],
@@ -32,7 +34,8 @@ interface ButtonTabsProps {
 }
 
 const props = withDefaults(defineProps<ButtonTabsProps>(), {
-    initValue : "",
+    title : "Price Report",
+    initValue : "Price Report",
 	notChangePosition : false,
 	onChange : (value) => {}
 })
@@ -69,6 +72,11 @@ function handleButton( value : string ) {
 
 
 <style scoped lang="scss">
+
+ul > .title {
+    margin-right: auto;
+}
+
 
 .align-controller {
     justify-content: end;
