@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<SearchContainer :init-query="query"/>
+		<div class="search-container-adapter">
+			<SearchContainer :init-query="query"/>
+		</div>
 		<div v-if="url">
 			<ProductDetailContainer :url="url" />
 		</div>
@@ -22,6 +24,7 @@ import ProductDetailContainer from "@/container/ProductDetailContainer.vue";
 
 import { ItemComponentProps } from '@/ui-componenet/ItemComponent.vue';
 import ProductListContainer from '@/container/ProductListContainer.vue';
+import MainSearchBanner from "@/ui-componenet/banner/MainSearchBanner.vue";
 
 const route = ref(useRoute())
 
@@ -29,3 +32,10 @@ const url: ComputedRef<string | undefined> = computed(() => route.value.query.ur
 const query: ComputedRef<string | undefined> = computed(() => route.value.query.query as string | undefined)
 
 </script>
+
+<style scoped lang="scss">
+
+.search-container-adapter {
+	padding: 5rem 10rem;
+}
+</style>

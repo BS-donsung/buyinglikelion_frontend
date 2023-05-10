@@ -54,7 +54,7 @@ function handleClose() {
 
 .snackbar-container {
     position: fixed;
-    bottom: 3rem;
+    top: 3rem;
     left: 50%;
 	transform: translateX(-50%);
 
@@ -62,9 +62,10 @@ function handleClose() {
     align-items: center;
     background-color: rgba($color: black, $alpha: 0.8);
     color: white;
-    padding : 1rem 0;
+
     border-radius: 1.5rem;
     gap : 1rem;
+    padding : 1.3rem 4rem;
 
 	z-index: 7;
 

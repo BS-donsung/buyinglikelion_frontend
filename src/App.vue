@@ -16,6 +16,8 @@ import SnackbarContainer from "@/container/message/SnackbarContainer.vue";
 import MainHeader from "@/container/MainHeader.vue";
 import MainSideBar from "@/container/MainSideBar.vue";
 import SampleLineChart from "@/ui-componenet/banner/SampleChart/SampleLineChart.vue";
+import {useSnackbarService} from "@/store/ui/UISnackbarService";
+
 
 </script>
 

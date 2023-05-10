@@ -18,14 +18,13 @@
 				class="price-info">
 			<PriceHistoryChart :data="priceHistory" />
 		</div>
-		<RecommendTab />
+		<ShoppingCom :title="`방금 사자들이 찜한 아이템`" :items="dummyAccountList"/>
 	</div>
 </template>
 
 <script setup lang="ts">
 
-import {computed, ComputedRef, onMounted, onUpdated, ref, watch, watchEffect} from "vue";
-import RecommendTab from "@/ui-componenet/RecommendTab.vue";
+import {computed, ComputedRef, onMounted, ref, watch } from "vue";
 import PriceListTable from "@/components/table/PriceListTable.vue"
 import {useWishListStore} from "@/store/WishListStore";
 import {ENDPOINT_OF_SEARCHING_PRICE_INFO} from "@/requestinfo/CrawlingRequestInfo";
@@ -37,6 +36,8 @@ import {ENDPOINT_OF_PRICE_HISTORY} from "@/requestinfo/WishListRequestInfo";
 import PriceHistoryChart from "@/components/chart/PriceHistoryChart.vue";
 import WishItemDetailHeader from "@/components/WishItemDetailHeader.vue";
 import {useSnackbarService} from "@/store/ui/UISnackbarService";
+import ShoppingCom from "@/ui-componenet/ShoppingCom.vue";
+import {dummyAccountList} from "@/dummy/DummyWishList";
 
 interface WishItemDetailContainerProps {
     id : number
@@ -89,10 +90,10 @@ watch(
 
 async function handleTogglePriceTracking( tracking : boolean ) {
 	if(tracking) {
-        const result = await wishListService.removeItem(props.id)
-        snackBarService.activate( { message : "가격 추적이 해제되었습니다." })
+        // const result = await wishListService.removeItem(props.id)
+		snackBarService.activate( { message : "가격 추적이 해제되었습니다." })
     } else {
-        const result = await wishListService.registerItem({ product : currentProduct.value.name } )
+        // const result = await wishListService.registerItem({ product : currentProduct.value.name } )
         snackBarService.activate( { message : "가격 추적이 시작되었습니다." })
 	}
 }

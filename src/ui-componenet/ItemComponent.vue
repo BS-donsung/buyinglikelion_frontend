@@ -3,22 +3,18 @@
         <router-link :to="toLink" class="img-a">
             <img class="item-image" :src="product.image" />
         </router-link>
-        <router-link :to="toLink" class="text-a">
-            <div class="item-text">{{ product.product }}</div>
-            <div class="price-text">
-                <span>최저가 </span><span id="pricebold">{{ product.price }}</span><span>원</span>
+        <router-link :to="toLink" class="text-a flex-container column-direct item-component-text-info-area">
+            <h3 class="item-text">{{ product.product }}</h3>
+            <div class="price-text margin-top-auto">
+                <span>최저가 </span><span id="pricebold">{{ product.price.toLocaleString() }}</span><span>원</span>
             </div>
         </router-link>
 	</div>
 </template>
-<!-- 이미지 밑에 빈공간 없애야함 -->
 <script setup lang="ts">
 
 import {computed, defineProps, ref} from 'vue';
 import {ProductDTO, ProductWithURLDTO, RegisteredProductDTO} from "@/dto/RegisteredProductDTO";
-
-
-
 export interface ItemComponentProps {
     product : ProductWithURLDTO,
 }
@@ -73,6 +69,11 @@ const toLink = computed(() => {
 
 #pricebold {
     font-weight: bold;
+}
+
+.item-component-text-info-area {
+    align-items: end;
+    padding: 3rem 0;
 }
 
 </style>

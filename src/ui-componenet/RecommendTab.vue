@@ -2,12 +2,7 @@
 	<div class="recommendtab">
 		<div class="overlap-group">
 			<h4 class="mention">{{ username }}사자님 아래 추천 아이템도 둘러보세요!</h4>
-			<div class="recommend-item-list">
-				<RecommendItem />
-				<RecommendItem />
-				<RecommendItem />
-				<RecommendItem />
-			</div>
+
 		</div>
 	</div>
 </template>

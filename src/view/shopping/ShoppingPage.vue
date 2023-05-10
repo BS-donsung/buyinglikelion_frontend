@@ -1,16 +1,11 @@
 <template>
-    Shopping
     <div class="shoppingcontainer">
-
-        <VerticalImageListComponent title="방금 사자들이 구매한 아이템" items="" />
-
+        <MainShoppingBanner />
     </div>
 </template>
 
 <script setup lang="ts">
-import VerticalImageListComponent from "@/ui-componenet/VerticalImageListComponent.vue";
-
-
+import MainShoppingBanner from "@/ui-componenet/banner/MainShoppingBanner.vue";
 
 </script>
 

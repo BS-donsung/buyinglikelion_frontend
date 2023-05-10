@@ -19,7 +19,7 @@
 				</div>
 				<div class="product-detail-view-header">
 					<h1 class="product-name">{{ productService.data.product }}</h1>
-					<h2>{{productService.data.price}}</h2>
+					<h2>{{productService.data.price.toLocaleString()}}<span>원</span>></h2>
 					<div class="flex-container justify-content-end">
 						<MainColorButton
 								v-if="isRegisteredWishList"
@@ -67,7 +67,7 @@
 				</div>
 			</div>
 			<div>
-				// Related
+				<ShoppingCom :title="`해당 물품을 찜한 사람 담은 다른 물건`" :items="dummyAccountList"/>
 			</div>
 		</div>
 	</div>
@@ -92,6 +92,8 @@ import ComparePriceByMall from "@/components/chart/ComparePriceByMallChart.vue";
 import PriceListTable from "@/components/table/PriceListTable.vue"
 import {useWishListStore} from "@/store/WishListStore";
 import ButtonTab, {ButtonInTabInterface} from "@/components/tab/ButtonTab.vue";
+import ShoppingCom from "@/ui-componenet/ShoppingCom.vue";
+import {dummyAccountList} from "@/dummy/DummyWishList";
 
 const mockURL = "http://item.gmarket.co.kr/DetailView/Item.asp?goodscode=1848434433&GoodsSale=Y&jaehuid=200001169&NaPm=ct%3Dlh8tuzqo%7Cci%3D62d9ba23c3a6a2e706c024386cda5ccdd9fe2632%7Ctr%3Dslct%7Csn%3D24%7Chk%3Dfb5fa1eaf377f54c993805478e142b4648cff40b"
 
